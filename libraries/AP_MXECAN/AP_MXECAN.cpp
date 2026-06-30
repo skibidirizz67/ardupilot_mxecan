@@ -93,77 +93,31 @@ void AP_MXECAN_Driver::handle_frame(AP_HAL::CANFrame &frame)
     }
 #endif
 
+    uint8_t fault_code = frame.data[0];
+    uint8_t driver_temperature = frame.data[1];
+    int16_t axis2_speed = (int16_t)(((uint16_t)frame.data[2] << 8) | frame.data[3]);
+    int16_t axis1_speed = (int16_t)(((uint16_t)frame.data[4] << 8) | frame.data[5]);
+    uint16_t power_voltage = ((uint16_t)frame.data[6] << 8) | frame.data[7];
+
+    // TODO: update_rpm / update_telem_data
+
 #if AP_MXECAN_DEBUG
     // all MX_CAN-SV3.03 frames should have dlc of 8
-    if (frame.dlc != MXECAN_DLC_SIZE) {
-        GCS_SEND_TEXT(MAV_SEVERITY_DEBUG,"MXECAN: data: %08llX", (uint64_t)frame.data[0]);
-        return;
-    }
+    GCS_SEND_TEXT(MAV_SEVERITY_DEBUG,"MXECAN: data: %08llX", (uint64_t)frame.data[0]);
+
+    GCS_SEND_TEXT(MAV_SEVERITY_DEBUG,"fault_code=%u driver_temp=%u axis2_speed=%d axis1_speed=%d power_voltage=%u",
+        fault_code, driver_temperature, axis2_speed, axis1_speed, power_voltage);
 #endif
-
-/*
-    // check if frame is valid: directed at autopilot, doesn't come from broadcast and ESC was detected before
-    switch (id.object_address) {
-        case ESC_INFO_OBJ_ADDR:
-            if (frame.dlc == 5 &&
-                (id.source_id < (ARRAY_SIZE(_output.pwm) + ESC_NODE_ID_FIRST)))
-            {
-                if (__builtin_popcount(_init.detected_bitmask) >= MXECAN_MAX_NUM_ESCS) {
-                    // we already have the maximum number of ESCs
-                    return;
-                }
-                const uint16_t bitmask = (1UL << (id.source_id - ESC_NODE_ID_FIRST));
-
-                if ((bitmask & _init.detected_bitmask) != bitmask) {
-                    _init.detected_bitmask |= bitmask;
-                    GCS_SEND_TEXT(MAV_SEVERITY_INFO,"MXECAN: Found ESC id %u mapped to SERVO%u", id.source_id, id.source_id-1);
-                }
-            }
-        break;
-
-#if HAL_WITH_ESC_TELEM
-        case TELEMETRY_OBJ_ADDR:
-            if (frame.dlc == 8 &&
-                (1UL << (id.source_id - ESC_NODE_ID_FIRST) & _init.detected_bitmask))
-            {
-                const uint8_t idx = id.source_id - ESC_NODE_ID_FIRST;
-                const uint8_t num_poles = _telemetry.num_poles > 0 ? _telemetry.num_poles : DEFAULT_NUM_POLES;
-                update_rpm(idx, uint16_t(uint16_t(frame.data[4] << 8 | frame.data[5]) * 60UL * 2 / num_poles));
-
-                const TelemetryData t {
-                    .temperature_cdeg = int16_t(frame.data[6] * 100),
-                    .voltage = float(uint16_t(frame.data[0] << 8 | frame.data[1])) * 0.01f,
-                    .current = float(uint16_t(frame.data[2] << 8 | frame.data[3])) * 0.01f,
-                };
-                update_telem_data(idx, t,
-                    AP_ESC_Telem_Backend::TelemetryType::CURRENT |
-                    AP_ESC_Telem_Backend::TelemetryType::VOLTAGE |
-                    AP_ESC_Telem_Backend::TelemetryType::TEMPERATURE);
-            }
-            break;
-#endif // HAL_WITH_ESC_TELEM
-    }
-*/
 }
 
 void AP_MXECAN_Driver::update(const uint8_t num_poles)
 {
-    if (_init.detected_bitmask == 0) {
-        // nothing to do...
-        return;
-    }
-
 #if HAL_WITH_ESC_TELEM
     _telemetry.num_poles = num_poles;
 #endif
     
     WITH_SEMAPHORE(_output.sem);
     for (uint8_t i = 0; i < ARRAY_SIZE(_output.pwm); i++) {
-        if ((_init.detected_bitmask & (1UL<<i)) == 0 || SRV_Channels::channel_function(i) <= SRV_Channel::Function::k_none) {
-            _output.pwm[i] = 0;
-            continue;
-        }
-
         const SRV_Channel *c = SRV_Channels::srv_channel(i);
         if (c == nullptr) {
             _output.pwm[i] = 0;
@@ -187,7 +141,7 @@ void AP_MXECAN_Driver::update(const uint8_t num_poles)
     if (now_ms - last_send_ms > 1000) {
         last_send_ms = now_ms;
         GCS_SEND_TEXT(MAV_SEVERITY_INFO,"%u: %u, %u, %u, %u, %u, %u, %u, %u",
-        (unsigned)_init.detected_bitmask,
+        0,
         (unsigned)_output.pwm[0], (unsigned)_output.pwm[1], (unsigned)_output.pwm[2], (unsigned)_output.pwm[3],
         (unsigned)_output.pwm[4], (unsigned)_output.pwm[5], (unsigned)_output.pwm[6], (unsigned)_output.pwm[7]);
     }
@@ -201,12 +155,6 @@ void AP_MXECAN_Driver::loop()
 #if AP_MXECAN_USE_EVENTS
     _output.thread_ctx = chThdGetSelfX();
 #endif
-
-    uint8_t broadcast_esc_info_boot_spam_count = 3;
-    uint32_t broadcast_esc_info_next_interval_ms = 100; // spam a few at boot at this rate
-
-    UNUSED(broadcast_esc_info_boot_spam_count);
-    UNUSED(broadcast_esc_info_next_interval_ms);
 
     while (true) {
 #if AP_MXECAN_USE_EVENTS
@@ -234,36 +182,9 @@ void AP_MXECAN_Driver::loop()
             }
         }
 
-/*
-        for (uint8_t i=0; i<ARRAY_SIZE(_output.pwm); i++) {
-            if ((_init.detected_bitmask & (1UL<<i)) != 0) {
-                send_packet_uint16(SET_PWM_OBJ_ADDR, (i + ESC_NODE_ID_FIRST), 1000, pwm[i]);
-            }
-        }
-
 #if HAL_WITH_ESC_TELEM
-        // broadcast as request-telemetry msg to everyone
-        if (_init.detected_bitmask != 0 && now_ms - _telemetry.timer_ms >= TELEMETRY_INTERVAL_MS) {
-            if (send_packet(TELEMETRY_OBJ_ADDR, BROADCAST_NODE_ID, 10000)) {
-                _telemetry.timer_ms = now_ms;
-            }
-        }
+        // TODO: discover what's this for
 #endif // HAL_WITH_ESC_TELEM
-
-        if ((_init.detected_bitmask == 0 || broadcast_esc_info_boot_spam_count > 0) && (now_ms - _init.detected_bitmask_ms >= broadcast_esc_info_next_interval_ms)) {
-            // broadcast an "anyone there?" quick at boot but then 1Hz forever until we see at least 1 esc respond
-            if (broadcast_esc_info_boot_spam_count > 0) {
-                broadcast_esc_info_boot_spam_count--;
-            } else {
-                broadcast_esc_info_next_interval_ms = 1000;
-            }
-
-            if (send_packet(ESC_INFO_OBJ_ADDR, BROADCAST_NODE_ID, 100000)) {
-                _init.detected_bitmask_ms = now_ms;
-            }
-        }
-*/
-
     } // while true
 }
 
