@@ -1,0 +1,9 @@
+
+#pragma once
+
+#include <AP_HAL/AP_HAL_Boards.h>
+
+#ifndef AP_MXECAN_ENABLED
+#define AP_MXECAN_ENABLED (HAL_MAX_CAN_PROTOCOL_DRIVERS && HAL_PROGRAM_SIZE_LIMIT_KB > 2048)
+#endif
+

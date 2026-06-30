@@ -29,5 +29,6 @@ public:
         Scripting2 = 12,
         TOFSenseP = 13,
         RadarCAN = 14,  // used by NanoRadar and Hexsoon
+        MXECAN = 20, // a value of 20 is selected in order to avoid collisions with protocols which may be added in near future 
     };
 };
