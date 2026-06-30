@@ -52,9 +52,6 @@ typedef enum FaultCode {
 } FaultCode_t;
 
 class AP_MXECAN_Driver : public CANSensor
-#if HAL_WITH_ESC_TELEM
-, public AP_ESC_Telem_Backend
-#endif
 {
 public:
     
@@ -78,7 +75,6 @@ private:
     // handler for incoming frames
     void handle_frame(AP_HAL::CANFrame &frame) override;
     
-    bool send_packet_uint16(const uint8_t address, const uint8_t dest_id, const uint32_t timeout_us, const uint16_t data);
     bool send_packet(const uint8_t address, const uint8_t dest_id, const uint32_t timeout_us, const uint8_t *data = nullptr, const uint8_t data_len = 0);
 
     void loop();
@@ -92,13 +88,6 @@ private:
         thread_t *thread_ctx;
 #endif
     } _output;
-
-#if HAL_WITH_ESC_TELEM
-    struct {
-        uint8_t num_poles;
-        uint32_t timer_ms;
-    } _telemetry;
-#endif
     
     static const uint32_t ESC_NODE_ID = 0x1801E600; // aka driver RX ID
     static const uint32_t AUTOPILOT_NODE_ID = 0x1801E001; // aka driver TX ID

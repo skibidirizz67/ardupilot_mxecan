@@ -12,8 +12,6 @@ extern const AP_HAL::HAL& hal;
 
 #define AP_MXECAN_DEBUG 1
 
-#define UNUSED(x) (void)(x)
-
 // table of user settable CAN bus parameters
 const AP_Param::GroupInfo AP_MXECAN::var_info[] = {
 
@@ -40,21 +38,26 @@ void AP_MXECAN::init()
 {
     GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"initializing MXECAN");
     if (_driver != nullptr) {
+        GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"another instance already exists");
         // only allow one instance
         return;
     }
 
     for (uint8_t i = 0; i < HAL_NUM_CAN_IFACES; i++) {
         if (CANSensor::get_driver_type(i) == AP_CAN::Protocol::MXECAN) {
+            GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"found MXECAN CAN interface");
             _driver = NEW_NOTHROW AP_MXECAN_Driver();
             return;
         }
     }
+    GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"could not find MXECAN CAN interface");
 }
 
 void AP_MXECAN::update()
 {
+    GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"updating MXECAN");
     if (_driver == nullptr) {
+        GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"no MXECAN :noboobs:");
         return;
     }
     _driver->update((uint8_t)_num_poles.get());
@@ -63,6 +66,8 @@ void AP_MXECAN::update()
 AP_MXECAN_Driver::AP_MXECAN_Driver() : CANSensor("MXECAN")
 {
     register_driver(AP_CAN::Protocol::MXECAN);
+
+    GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"registering mxecan driver and creating loop thread");
 
     // start thread for receiving and sending CAN frames. Tests show we use about 640 bytes of stack
     hal.scheduler->thread_create(FUNCTOR_BIND_MEMBER(&AP_MXECAN_Driver::loop, void), "mxecan", 2048, AP_HAL::Scheduler::PRIORITY_CAN, 0);
@@ -119,6 +124,7 @@ void AP_MXECAN_Driver::update(const uint8_t num_poles)
             continue;
         }
         _output.pwm[i] = c->get_output_pwm();
+        GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"pwm%d=%d", i, _output.pwm[i]);
     }
 
     _output.is_new = true;
@@ -174,13 +180,9 @@ void AP_MXECAN_Driver::loop()
                 _output.last_new_ms = 0;
             }
         }
-    } // while true
-}
 
-bool AP_MXECAN_Driver::send_packet_uint16(const uint8_t address, const uint8_t dest_id, const uint32_t timeout_us, const uint16_t data)
-{
-    const uint16_t data_be16 = htobe16(data);
-    return send_packet(address, dest_id, timeout_us, (uint8_t*)&data_be16, 2);
+        
+    } // while true
 }
 
 bool AP_MXECAN_Driver::send_packet(const uint8_t address, const uint8_t dest_id, const uint32_t timeout_us, const uint8_t *data, const uint8_t data_len)
