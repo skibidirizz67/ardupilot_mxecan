@@ -10,7 +10,7 @@
 
 extern const AP_HAL::HAL& hal;
 
-#define AP_MXECAN_DEBUG 0
+#define AP_MXECAN_DEBUG 1
 
 // table of user settable CAN bus parameters
 const AP_Param::GroupInfo AP_MXECAN::var_info[] = {
@@ -72,19 +72,36 @@ void AP_MXECAN_Driver::handle_frame(AP_HAL::CANFrame &frame)
         return;
     }
 
-    const frame_id_t id { .value = frame.id & AP_HAL::CANFrame::MaskExtID };
+    uint32_t can_id = frame.id & AP_HAL::CANFrame::MaskExtID;
 
 #if AP_MXECAN_DEBUG
     if (id.object_address != TELEMETRY_OBJ_ADDR) {
-        GCS_SEND_TEXT(MAV_SEVERITY_DEBUG,"MXECAN: rx id:%d, src:%d, dest:%d, len:%d", (int)id.object_address, (int)id.source_id, (int)id.destination_id, (int)frame.dlc);
+        GCS_SEND_TEXT(MAV_SEVERITY_DEBUG,"MXECAN: can id:%u, len:%u", can_id, frame.dlc);
     }
 #endif
 
-    if (id.destination_id != AUTOPILOT_NODE_ID || id.source_id < ESC_NODE_ID_FIRST) {
-        // not for us or invalid id (0 and 1 are invalid)
+    if (can_id != AUTOPILOT_NODE_ID) {
+        // not for us or invalid id
         return;
     }
 
+#if AP_MXECAN_DEBUG
+    // all MX_CAN-SV3.03 frames should have dlc of 8
+    if (frame.dlc != MXECAN_DLC_SIZE) {
+        GCS_SEND_TEXT(MAV_SEVERITY_DEBUG,"MXECAN: invalid dlc value: %u != %u", frame.dlc, MXECAN_DLC_SIZE);
+        return;
+    }
+#endif
+
+#if AP_MXECAN_DEBUG
+    // all MX_CAN-SV3.03 frames should have dlc of 8
+    if (frame.dlc != MXECAN_DLC_SIZE) {
+        GCS_SEND_TEXT(MAV_SEVERITY_DEBUG,"MXECAN: data: %08X", (uint64_t)frame.data[0]);
+        return;
+    }
+#endif
+
+/*
     // check if frame is valid: directed at autopilot, doesn't come from broadcast and ESC was detected before
     switch (id.object_address) {
         case ESC_INFO_OBJ_ADDR:
@@ -126,6 +143,7 @@ void AP_MXECAN_Driver::handle_frame(AP_HAL::CANFrame &frame)
             break;
 #endif // HAL_WITH_ESC_TELEM
     }
+*/
 }
 
 void AP_MXECAN_Driver::update(const uint8_t num_poles)

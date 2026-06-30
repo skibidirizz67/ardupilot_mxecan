@@ -19,6 +19,8 @@
 
 #define MXECAN_MAX_NUM_ESCS 8
 
+#define MXECAN_DLC_SIZE 8
+
 class AP_MXECAN_Driver : public CANSensor
 #if HAL_WITH_ESC_TELEM
 , public AP_ESC_Telem_Backend
@@ -62,35 +64,9 @@ private:
         uint32_t timer_ms;
     } _telemetry;
 #endif
-
-    union frame_id_t {
-        struct PACKED {
-            uint8_t object_address;
-            uint8_t destination_id;
-            uint8_t source_id;
-            uint8_t priority:5;
-            uint8_t unused:3;
-        };
-        uint32_t value;
-    };
     
-    static const uint8_t AUTOPILOT_NODE_ID = 0;
-    static const uint8_t BROADCAST_NODE_ID = 1;
-    static const uint8_t ESC_NODE_ID_FIRST = 2;
-
-    static const uint8_t ESC_INFO_OBJ_ADDR = 0;
-    static const uint8_t SET_PWM_OBJ_ADDR = 1;
-    static const uint8_t VOLTAGE_OBJ_ADDR = 2;
-    static const uint8_t CURRENT_OBJ_ADDR = 3;
-    static const uint8_t RPM_OBJ_ADDR = 4;
-    static const uint8_t TEMPERATURE_OBJ_ADDR = 5;
-    static const uint8_t GET_PWM_INPUT_OBJ_ADDR = 6;
-    static const uint8_t GET_PWM_OUTPUT_OBJ_ADDR = 7;
-    static const uint8_t MCU_ID_OBJ_ADDR = 8;
-    static const uint8_t UPDATE_NODE_ID_OBJ_ADDR = 9;
-    static const uint8_t ENUM_OBJ_ADDR = 10;
-    static const uint8_t TELEMETRY_OBJ_ADDR = 11;
-
+    static const uint32_t ESC_NODE_ID = 0x1801E600; // aka driver RX ID
+    static const uint32_t AUTOPILOT_NODE_ID = 0x1801E001; // aka driver TX ID
 
     static const uint32_t TELEMETRY_INTERVAL_MS = 100;
 
