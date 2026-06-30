@@ -12,6 +12,8 @@ extern const AP_HAL::HAL& hal;
 
 #define AP_MXECAN_DEBUG 1
 
+#define UNUSED(x) (void)(x)
+
 // table of user settable CAN bus parameters
 const AP_Param::GroupInfo AP_MXECAN::var_info[] = {
 
@@ -75,9 +77,7 @@ void AP_MXECAN_Driver::handle_frame(AP_HAL::CANFrame &frame)
     uint32_t can_id = frame.id & AP_HAL::CANFrame::MaskExtID;
 
 #if AP_MXECAN_DEBUG
-    if (id.object_address != TELEMETRY_OBJ_ADDR) {
-        GCS_SEND_TEXT(MAV_SEVERITY_DEBUG,"MXECAN: can id:%u, len:%u", can_id, frame.dlc);
-    }
+    GCS_SEND_TEXT(MAV_SEVERITY_DEBUG,"MXECAN: can id:%lu, len:%u", can_id, frame.dlc);
 #endif
 
     if (can_id != AUTOPILOT_NODE_ID) {
@@ -96,7 +96,7 @@ void AP_MXECAN_Driver::handle_frame(AP_HAL::CANFrame &frame)
 #if AP_MXECAN_DEBUG
     // all MX_CAN-SV3.03 frames should have dlc of 8
     if (frame.dlc != MXECAN_DLC_SIZE) {
-        GCS_SEND_TEXT(MAV_SEVERITY_DEBUG,"MXECAN: data: %08X", (uint64_t)frame.data[0]);
+        GCS_SEND_TEXT(MAV_SEVERITY_DEBUG,"MXECAN: data: %08llX", (uint64_t)frame.data[0]);
         return;
     }
 #endif
@@ -205,6 +205,9 @@ void AP_MXECAN_Driver::loop()
     uint8_t broadcast_esc_info_boot_spam_count = 3;
     uint32_t broadcast_esc_info_next_interval_ms = 100; // spam a few at boot at this rate
 
+    UNUSED(broadcast_esc_info_boot_spam_count);
+    UNUSED(broadcast_esc_info_next_interval_ms);
+
     while (true) {
 #if AP_MXECAN_USE_EVENTS
         // sleep until we get new data, but also wake up at 400Hz to send the old data again
@@ -231,6 +234,7 @@ void AP_MXECAN_Driver::loop()
             }
         }
 
+/*
         for (uint8_t i=0; i<ARRAY_SIZE(_output.pwm); i++) {
             if ((_init.detected_bitmask & (1UL<<i)) != 0) {
                 send_packet_uint16(SET_PWM_OBJ_ADDR, (i + ESC_NODE_ID_FIRST), 1000, pwm[i]);
@@ -258,6 +262,7 @@ void AP_MXECAN_Driver::loop()
                 _init.detected_bitmask_ms = now_ms;
             }
         }
+*/
 
     } // while true
 }
@@ -270,20 +275,9 @@ bool AP_MXECAN_Driver::send_packet_uint16(const uint8_t address, const uint8_t d
 
 bool AP_MXECAN_Driver::send_packet(const uint8_t address, const uint8_t dest_id, const uint32_t timeout_us, const uint8_t *data, const uint8_t data_len)
 {
-    // broadcast telemetry request frame
-    const frame_id_t id {
-        {
-            .object_address = address,
-            .destination_id = dest_id,
-            .source_id = AUTOPILOT_NODE_ID,
-            .priority = 0,
-            .unused = 0
-        }
-    };
-
-    AP_HAL::CANFrame frame = AP_HAL::CANFrame((id.value | AP_HAL::CANFrame::FlagEFF), data, data_len, false);
-
-    return write_frame(frame, timeout_us);
+    //AP_HAL::CANFrame frame = AP_HAL::CANFrame((id.value | AP_HAL::CANFrame::FlagEFF), data, data_len, false);
+    return true;
+    //return write_frame(frame, timeout_us);
 }
 
 // singleton instance
