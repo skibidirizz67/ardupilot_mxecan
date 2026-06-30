@@ -92,6 +92,10 @@
 #define AP_KDECAN_ENABLED 0
 #endif
 
+#ifndef AP_MXECAN_ENABLED
+#define AP_MXECAN_ENABLED 0
+#endif
+
 #ifndef HAL_GENERATOR_ENABLED
 #define HAL_GENERATOR_ENABLED 0
 #endif

@@ -146,6 +146,14 @@ const AP_Param::GroupInfo AP_Vehicle::var_info[] = {
     AP_SUBGROUPINFO(kdecan, "KDE_",  19, AP_Vehicle, AP_KDECAN),
 #endif
 
+#if AP_MXECAN_ENABLED
+    // @Group: MXE_
+    // @Path: ../AP_MXECAN/AP_MXECAN.cpp
+    AP_SUBGROUPINFO(mxecan, "MXE_",  40, AP_Vehicle, AP_MXECAN),
+    // at the moment of writing this code, the last added value is 32
+    // 40 is selected in order to avoid collisions with future subgroups
+#endif
+
 #if APM_BUILD_COPTER_OR_HELI || APM_BUILD_TYPE(APM_BUILD_ArduPlane) || APM_BUILD_TYPE(APM_BUILD_Rover)
     // @Param: FLTMODE_GCSBLOCK
     // @DisplayName: Flight mode block from GCS
@@ -501,6 +509,10 @@ void AP_Vehicle::setup()
 
 #if AP_KDECAN_ENABLED
     kdecan.init();
+#endif
+
+#if AP_MXECAN_ENABLED
+    mxecan.init();
 #endif
 
 #if AP_AIS_ENABLED
