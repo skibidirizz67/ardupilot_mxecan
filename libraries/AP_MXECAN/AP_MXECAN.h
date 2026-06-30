@@ -64,6 +64,16 @@ public:
     void update(const uint8_t num_poles);
 
 private:
+    union mxecan_frame_t {
+        struct PACKED {
+            uint8_t fault_code;
+            uint8_t driver_temperature;
+            int16_t axis2_speed;
+            int16_t axis1_speed;
+            uint16_t power_voltage;
+        };
+        uint8_t data[8];
+    };
 
     // handler for incoming frames
     void handle_frame(AP_HAL::CANFrame &frame) override;

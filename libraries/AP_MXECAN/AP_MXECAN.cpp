@@ -38,6 +38,7 @@ AP_MXECAN::AP_MXECAN()
 
 void AP_MXECAN::init()
 {
+    GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"initializing MXECAN");
     if (_driver != nullptr) {
         // only allow one instance
         return;
@@ -77,7 +78,7 @@ void AP_MXECAN_Driver::handle_frame(AP_HAL::CANFrame &frame)
     uint32_t can_id = frame.id & AP_HAL::CANFrame::MaskExtID;
 
 #if AP_MXECAN_DEBUG
-    GCS_SEND_TEXT(MAV_SEVERITY_DEBUG,"MXECAN: can id:%lu, len:%u", can_id, frame.dlc);
+    GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"MXECAN: can id:%lu, len:%u", can_id, frame.dlc);
 #endif
 
     if (can_id != AUTOPILOT_NODE_ID) {
@@ -88,34 +89,28 @@ void AP_MXECAN_Driver::handle_frame(AP_HAL::CANFrame &frame)
 #if AP_MXECAN_DEBUG
     // all MX_CAN-SV3.03 frames should have dlc of 8
     if (frame.dlc != MXECAN_DLC_SIZE) {
-        GCS_SEND_TEXT(MAV_SEVERITY_DEBUG,"MXECAN: invalid dlc value: %u != %u", frame.dlc, MXECAN_DLC_SIZE);
+        GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"MXECAN: invalid dlc value: %u != %u", frame.dlc, MXECAN_DLC_SIZE);
         return;
     }
 #endif
 
-    uint8_t fault_code = frame.data[0];
-    uint8_t driver_temperature = frame.data[1];
-    int16_t axis2_speed = (int16_t)(((uint16_t)frame.data[2] << 8) | frame.data[3]);
-    int16_t axis1_speed = (int16_t)(((uint16_t)frame.data[4] << 8) | frame.data[5]);
-    uint16_t power_voltage = ((uint16_t)frame.data[6] << 8) | frame.data[7];
+    mxecan_frame_t mxecan_data = {0};
+    memcpy(&mxecan_data, frame.data, 8);
 
     // TODO: update_rpm / update_telem_data
 
 #if AP_MXECAN_DEBUG
     // all MX_CAN-SV3.03 frames should have dlc of 8
-    GCS_SEND_TEXT(MAV_SEVERITY_DEBUG,"MXECAN: data: %08llX", (uint64_t)frame.data[0]);
+    GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"MXECAN: data: %08llX", (uint64_t)frame.data[0]);
 
-    GCS_SEND_TEXT(MAV_SEVERITY_DEBUG,"fault_code=%u driver_temp=%u axis2_speed=%d axis1_speed=%d power_voltage=%u",
-        fault_code, driver_temperature, axis2_speed, axis1_speed, power_voltage);
+    GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"fault_code=%u driver_temp=%u axis2_speed=%d axis1_speed=%d power_voltage=%u",
+        mxecan_data.fault_code, mxecan_data.driver_temperature,
+        mxecan_data.axis2_speed, mxecan_data.axis1_speed, mxecan_data.power_voltage);
 #endif
 }
 
 void AP_MXECAN_Driver::update(const uint8_t num_poles)
 {
-#if HAL_WITH_ESC_TELEM
-    _telemetry.num_poles = num_poles;
-#endif
-    
     WITH_SEMAPHORE(_output.sem);
     for (uint8_t i = 0; i < ARRAY_SIZE(_output.pwm); i++) {
         const SRV_Channel *c = SRV_Channels::srv_channel(i);
@@ -140,7 +135,7 @@ void AP_MXECAN_Driver::update(const uint8_t num_poles)
     const uint32_t now_ms = AP_HAL::millis();
     if (now_ms - last_send_ms > 1000) {
         last_send_ms = now_ms;
-        GCS_SEND_TEXT(MAV_SEVERITY_INFO,"%u: %u, %u, %u, %u, %u, %u, %u, %u",
+        GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"%u: %u, %u, %u, %u, %u, %u, %u, %u",
         0,
         (unsigned)_output.pwm[0], (unsigned)_output.pwm[1], (unsigned)_output.pwm[2], (unsigned)_output.pwm[3],
         (unsigned)_output.pwm[4], (unsigned)_output.pwm[5], (unsigned)_output.pwm[6], (unsigned)_output.pwm[7]);
@@ -158,15 +153,13 @@ void AP_MXECAN_Driver::loop()
 
     while (true) {
 #if AP_MXECAN_USE_EVENTS
-        // sleep until we get new data, but also wake up at 400Hz to send the old data again
         chEvtWaitAnyTimeout(ALL_EVENTS, chTimeUS2I(2500));
  #else
-        hal.scheduler->delay_microseconds(2500); // 400Hz
+        hal.scheduler->delay_microseconds(2500);
 #endif
 
         const uint32_t now_ms = AP_HAL::millis();
 
-        // This should run at 400Hz
         {
             WITH_SEMAPHORE(_output.sem);
             if (_output.is_new) {
@@ -181,10 +174,6 @@ void AP_MXECAN_Driver::loop()
                 _output.last_new_ms = 0;
             }
         }
-
-#if HAL_WITH_ESC_TELEM
-        // TODO: discover what's this for
-#endif // HAL_WITH_ESC_TELEM
     } // while true
 }
 
