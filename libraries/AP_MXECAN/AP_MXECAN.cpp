@@ -124,7 +124,6 @@ void AP_MXECAN_Driver::update(const uint8_t num_poles)
             continue;
         }
         _output.pwm[i] = c->get_output_pwm();
-        GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"pwm%d=%d", i, _output.pwm[i]);
     }
 
     _output.is_new = true;
@@ -153,6 +152,8 @@ void AP_MXECAN_Driver::loop()
 {
     uint16_t pwm[ARRAY_SIZE(_output.pwm)] {};
 
+    GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"launching loop");
+
 #if AP_MXECAN_USE_EVENTS
     _output.thread_ctx = chThdGetSelfX();
 #endif
@@ -164,6 +165,8 @@ void AP_MXECAN_Driver::loop()
         hal.scheduler->delay_microseconds(2500);
 #endif
 
+        GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"loop");
+
         const uint32_t now_ms = AP_HAL::millis();
 
         {
@@ -173,7 +176,7 @@ void AP_MXECAN_Driver::loop()
                 _output.is_new = false;
                 memcpy(&pwm, &_output.pwm, sizeof(pwm));
 
-            } else if (_output.last_new_ms && now_ms - _output.last_new_ms > 1000) {
+            } else if (_output.last_new_ms && now_ms - _output.last_new_ms > LAST_OUTPUT_TIMEOUT_MS) {
                 // if we haven't gotten any PWM updates for a bit, zero it
                 // out so we don't just keep sending the same values forever
                 memset(&pwm, 0, sizeof(pwm));
@@ -185,7 +188,7 @@ void AP_MXECAN_Driver::loop()
     } // while true
 }
 
-bool AP_MXECAN_Driver::send_packet(const uint8_t address, const uint8_t dest_id, const uint32_t timeout_us, const uint8_t *data, const uint8_t data_len)
+bool AP_MXECAN_Driver::send_packet(const uint32_t timeout_us, const uint8_t *data)
 {
     //AP_HAL::CANFrame frame = AP_HAL::CANFrame((id.value | AP_HAL::CANFrame::FlagEFF), data, data_len, false);
     return true;

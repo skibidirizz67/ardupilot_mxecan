@@ -21,6 +21,8 @@
 
 #define MXECAN_DLC_SIZE 8
 
+#define LAST_OUTPUT_TIMEOUT_MS 2000
+
 typedef enum FaultCode {
     NORMAL              = 0,
     DRIVER_FAULT        = 1,
@@ -68,6 +70,23 @@ private:
             int16_t axis2_speed;
             int16_t axis1_speed;
             uint16_t power_voltage;
+        };
+        uint8_t data[8];
+    };
+
+    union mxecan_tx_frame_t {
+        struct PACKED {
+            uint8_t control_mask;
+            union {
+                int16_t axis2_speed;
+                int16_t axis2_torque;
+            }
+            uint8_t axis2_acceleration;
+            union {
+                int16_t axis1_speed;
+                int16_t axis1_torque;
+            }
+            uint8_t axis1_acceleration;
         };
         uint8_t data[8];
     };
