@@ -7,6 +7,10 @@
 #include <SRV_Channel/SRV_Channel.h>
 #include <GCS_MAVLink/GCS.h>
 #include <AP_Math/AP_Math.h>    // for MIN,MAX
+#include <AP_Arming/AP_Arming.h>
+#include <RC_Channel/RC_Channel.h>
+#include <AP_HAL/AP_HAL.h>
+#include <AP_Vehicle/AP_Vehicle.h>
 
 extern const AP_HAL::HAL& hal;
 
@@ -82,6 +86,7 @@ void AP_MXECAN_Driver::handle_frame(AP_HAL::CANFrame &frame)
 #endif
 
     if (can_id != AUTOPILOT_NODE_ID) {
+        GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"MXECAN: %08lX", can_id);
         // not for us or invalid id
         return;
     }
@@ -133,7 +138,7 @@ void AP_MXECAN_Driver::update(const uint8_t num_poles)
 #if AP_MXECAN_DEBUG
     static uint32_t last_send_ms = 0;
     const uint32_t now_ms = AP_HAL::millis();
-    if (now_ms - last_send_ms > 1000) {
+    if (now_ms - last_send_ms > 1000 && 0) {
         last_send_ms = now_ms;
         GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"%u: %u, %u, %u, %u, %u, %u, %u, %u",
         0,
@@ -143,41 +148,162 @@ void AP_MXECAN_Driver::update(const uint8_t num_poles)
 #endif
 }
 
+float AP_MXECAN_Driver::apply_expo(float val, float expo)
+{
+    if (val < 0.0001f || val > -0.0001) return 0.0f;
+    const float sign = (val > 0.0f) ? 1.0f : -1.0f;
+    return sign * powf(fabsf(val), expo);
+}
+
 void AP_MXECAN_Driver::loop()
 {
-    uint16_t pwm[ARRAY_SIZE(_output.pwm)] {};
-
-    GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"launching loop");
-
 #if AP_MXECAN_USE_EVENTS
     _output.thread_ctx = chThdGetSelfX();
 #endif
 
+    uint32_t last_tick_ms = 0;
+    uint32_t last_print_ms = 0;
+
     while (true) {
 #if AP_MXECAN_USE_EVENTS
-        chEvtWaitAnyTimeout(ALL_EVENTS, chTimeUS2I(2500));
+        chEvtWaitAnyTimeout(ALL_EVENTS, chTimeUS2I(50000));
  #else
-        hal.scheduler->delay_microseconds(2500);
+        hal.scheduler->delay_microseconds(50000);
 #endif
 
         const uint32_t now_ms = AP_HAL::millis();
+        if (last_tick_ms && now_ms - last_tick_ms < 50) continue;
+        last_tick_ms = now_ms;
 
-        {
-            WITH_SEMAPHORE(_output.sem);
-            if (_output.is_new) {
-                _output.last_new_ms = now_ms;
-                _output.is_new = false;
-                memcpy(&pwm, &_output.pwm, sizeof(pwm));
+        const bool armed = AP::arming().is_armed();
 
-            } else if (_output.last_new_ms && now_ms - _output.last_new_ms > LAST_OUTPUT_TIMEOUT_MS) {
-                // if we haven't gotten any PWM updates for a bit, zero it
-                // out so we don't just keep sending the same values forever
-                memset(&pwm, 0, sizeof(pwm));
-                _output.last_new_ms = 0;
+        int16_t ch1_pwm = 0;
+        int16_t ch2_pwm = 0;
+        int16_t ch3_pwm = 0;
+        int16_t ch6_pwm = 0;
+
+        ch1_pwm = hal.rcin->read(0); 
+        ch2_pwm = hal.rcin->read(1); 
+        ch3_pwm = hal.rcin->read(2); 
+        ch6_pwm = hal.rcin->read(5); 
+
+        const AP_Vehicle *vehicle = AP::vehicle();
+        const uint8_t mode = vehicle->get_mode();
+
+        bool brake_active = false;
+        if (!armed) brake_active = true;
+        else if (ch6_pwm > 1500) brake_active = true;
+        else if (_driver_has_fault) brake_active = true;
+
+        float target_rpm1 = 0.0f;
+        float target_rpm2 = 0.0f;
+        uint8_t control_byte = 0x00;
+
+        if (!brake_active) {
+            control_byte = 0xC3;
+
+            float steer = 0.0f;
+            float throttle = 0.0f;
+
+            if (mode == 0 || mode == 1 || mode == 3) {
+                float diff1 = (float)ch1_pwm - 1500.0f;
+                if (fabsf(diff1) > 30.0f) steer = diff1 / 500.0f;
+
+                float diff2 = (float)ch2_pwm - 1500.0f;
+                if (fabsf(diff2) > 30.0f) throttle = diff2 / 500.0f;
+
+                steer = apply_expo(steer, _EXPO_STEER);
+                throttle = apply_expo(throttle, _EXPO_THROTTLE);
             }
+            else {
+                const float steering_raw = SRV_Channels::get_output_scaled(SRV_Channel::k_steering);
+                const float throttle_raw = SRV_Channels::get_output_scaled(SRV_Channel::k_throttle);
+
+
+                steer = steering_raw / 4500.0f;
+                throttle = throttle_raw / 100.0f;
+            }
+
+            steer = constrain_float(steer, -1.0f, 1.0f);
+            throttle = constrain_float(throttle, -1.0f, 1.0f);
+
+            float speed_multiplier = 1.0f;
+            if (ch3_pwm) {
+                speed_multiplier = (float)(ch3_pwm - 1000) / 1000.0f;
+                speed_multiplier = constrain_float(speed_multiplier, 0.0f, 1.0f);
+            }
+            const float current_max_rpm = _MAX_RPM * speed_multiplier;
+
+            float left_out  = throttle - steer;
+            float right_out = -(throttle + steer);
+
+            left_out = constrain_float(left_out, -1.0f, 1.0f);
+            right_out = constrain_float(right_out, -1.0f, 1.0f);
+
+            target_rpm1 = floorf(left_out * current_max_rpm);
+            target_rpm2 = floorf(right_out * current_max_rpm);
+
+            float d1 = target_rpm1 - _current_rpm1;
+            if (d1 > _MAX_RPM_STEP) _current_rpm1 += _MAX_RPM_STEP;
+            else if (d1 < -_MAX_RPM_STEP) _current_rpm1 -= _MAX_RPM_STEP;
+            else _current_rpm1 = target_rpm1;
+
+            float d2 = target_rpm2 - _current_rpm2;
+            if (d2 > _MAX_RPM_STEP) _current_rpm2 += _MAX_RPM_STEP;
+            else if (d2 < -_MAX_RPM_STEP) _current_rpm2 -= _MAX_RPM_STEP;
+            else _current_rpm2 = target_rpm2;
+        } else {
+            _current_rpm1 = 0;
+            _current_rpm2 = 0;
         }
 
-        
+        int32_t u_rpm1 = (int32_t)floorf(_current_rpm1);
+        int32_t u_rpm2 = (int32_t)floorf(_current_rpm2);
+
+        if (u_rpm1 < 0) u_rpm1 = 65536 + u_rpm1;
+        if (u_rpm2 < 0) u_rpm2 = 65536 + u_rpm2;
+
+        AP_HAL::CANFrame frame = AP_HAL::CANFrame(
+            (ESC_NODE_ID | AP_HAL::CANFrame::FlagEFF),
+            nullptr, 8, false
+        );
+
+        uint8_t data[8] = {0};
+        data[0] = control_byte;
+        data[1] = (uint8_t)((u_rpm2 >> 8) & 0xFF);
+        data[2] = (uint8_t)(u_rpm2 & 0xFF);
+        data[3] = 0x64;
+        data[4] = (uint8_t)((u_rpm1 >> 8) & 0xFF);
+        data[5] = (uint8_t)(u_rpm1 & 0xFF);
+        data[6] = 0x64;
+        data[7] = 0x00;
+
+        frame = AP_HAL::CANFrame((ESC_NODE_ID | AP_HAL::CANFrame::FlagEFF), data, 8, false);
+
+        bool result = write_frame(frame, 1000);
+
+#if AP_MXECAN_DEBUG
+        if (now_ms - last_print_ms > 1000) {
+            if (_telemetry_active) {
+                GCS_SEND_TEXT(MAV_SEVERITY_INFO,
+                    "UUMOTOR: V=%.1fV T=%u Err=%u RPM1=%d RPM2=%d result=%d",
+                    (double)_driver_voltage, (unsigned)_driver_temp,
+                    (unsigned)_last_fault_code,
+                    (int)0, (int)0,
+                    result);
+            } else {
+                GCS_SEND_TEXT(MAV_SEVERITY_INFO,
+                    "UUMTR: Out1=%d Out2=%d Brk=%d Arm=%d Mode=%d ch3=%d res=%d",
+                    (int)_current_rpm1, (int)_current_rpm2,
+                    brake_active,
+                    armed,
+                    (int)mode, (int)ch3_pwm,
+                    result);
+            }
+            last_print_ms = now_ms;
+        }
+#endif
+
     } // while true
 }
 

@@ -21,7 +21,14 @@
 
 #define MXECAN_DLC_SIZE 8
 
-#define LAST_OUTPUT_TIMEOUT_MS 2000
+#define LAST_OUTPUT_TIMEOUT_MS 1000
+
+#define EAXIS1 0x02
+#define EAXIS2 0x01
+#define ERST 0x04
+#define ECST 0x08
+#define SPDAXIS1 0x40
+#define SPDAXIS2 0x80
 
 typedef enum FaultCode {
     NORMAL              = 0,
@@ -74,23 +81,6 @@ private:
         uint8_t data[8];
     };
 
-    union mxecan_tx_frame_t {
-        struct PACKED {
-            uint8_t control_mask;
-            union {
-                int16_t axis2_speed;
-                int16_t axis2_torque;
-            };
-            uint8_t axis2_acceleration;
-            union {
-                int16_t axis1_speed;
-                int16_t axis1_torque;
-            };
-            uint8_t axis1_acceleration;
-        };
-        uint8_t data[8];
-    };
-
     // handler for incoming frames
     void handle_frame(AP_HAL::CANFrame &frame) override;
     
@@ -112,6 +102,31 @@ private:
     static const uint32_t AUTOPILOT_NODE_ID = 0x1801E001; // aka driver TX ID
 
     static const uint32_t TELEMETRY_INTERVAL_MS = 100;
+
+    float _current_rpm1 = 0;
+    float _current_rpm2 = 0;
+
+    bool _driver_has_fault = false;
+    uint8_t _last_fault_code = 0;
+    uint8_t _driver_temp = 0;
+    float _driver_voltage = 0.0f;
+
+    uint32_t _last_telemetry_ms = 0;
+    bool _telemetry_active = false;
+
+    // ==== Config from Lua ====
+    static constexpr float _MAX_RPM = 1000.0f;
+    static constexpr float _ACCEL_LIMIT_RPM_SEC = 1500.0f;
+    static constexpr float _LOOP_RATE_HZ = 20.0f;
+    static constexpr float _MAX_RPM_STEP = _ACCEL_LIMIT_RPM_SEC / _LOOP_RATE_HZ; // 75 rpm per loop
+
+    static constexpr float _EXPO_STEER = 1.5f;
+    static constexpr float _EXPO_THROTTLE = 1.3f;
+
+    static constexpr uint32_t _TX_PERIOD_MS = 50;
+
+
+    static float apply_expo(float val, float expo);
 
 };
 
