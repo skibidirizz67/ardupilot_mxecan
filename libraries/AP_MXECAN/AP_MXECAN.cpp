@@ -36,28 +36,24 @@ AP_MXECAN::AP_MXECAN()
 
 void AP_MXECAN::init()
 {
-    GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"initializing MXECAN");
     if (_driver != nullptr) {
-        GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"another instance already exists");
+        GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"MXECAN:init: another instance exists");
         // only allow one instance
         return;
     }
 
     for (uint8_t i = 0; i < HAL_NUM_CAN_IFACES; i++) {
         if (CANSensor::get_driver_type(i) == AP_CAN::Protocol::MXECAN) {
-            GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"found MXECAN CAN interface");
             _driver = NEW_NOTHROW AP_MXECAN_Driver();
             return;
         }
     }
-    GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"could not find MXECAN CAN interface");
+    GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"MXECAN:init: no driver found");
 }
 
 void AP_MXECAN::update()
 {
-    GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"updating MXECAN");
     if (_driver == nullptr) {
-        GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"no MXECAN :noboobs:");
         return;
     }
     _driver->update((uint8_t)_num_poles.get());
@@ -67,8 +63,6 @@ AP_MXECAN_Driver::AP_MXECAN_Driver() : CANSensor("MXECAN")
 {
     register_driver(AP_CAN::Protocol::MXECAN);
 
-    GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"registering mxecan driver and creating loop thread");
-
     // start thread for receiving and sending CAN frames. Tests show we use about 640 bytes of stack
     hal.scheduler->thread_create(FUNCTOR_BIND_MEMBER(&AP_MXECAN_Driver::loop, void), "mxecan", 2048, AP_HAL::Scheduler::PRIORITY_CAN, 0);
 }
@@ -77,13 +71,14 @@ AP_MXECAN_Driver::AP_MXECAN_Driver() : CANSensor("MXECAN")
 void AP_MXECAN_Driver::handle_frame(AP_HAL::CANFrame &frame)
 {
     if (!frame.isExtended()) {
+        GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"MXECAN:handle: frame not extended");
         return;
     }
 
     uint32_t can_id = frame.id & AP_HAL::CANFrame::MaskExtID;
 
 #if AP_MXECAN_DEBUG
-    GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"MXECAN: can id:%lu, len:%u", can_id, frame.dlc);
+    GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"MXECAN:handle: can_id=%lu len=%u", can_id, frame.dlc);
 #endif
 
     if (can_id != AUTOPILOT_NODE_ID) {
@@ -94,7 +89,7 @@ void AP_MXECAN_Driver::handle_frame(AP_HAL::CANFrame &frame)
 #if AP_MXECAN_DEBUG
     // all MX_CAN-SV3.03 frames should have dlc of 8
     if (frame.dlc != MXECAN_DLC_SIZE) {
-        GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"MXECAN: invalid dlc value: %u != %u", frame.dlc, MXECAN_DLC_SIZE);
+        GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"MXECAN:handle: invalid dlc=%u", frame.dlc);
         return;
     }
 #endif
@@ -106,9 +101,9 @@ void AP_MXECAN_Driver::handle_frame(AP_HAL::CANFrame &frame)
 
 #if AP_MXECAN_DEBUG
     // all MX_CAN-SV3.03 frames should have dlc of 8
-    GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"MXECAN: data: %08llX", (uint64_t)frame.data[0]);
+    GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"MXECAN:data: %08llX", (uint64_t)frame.data[0]);
 
-    GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"fault_code=%u driver_temp=%u axis2_speed=%d axis1_speed=%d power_voltage=%u",
+    GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"fault_code=%u driver_temp=%u axis2_speed=%d axis1_speed=%d power_voltage=%u",
         mxecan_data.fault_code, mxecan_data.driver_temperature,
         mxecan_data.axis2_speed, mxecan_data.axis1_speed, mxecan_data.power_voltage);
 #endif
@@ -140,7 +135,7 @@ void AP_MXECAN_Driver::update(const uint8_t num_poles)
     const uint32_t now_ms = AP_HAL::millis();
     if (now_ms - last_send_ms > 1000) {
         last_send_ms = now_ms;
-        GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"%u: %u, %u, %u, %u, %u, %u, %u, %u",
+        GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"%u: %u, %u, %u, %u, %u, %u, %u, %u",
         0,
         (unsigned)_output.pwm[0], (unsigned)_output.pwm[1], (unsigned)_output.pwm[2], (unsigned)_output.pwm[3],
         (unsigned)_output.pwm[4], (unsigned)_output.pwm[5], (unsigned)_output.pwm[6], (unsigned)_output.pwm[7]);
@@ -152,7 +147,7 @@ void AP_MXECAN_Driver::loop()
 {
     uint16_t pwm[ARRAY_SIZE(_output.pwm)] {};
 
-    GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"launching loop");
+    GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"launching loop");
 
 #if AP_MXECAN_USE_EVENTS
     _output.thread_ctx = chThdGetSelfX();
@@ -164,8 +159,6 @@ void AP_MXECAN_Driver::loop()
  #else
         hal.scheduler->delay_microseconds(2500);
 #endif
-
-        GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"loop");
 
         const uint32_t now_ms = AP_HAL::millis();
 
@@ -190,9 +183,9 @@ void AP_MXECAN_Driver::loop()
 
 bool AP_MXECAN_Driver::send_packet(const uint32_t timeout_us, const uint8_t *data)
 {
-    //AP_HAL::CANFrame frame = AP_HAL::CANFrame((id.value | AP_HAL::CANFrame::FlagEFF), data, data_len, false);
+    AP_HAL::CANFrame frame = AP_HAL::CANFrame((ESC_NODE_ID | AP_HAL::CANFrame::FlagEFF), data, 8, false);
     return true;
-    //return write_frame(frame, timeout_us);
+    return write_frame(frame, timeout_us);
 }
 
 // singleton instance

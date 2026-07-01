@@ -80,12 +80,12 @@ private:
             union {
                 int16_t axis2_speed;
                 int16_t axis2_torque;
-            }
+            };
             uint8_t axis2_acceleration;
             union {
                 int16_t axis1_speed;
                 int16_t axis1_torque;
-            }
+            };
             uint8_t axis1_acceleration;
         };
         uint8_t data[8];
@@ -94,7 +94,7 @@ private:
     // handler for incoming frames
     void handle_frame(AP_HAL::CANFrame &frame) override;
     
-    bool send_packet(const uint8_t address, const uint8_t dest_id, const uint32_t timeout_us, const uint8_t *data = nullptr, const uint8_t data_len = 0);
+    bool send_packet(const uint32_t timeout_us, const uint8_t *data);
 
     void loop();
 

@@ -520,12 +520,9 @@ void SRV_Channels::push()
 #endif
 
 #if AP_MXECAN_ENABLED
-    GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"SRV channels push, trying to call MXECAN");
     if (AP::mxecan() != nullptr) {
-        GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"MXECAN found, calling update");
         AP::mxecan()->update();
-    }
-    GCS_SEND_TEXT(MAV_SEVERITY_CRITICAL,"no MXECAN :noboobs:");
+    };
 #endif
 
 #if HAL_ENABLE_DRONECAN_DRIVERS
