@@ -522,7 +522,7 @@ void SRV_Channels::push()
 #if AP_MXECAN_ENABLED
     if (AP::mxecan() != nullptr) {
         AP::mxecan()->update();
-    };
+    }
 #endif
 
 #if HAL_ENABLE_DRONECAN_DRIVERS

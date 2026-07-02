@@ -1,0 +1,1285 @@
+./libraries/AC_Avoidance/AP_OAPathPlanner.cpp:120:    start_thread();
+./libraries/AC_Avoidance/AP_OAPathPlanner.cpp:153:bool AP_OAPathPlanner::start_thread()
+./libraries/AC_Avoidance/AP_OAPathPlanner.cpp:257:void AP_OAPathPlanner::avoidance_thread()
+./libraries/AC_Avoidance/AP_OAPathPlanner.h:91:    void avoidance_thread();
+./libraries/AC_Avoidance/AP_OAPathPlanner.h:92:    bool start_thread();
+./libraries/AP_ADC/AP_ADC_ADS1115.cpp:114:    , _channel_to_read(0)
+./libraries/AP_ADC/AP_ADC_ADS1115.cpp:153:size_t AP_ADC_ADS1115::read(adc_report_s *report, size_t length) const
+./libraries/AP_ADC/AP_ADC_ADS1115.h:20:    size_t read(adc_report_s *report, size_t length) const;
+./libraries/AP_ADSB/AP_ADSB_Sagetech.cpp:72:        if (!_port->read(data)) {
+./libraries/AP_ADSB/AP_ADSB_Sagetech_MXS.cpp:81:        if (!_port->read(data)) {
+./libraries/AP_ADSB/AP_ADSB_uAvionix_UCP.cpp:84:        if (!_port->read(data)) {
+./libraries/AP_AHRS/AP_AHRS_DCM.cpp:621:            // we force an additional compass read()
+./libraries/AP_AHRS/AP_AHRS_DCM.cpp:624:            if (!have_initial_yaw && compass.read()) {
+./libraries/AP_AHRS/examples/AHRS_Test/AHRS_Test.cpp:61:    if (!AP::compass().read()) {
+./libraries/AP_AHRS/examples/AHRS_Test/AHRS_Test.cpp:81:        AP::compass().read()) {
+./libraries/AP_AIS/AP_AIS.cpp:115:        const int16_t byte = _uart->read();
+./libraries/AP_Airspeed/AP_Airspeed.cpp:646:void AP_Airspeed::read(uint8_t i)
+./libraries/AP_Airspeed/AP_Airspeed.cpp:798:        read(i);
+./libraries/AP_Airspeed/AP_Airspeed.h:341:    void read(uint8_t i);
+./libraries/AP_Airspeed/AP_Airspeed_AUAV.cpp:106:    if (!dev->read((uint8_t *)&inbuf, sizeof(inbuf))) {
+./libraries/AP_Airspeed/AP_Airspeed_AUAV.cpp:180:            if (!dev->read((uint8_t *)&raw_bytes, sizeof(raw_bytes))) {
+./libraries/AP_Airspeed/AP_Airspeed_DLVR.cpp:99:    if (!dev->read((uint8_t *)&raw_bytes, sizeof(raw_bytes))) {
+./libraries/AP_Airspeed/AP_Airspeed_NMEA.cpp:69:        int16_t c = _uart->read();
+./libraries/AP_Airspeed/examples/Airspeed/Airspeed.cpp:79:    // run read() and get_temperature() in 10Hz
+./libraries/AP_BLHeli/AP_BLHeli.cpp:535:            uint16_t v = mixed_type ? 0 : hal.rcout->read(blheli_chan_to_output_chan(i));
+./libraries/AP_BLHeli/AP_BLHeli.cpp:1354:        if (hal.rcout->read( motor_map[i]) != (reversed ? 1500 : 1000)) {
+./libraries/AP_BLHeli/AP_BLHeli.cpp:1527:    if (telem_uart->read(buf, telem_packet_size) < telem_packet_size) {
+./libraries/AP_BLHeli/AP_BLHeli.cpp:1642:    if (!telem_uart_started || !telem_uart->is_owned_by_current_thread()) {
+./libraries/AP_Baro/AP_Baro.cpp:434:// note that this relies on read() being called regularly to get new data
+./libraries/AP_Baro/AP_Baro_BMP085.cpp:318:        return _eoc->read();
+./libraries/AP_Baro/AP_Baro_ICP201XX.cpp:126:    wait_read();
+./libraries/AP_Baro/AP_Baro_ICP201XX.cpp:418:void AP_Baro_ICP201XX::wait_read()
+./libraries/AP_Baro/AP_Baro_ICP201XX.h:32:    void wait_read();
+./libraries/AP_Baro/AP_Baro_KellerLD.cpp:232:bool AP_Baro_KellerLD::_read()
+./libraries/AP_Baro/AP_Baro_KellerLD.cpp:282:    _read();
+./libraries/AP_Baro/AP_Baro_KellerLD.h:54:    bool _read();
+./libraries/AP_BattMonitor/AP_BattMonitor.cpp:745:void AP_BattMonitor::read()
+./libraries/AP_BattMonitor/AP_BattMonitor.cpp:766:            drivers[i]->read();
+./libraries/AP_BattMonitor/AP_BattMonitor.h:154:    void read();
+./libraries/AP_BattMonitor/AP_BattMonitor_AD7091R5.cpp:154:void AP_BattMonitor_AD7091R5::read()
+./libraries/AP_BattMonitor/AP_BattMonitor_AD7091R5.h:30:    void read() override;
+./libraries/AP_BattMonitor/AP_BattMonitor_Analog.cpp:153:AP_BattMonitor_Analog::read()
+./libraries/AP_BattMonitor/AP_BattMonitor_Analog.h:17:    virtual void read() override;
+./libraries/AP_BattMonitor/AP_BattMonitor_Backend.h:39:    virtual void read() = 0;
+./libraries/AP_BattMonitor/AP_BattMonitor_Bebop.cpp:159:void AP_BattMonitor_Bebop::read(void)
+./libraries/AP_BattMonitor/AP_BattMonitor_Bebop.h:38:    void read() override;
+./libraries/AP_BattMonitor/AP_BattMonitor_DroneCAN.cpp:269:void AP_BattMonitor_DroneCAN::read()
+./libraries/AP_BattMonitor/AP_BattMonitor_DroneCAN.cpp:345:    // Reset interim state that is used internally, this is then copied back to the main state in the read() call
+./libraries/AP_BattMonitor/AP_BattMonitor_DroneCAN.h:29:    void read() override;
+./libraries/AP_BattMonitor/AP_BattMonitor_EFI.cpp:27:void AP_BattMonitor_EFI::read()
+./libraries/AP_BattMonitor/AP_BattMonitor_EFI.h:15:    void read(void) override;
+./libraries/AP_BattMonitor/AP_BattMonitor_ESC.cpp:51:void AP_BattMonitor_ESC::read(void)
+./libraries/AP_BattMonitor/AP_BattMonitor_ESC.cpp:139:    read();
+./libraries/AP_BattMonitor/AP_BattMonitor_ESC.h:36:    void read() override;
+./libraries/AP_BattMonitor/AP_BattMonitor_FuelFlow.cpp:62:void AP_BattMonitor_FuelFlow::read()
+./libraries/AP_BattMonitor/AP_BattMonitor_FuelFlow.h:17:    void read() override;
+./libraries/AP_BattMonitor/AP_BattMonitor_FuelLevel_Analog.cpp:112:void AP_BattMonitor_FuelLevel_Analog::read()
+./libraries/AP_BattMonitor/AP_BattMonitor_FuelLevel_Analog.h:38:    void read() override;
+./libraries/AP_BattMonitor/AP_BattMonitor_FuelLevel_PWM.cpp:33:void AP_BattMonitor_FuelLevel_PWM::read()
+./libraries/AP_BattMonitor/AP_BattMonitor_FuelLevel_PWM.h:17:    void read() override;
+./libraries/AP_BattMonitor/AP_BattMonitor_Generator.cpp:72:void AP_BattMonitor_Generator_FuelLevel::read()
+./libraries/AP_BattMonitor/AP_BattMonitor_Generator.cpp:224:void AP_BattMonitor_Generator_Elec::read()
+./libraries/AP_BattMonitor/AP_BattMonitor_Generator.h:21:    void read(void) override;
+./libraries/AP_BattMonitor/AP_BattMonitor_Generator.h:42:    void read(void) override;
+./libraries/AP_BattMonitor/AP_BattMonitor_INA239.cpp:104:void AP_BattMonitor_INA239::read(void)
+./libraries/AP_BattMonitor/AP_BattMonitor_INA239.h:24:    void read() override;
+./libraries/AP_BattMonitor/AP_BattMonitor_INA2xx.cpp:240:void AP_BattMonitor_INA2XX::read(void)
+./libraries/AP_BattMonitor/AP_BattMonitor_INA2xx.h:26:    void read() override;
+./libraries/AP_BattMonitor/AP_BattMonitor_INA3221.cpp:332:void AP_BattMonitor_INA3221::read()
+./libraries/AP_BattMonitor/AP_BattMonitor_INA3221.h:63:    void read() override;
+./libraries/AP_BattMonitor/AP_BattMonitor_LTC2946.cpp:58:void AP_BattMonitor_LTC2946::read(void)
+./libraries/AP_BattMonitor/AP_BattMonitor_LTC2946.h:22:    virtual void read() override;
+./libraries/AP_BattMonitor/AP_BattMonitor_SMBus.cpp:68:void AP_BattMonitor_SMBus::read(void)
+./libraries/AP_BattMonitor/AP_BattMonitor_SMBus.h:65:    void read(void) override;
+./libraries/AP_BattMonitor/AP_BattMonitor_Scripting.cpp:29:void AP_BattMonitor_Scripting::read()
+./libraries/AP_BattMonitor/AP_BattMonitor_Scripting.h:22:    void read() override;
+./libraries/AP_BattMonitor/AP_BattMonitor_Sum.cpp:52:AP_BattMonitor_Sum::read()
+./libraries/AP_BattMonitor/AP_BattMonitor_Sum.h:17:    void read() override;
+./libraries/AP_BattMonitor/AP_BattMonitor_Synthetic_Current.cpp:49:AP_BattMonitor_Synthetic_Current::read()
+./libraries/AP_BattMonitor/AP_BattMonitor_Synthetic_Current.h:15:    void read() override;
+./libraries/AP_BattMonitor/AP_BattMonitor_TIBQ76952.cpp:600:void AP_BattMonitor_TIBQ76952::read(void)
+./libraries/AP_BattMonitor/AP_BattMonitor_TIBQ76952.h:21:    void read() override;
+./libraries/AP_BattMonitor/AP_BattMonitor_Torqeedo.cpp:29:void AP_BattMonitor_Torqeedo::read(void)
+./libraries/AP_BattMonitor/AP_BattMonitor_Torqeedo.h:35:    void read() override;
+./libraries/AP_Beacon/AP_Beacon_Marvelmind.cpp:209:        if (!uart->read(input_buffer[num_bytes_in_block_received])) {
+./libraries/AP_Beacon/AP_Beacon_Nooploop.cpp:66:        int16_t b = uart->read();
+./libraries/AP_Beacon/AP_Beacon_Pozyx.cpp:43:        char c = uart->read();
+./libraries/AP_Button/AP_Button.cpp:318:        mask |= hal.gpio->read(pin[i]) << i;
+./libraries/AP_Camera/AP_Camera_Backend.cpp:401:    uint8_t pin_state = hal.gpio->read(_params.feedback_pin);
+./libraries/AP_Camera/AP_RunCam.cpp:761:        const uint8_t c = uart->read();
+./libraries/AP_Common/tests/test_expandingstring_failure.cpp:54:    bool read(uint8_t &b) override { return false; }
+./libraries/AP_Common/tests/test_nmea_print.cpp:24:    ssize_t _read(uint8_t *buf, uint16_t count) override { return 0; };
+./libraries/AP_Common/tests/test_nmea_vaprint.cpp:29:    bool read(uint8_t &c) override { return false; };
+./libraries/AP_Common/tests/test_nmea_vaprint.cpp:58:    ssize_t _read(uint8_t *buf, uint16_t size) override { return 0; };
+./libraries/AP_Compass/AP_Compass.cpp:852:        read();
+./libraries/AP_Compass/AP_Compass.cpp:1809:Compass::read(void)
+./libraries/AP_Compass/AP_Compass.cpp:1829:        _backends[i]->read();
+./libraries/AP_Compass/AP_Compass.h:98:    bool read();
+./libraries/AP_Compass/AP_Compass_AK09916.cpp:276:void AP_Compass_AK09916::read()
+./libraries/AP_Compass/AP_Compass_AK09916.cpp:297:    if (!_bus->block_read(REG_ST1, (uint8_t *) &regs, sizeof(regs))) {
+./libraries/AP_Compass/AP_Compass_AK09916.cpp:338:        if (_bus->register_read(REG_DEVICE_ID, &deviceid)) {
+./libraries/AP_Compass/AP_Compass_AK09916.cpp:371:bool AP_AK09916_BusDriver_HALDevice::block_read(uint8_t reg, uint8_t *buf, uint32_t size)
+./libraries/AP_Compass/AP_Compass_AK09916.cpp:376:bool AP_AK09916_BusDriver_HALDevice::register_read(uint8_t reg, uint8_t *val)
+./libraries/AP_Compass/AP_Compass_AK09916.cpp:422:bool AP_AK09916_BusDriver_Auxiliary::block_read(uint8_t reg, uint8_t *buf, uint32_t size)
+./libraries/AP_Compass/AP_Compass_AK09916.cpp:433:        int n = _slave->read(buf);
+./libraries/AP_Compass/AP_Compass_AK09916.cpp:437:    int r = _slave->passthrough_read(reg, buf, size);
+./libraries/AP_Compass/AP_Compass_AK09916.cpp:442:bool AP_AK09916_BusDriver_Auxiliary::register_read(uint8_t reg, uint8_t *val)
+./libraries/AP_Compass/AP_Compass_AK09916.cpp:444:    return _slave->passthrough_read(reg, val, 1) == 1;
+./libraries/AP_Compass/AP_Compass_AK09916.cpp:468:    if (_bus->register_periodic_read(_slave, REG_ST1, sizeof(AP_Compass_AK09916::sample_regs)) < 0) {
+./libraries/AP_Compass/AP_Compass_AK09916.h:76:    void read() override;
+./libraries/AP_Compass/AP_Compass_AK09916.h:116:    virtual bool block_read(uint8_t reg, uint8_t *buf, uint32_t size) = 0;
+./libraries/AP_Compass/AP_Compass_AK09916.h:117:    virtual bool register_read(uint8_t reg, uint8_t *val) = 0;
+./libraries/AP_Compass/AP_Compass_AK09916.h:146:    virtual bool block_read(uint8_t reg, uint8_t *buf, uint32_t size) override;
+./libraries/AP_Compass/AP_Compass_AK09916.h:147:    virtual bool register_read(uint8_t reg, uint8_t *val) override;
+./libraries/AP_Compass/AP_Compass_AK09916.h:186:    bool block_read(uint8_t reg, uint8_t *buf, uint32_t size) override;
+./libraries/AP_Compass/AP_Compass_AK09916.h:187:    bool register_read(uint8_t reg, uint8_t *val) override;
+./libraries/AP_Compass/AP_Compass_AK8963.cpp:181:void AP_Compass_AK8963::read()
+./libraries/AP_Compass/AP_Compass_AK8963.cpp:209:    if (!_bus->block_read(AK8963_HXL, (uint8_t *) &regs, sizeof(regs))) {
+./libraries/AP_Compass/AP_Compass_AK8963.cpp:238:        if (_bus->register_read(AK8963_WIA, &deviceid) &&
+./libraries/AP_Compass/AP_Compass_AK8963.cpp:264:    _bus->block_read(AK8963_ASAX, response, 3);
+./libraries/AP_Compass/AP_Compass_AK8963.cpp:280:bool AP_AK8963_BusDriver_HALDevice::block_read(uint8_t reg, uint8_t *buf, uint32_t size)
+./libraries/AP_Compass/AP_Compass_AK8963.cpp:285:bool AP_AK8963_BusDriver_HALDevice::register_read(uint8_t reg, uint8_t *val)
+./libraries/AP_Compass/AP_Compass_AK8963.cpp:331:bool AP_AK8963_BusDriver_Auxiliary::block_read(uint8_t reg, uint8_t *buf, uint32_t size)
+./libraries/AP_Compass/AP_Compass_AK8963.cpp:342:        int n = _slave->read(buf);
+./libraries/AP_Compass/AP_Compass_AK8963.cpp:346:    int r = _slave->passthrough_read(reg, buf, size);
+./libraries/AP_Compass/AP_Compass_AK8963.cpp:351:bool AP_AK8963_BusDriver_Auxiliary::register_read(uint8_t reg, uint8_t *val)
+./libraries/AP_Compass/AP_Compass_AK8963.cpp:353:    return _slave->passthrough_read(reg, val, 1) == 1;
+./libraries/AP_Compass/AP_Compass_AK8963.cpp:376:    if (_bus->register_periodic_read(_slave, AK8963_HXL, sizeof(AP_Compass_AK8963::sample_regs)) < 0) {
+./libraries/AP_Compass/AP_Compass_AK8963.h:39:    void read() override;
+./libraries/AP_Compass/AP_Compass_AK8963.h:75:    virtual bool block_read(uint8_t reg, uint8_t *buf, uint32_t size) = 0;
+./libraries/AP_Compass/AP_Compass_AK8963.h:76:    virtual bool register_read(uint8_t reg, uint8_t *val) = 0;
+./libraries/AP_Compass/AP_Compass_AK8963.h:97:    virtual bool block_read(uint8_t reg, uint8_t *buf, uint32_t size) override;
+./libraries/AP_Compass/AP_Compass_AK8963.h:98:    virtual bool register_read(uint8_t reg, uint8_t *val) override;
+./libraries/AP_Compass/AP_Compass_AK8963.h:125:    bool block_read(uint8_t reg, uint8_t *buf, uint32_t size) override;
+./libraries/AP_Compass/AP_Compass_AK8963.h:126:    bool register_read(uint8_t reg, uint8_t *val) override;
+./libraries/AP_Compass/AP_Compass_Backend.h:45:    virtual void read(void) {
+./libraries/AP_Compass/AP_Compass_HMC5843.cpp:195:    read();
+./libraries/AP_Compass/AP_Compass_HMC5843.cpp:259:void AP_Compass_HMC5843::read()
+./libraries/AP_Compass/AP_Compass_HMC5843.cpp:299:    if (!_bus->block_read(HMC5843_REG_DATA_OUTPUT_X_MSB, (uint8_t *) &val, sizeof(val))){
+./libraries/AP_Compass/AP_Compass_HMC5843.cpp:332:    if (!_bus->block_read(HMC5843_REG_ID_A, id, 3)) {
+./libraries/AP_Compass/AP_Compass_HMC5843.cpp:464:bool AP_HMC5843_BusDriver_HALDevice::block_read(uint8_t reg, uint8_t *buf, uint32_t size)
+./libraries/AP_Compass/AP_Compass_HMC5843.cpp:469:bool AP_HMC5843_BusDriver_HALDevice::register_read(uint8_t reg, uint8_t *val)
+./libraries/AP_Compass/AP_Compass_HMC5843.cpp:515:bool AP_HMC5843_BusDriver_Auxiliary::block_read(uint8_t reg, uint8_t *buf, uint32_t size)
+./libraries/AP_Compass/AP_Compass_HMC5843.cpp:526:        int n = _slave->read(buf);
+./libraries/AP_Compass/AP_Compass_HMC5843.cpp:530:    int r = _slave->passthrough_read(reg, buf, size);
+./libraries/AP_Compass/AP_Compass_HMC5843.cpp:535:bool AP_HMC5843_BusDriver_Auxiliary::register_read(uint8_t reg, uint8_t *val)
+./libraries/AP_Compass/AP_Compass_HMC5843.cpp:537:    return _slave->passthrough_read(reg, val, 1) == 1;
+./libraries/AP_Compass/AP_Compass_HMC5843.cpp:561:    if (_bus->register_periodic_read(_slave, HMC5843_REG_DATA_OUTPUT_X_MSB, 6) < 0) {
+./libraries/AP_Compass/AP_Compass_HMC5843.h:38:    void read() override;
+./libraries/AP_Compass/AP_Compass_HMC5843.h:77:    virtual bool block_read(uint8_t reg, uint8_t *buf, uint32_t size) = 0;
+./libraries/AP_Compass/AP_Compass_HMC5843.h:78:    virtual bool register_read(uint8_t reg, uint8_t *val) = 0;
+./libraries/AP_Compass/AP_Compass_HMC5843.h:102:    bool block_read(uint8_t reg, uint8_t *buf, uint32_t size) override;
+./libraries/AP_Compass/AP_Compass_HMC5843.h:103:    bool register_read(uint8_t reg, uint8_t *val) override;
+./libraries/AP_Compass/AP_Compass_HMC5843.h:136:    bool block_read(uint8_t reg, uint8_t *buf, uint32_t size) override;
+./libraries/AP_Compass/AP_Compass_HMC5843.h:137:    bool register_read(uint8_t reg, uint8_t *val) override;
+./libraries/AP_Compass/AP_Compass_LSM303D.cpp:176:uint8_t AP_Compass_LSM303D::_register_read(uint8_t reg)
+./libraries/AP_Compass/AP_Compass_LSM303D.cpp:186:bool AP_Compass_LSM303D::_block_read(uint8_t reg, uint8_t *buf, uint32_t size)
+./libraries/AP_Compass/AP_Compass_LSM303D.cpp:201:    val = _register_read(reg);
+./libraries/AP_Compass/AP_Compass_LSM303D.cpp:213:    return _drdy_pin_m == nullptr || (_drdy_pin_m->read() != 0);
+./libraries/AP_Compass/AP_Compass_LSM303D.cpp:227:    if (_register_read(ADDR_CTRL_REG7) != _reg7_expected) {
+./libraries/AP_Compass/AP_Compass_LSM303D.cpp:236:    if (!_block_read(ADDR_STATUS_M, (uint8_t *) &rx, sizeof(rx))) {
+./libraries/AP_Compass/AP_Compass_LSM303D.cpp:294:    uint8_t whoami = _register_read(ADDR_WHO_AM_I);
+./libraries/AP_Compass/AP_Compass_LSM303D.cpp:349:void AP_Compass_LSM303D::read()
+./libraries/AP_Compass/AP_Compass_LSM303D.cpp:361:    uint8_t a = _register_read(0x02);
+./libraries/AP_Compass/AP_Compass_LSM303D.cpp:363:    a = _register_read(0x02);
+./libraries/AP_Compass/AP_Compass_LSM303D.cpp:365:    a = _register_read(0x15);
+./libraries/AP_Compass/AP_Compass_LSM303D.cpp:367:    a = _register_read(0x02);
+./libraries/AP_Compass/AP_Compass_LSM303D.h:23:    void read() override;
+./libraries/AP_Compass/AP_Compass_LSM303D.h:31:    uint8_t _register_read(uint8_t reg);
+./libraries/AP_Compass/AP_Compass_LSM303D.h:34:    bool _block_read(uint8_t reg, uint8_t *buf, uint32_t size);
+./libraries/AP_Compass/AP_Compass_LSM9DS1.cpp:123:        DEV_PRINTF("%02x:%02x ", (unsigned)reg, (unsigned)_register_read(reg));
+./libraries/AP_Compass/AP_Compass_LSM9DS1.cpp:136:    if (!_block_read(LSM9DS1M_STATUS_REG_M, (uint8_t *) &regs, sizeof(regs))) {
+./libraries/AP_Compass/AP_Compass_LSM9DS1.cpp:160:    uint8_t value = _register_read(LSM9DS1M_WHO_AM_I);
+./libraries/AP_Compass/AP_Compass_LSM9DS1.cpp:191:uint8_t AP_Compass_LSM9DS1::_register_read(uint8_t reg)
+./libraries/AP_Compass/AP_Compass_LSM9DS1.cpp:202:bool AP_Compass_LSM9DS1::_block_read(uint8_t reg, uint8_t *buf, uint32_t size)
+./libraries/AP_Compass/AP_Compass_LSM9DS1.cpp:218:    val = _register_read(reg);
+./libraries/AP_Compass/AP_Compass_LSM9DS1.h:33:    uint8_t _register_read(uint8_t reg);
+./libraries/AP_Compass/AP_Compass_LSM9DS1.h:36:    bool _block_read(uint8_t reg, uint8_t *buf, uint32_t size);
+./libraries/AP_Compass/AP_Compass_MAG3110.cpp:118:    read();
+./libraries/AP_Compass/AP_Compass_MAG3110.cpp:215:void AP_Compass_MAG3110::read()
+./libraries/AP_Compass/AP_Compass_MAG3110.h:28:    void read() override;
+./libraries/AP_Compass/Compass_PerMotor.cpp:148:        compass.read();
+./libraries/AP_Compass/examples/AP_Compass_test/AP_Compass_test.cpp:99:    // run read() at 10Hz
+./libraries/AP_Compass/examples/AP_Compass_test/AP_Compass_test.cpp:102:        compass.read();
+./libraries/AP_DAC/AP_DAC_TIx3204.cpp:52:    if (!register_read(REG_TIx3204_NOP, val) || val != 0) {
+./libraries/AP_DAC/AP_DAC_TIx3204.cpp:85:        if (!register_read(REG_TIx3204_COMMON_CONFIG, config)) {
+./libraries/AP_DAC/AP_DAC_TIx3204.cpp:102:bool AP_DAC_TIx3204::register_read(uint8_t reg, uint16_t &val)
+./libraries/AP_DAC/AP_DAC_TIx3204.h:21:    bool register_read(uint8_t reg, uint16_t &val);
+./libraries/AP_DDS/AP_DDS_Client.h:290:    static size_t serial_transport_read(uxrCustomTransport* transport, uint8_t* buf, size_t len, int timeout, uint8_t* error);
+./libraries/AP_DDS/AP_DDS_Client.h:302:    static size_t udp_transport_read(uxrCustomTransport* transport, uint8_t* buf, size_t len, int timeout, uint8_t* error);
+./libraries/AP_DDS/AP_DDS_Serial.cpp:58:size_t AP_DDS_Client::serial_transport_read(uxrCustomTransport *t, uint8_t* buf, size_t len, int timeout_ms, uint8_t* error)
+./libraries/AP_DDS/AP_DDS_Serial.cpp:70:    ssize_t bytes_read = dds->serial.port->read(buf, len);
+./libraries/AP_DDS/AP_DDS_UDP.cpp:56:size_t AP_DDS_Client::udp_transport_read(uxrCustomTransport *t, uint8_t* buf, size_t len, int timeout_ms, uint8_t* error)
+./libraries/AP_DDS/gen_config_h.py:60:txt = open(h_in, 'r').read()
+./libraries/AP_DroneCAN/AP_DroneCAN_serial.cpp:180:ssize_t AP_DroneCAN_Serial::Port::_read(uint8_t *buffer, uint16_t count)
+./libraries/AP_DroneCAN/AP_DroneCAN_serial.cpp:183:    return readbuffer != nullptr ? readbuffer->read(buffer, count) : -1;
+./libraries/AP_DroneCAN/AP_DroneCAN_serial.h:46:        ssize_t _read(uint8_t *buffer, uint16_t count) override;
+./libraries/AP_EFI/AP_EFI_Serial_Hirth.cpp:109:        computed_checksum += res_data.quantity = port->read();
+./libraries/AP_EFI/AP_EFI_Serial_Hirth.cpp:110:        computed_checksum += res_data.code = port->read();
+./libraries/AP_EFI/AP_EFI_Serial_Hirth.cpp:114:                computed_checksum += raw_data[i] = port->read();
+./libraries/AP_EFI/AP_EFI_Serial_Hirth.cpp:118:        res_data.checksum = port->read();
+./libraries/AP_EFI/AP_EFI_Serial_Lutan.cpp:58:    ssize_t nread = port->read(&pkt[pkt_nbytes], n);
+./libraries/AP_EFI/AP_EFI_Serial_MS.cpp:73:    message_length = port->read() << 8;
+./libraries/AP_EFI/AP_EFI_Serial_MS.cpp:74:    message_length += port->read();
+./libraries/AP_EFI/AP_EFI_Serial_MS.cpp:157:    received_CRC = port->read() << 24;
+./libraries/AP_EFI/AP_EFI_Serial_MS.cpp:158:    received_CRC += port->read() << 16;
+./libraries/AP_EFI/AP_EFI_Serial_MS.cpp:159:    received_CRC += port->read() << 8;
+./libraries/AP_EFI/AP_EFI_Serial_MS.cpp:160:    received_CRC += port->read();
+./libraries/AP_EFI/AP_EFI_Serial_MS.cpp:225:    uint8_t data = port->read();
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_GSOF.cpp:99:void AP_ExternalAHRS_GSOF::update_thread(void)
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_GSOF.cpp:117:        if (!uart->read(c)) {
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_GSOF.h:63:    void update_thread();
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_InertialLabs.cpp:184:    const ssize_t nread = uart->read(&buffer[buffer_ofs], n);
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_InertialLabs.cpp:209:        const ssize_t nread2 = uart->read(&buffer[buffer_ofs], needed);
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_InertialLabs.cpp:1022:void AP_ExternalAHRS_InertialLabs::update_thread()
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_InertialLabs.h:220:    void update_thread();
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_MicroStrain5.cpp:61:void AP_ExternalAHRS_MicroStrain5::update_thread(void)
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_MicroStrain5.cpp:87:        if (!uart->read(b)) {
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_MicroStrain5.h:72:    void update_thread();
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_MicroStrain7.cpp:82:void AP_ExternalAHRS_MicroStrain7::update_thread(void)
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_MicroStrain7.cpp:118:        if (!uart->read(b)) {
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_MicroStrain7.h:83:    void update_thread();
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_SBG.cpp:69:void AP_ExternalAHRS_SBG::update_thread()
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_SBG.cpp:156:        if (!uart->read(b)) {
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_SBG.h:150:    void update_thread();
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_SensAItion.cpp:195:void AP_ExternalAHRS_SensAItion::update_thread()
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_SensAItion.cpp:219:    const auto nread = uart->read(buffer, sizeof(buffer));
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_SensAItion.h:107:    void update_thread();
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_VectorNav.cpp:222:        ssize_t nread = uart->read(&pktbuf[pktoffset], MIN(n, unsigned(bufsize-pktoffset)));
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_VectorNav.cpp:324:            char c = uart->read();
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_VectorNav.cpp:472:void AP_ExternalAHRS_VectorNav::update_thread() {
+./libraries/AP_ExternalAHRS/AP_ExternalAHRS_VectorNav.h:61:    void update_thread();
+./libraries/AP_FETtecOneWire/AP_FETtecOneWire.cpp:468:            _uart->read();
+./libraries/AP_FETtecOneWire/AP_FETtecOneWire.cpp:481:        const uint32_t nbytes = _uart->read(&u.receive_buf[_receive_buf_used], space);
+./libraries/AP_Filesystem/AP_Filesystem.cpp:154:int32_t AP_Filesystem::read(int fd, void *buf, uint32_t count)
+./libraries/AP_Filesystem/AP_Filesystem.cpp:157:    return backend.fs.read(fd, buf, count);
+./libraries/AP_Filesystem/AP_Filesystem.cpp:355:    auto n = backend.fs.read(fd, buf, buflen);
+./libraries/AP_Filesystem/AP_Filesystem.cpp:396:        read_size = read(fd, buf, buff_len);
+./libraries/AP_Filesystem/AP_Filesystem.h:86:    int32_t read(int fd, void *buf, uint32_t count);
+./libraries/AP_Filesystem/AP_Filesystem_ESP32.cpp:45:int32_t AP_Filesystem_ESP32::read(int fd, void *buf, uint32_t count)
+./libraries/AP_Filesystem/AP_Filesystem_ESP32.cpp:50:    return ::read(fd, buf, count);
+./libraries/AP_Filesystem/AP_Filesystem_ESP32.h:26:    int32_t read(int fd, void *buf, uint32_t count) override;
+./libraries/AP_Filesystem/AP_Filesystem_FATFS.cpp:191:#define RETRY_ALLOWED() (!hal.scheduler->in_main_thread() || !hal.util->get_soft_armed())
+./libraries/AP_Filesystem/AP_Filesystem_FATFS.cpp:318:int32_t AP_Filesystem_FATFS::read(int fd, void *buf, uint32_t count)
+./libraries/AP_Filesystem/AP_Filesystem_FATFS.cpp:347:        res = f_read(fh, (void *)buf, n, &size);
+./libraries/AP_Filesystem/AP_Filesystem_FATFS.h:27:    int32_t read(int fd, void *buf, uint32_t count) override;
+./libraries/AP_Filesystem/AP_Filesystem_FlashMemory_LittleFS.cpp:50:static int flashmem_read(
+./libraries/AP_Filesystem/AP_Filesystem_FlashMemory_LittleFS.cpp:142:int32_t AP_Filesystem_FlashMemory_LittleFS::read(int fd, void *buf, uint32_t count)
+./libraries/AP_Filesystem/AP_Filesystem_FlashMemory_LittleFS.cpp:153:    lfs_ssize_t read = lfs_file_read(&fs, &(fp->file), buf, count);
+./libraries/AP_Filesystem/AP_Filesystem_FlashMemory_LittleFS.cpp:352:    int retval = lfs_dir_read(&fs, &pair->dir, &info);
+./libraries/AP_Filesystem/AP_Filesystem_FlashMemory_LittleFS.cpp:1039:int AP_Filesystem_FlashMemory_LittleFS::_flashmem_read(
+./libraries/AP_Filesystem/AP_Filesystem_FlashMemory_LittleFS.cpp:1174:static int flashmem_read(
+./libraries/AP_Filesystem/AP_Filesystem_FlashMemory_LittleFS.cpp:1179:    return self->_flashmem_read(block, off, buffer, size);
+./libraries/AP_Filesystem/AP_Filesystem_FlashMemory_LittleFS.h:31:    int32_t read(int fd, void *buf, uint32_t count) override;
+./libraries/AP_Filesystem/AP_Filesystem_FlashMemory_LittleFS.h:58:    int _flashmem_read(lfs_block_t block, lfs_off_t off, void* buffer, lfs_size_t size);
+./libraries/AP_Filesystem/AP_Filesystem_Mission.cpp:119:int32_t AP_Filesystem_Mission::read(int fd, void *buf, uint32_t count)
+./libraries/AP_Filesystem/AP_Filesystem_Mission.h:32:    int32_t read(int fd, void *buf, uint32_t count) override;
+./libraries/AP_Filesystem/AP_Filesystem_Param.cpp:323:int32_t AP_Filesystem_Param::read(int fd, void *buf, uint32_t count)
+./libraries/AP_Filesystem/AP_Filesystem_Param.h:33:    int32_t read(int fd, void *buf, uint32_t count) override;
+./libraries/AP_Filesystem/AP_Filesystem_ROMFS.cpp:69:int32_t AP_Filesystem_ROMFS::read(int fd, void *buf, uint32_t count)
+./libraries/AP_Filesystem/AP_Filesystem_ROMFS.h:32:    int32_t read(int fd, void *buf, uint32_t count) override;
+./libraries/AP_Filesystem/AP_Filesystem_Sys.cpp:182:int32_t AP_Filesystem_Sys::read(int fd, void *buf, uint32_t count)
+./libraries/AP_Filesystem/AP_Filesystem_Sys.h:32:    int32_t read(int fd, void *buf, uint32_t count) override;
+./libraries/AP_Filesystem/AP_Filesystem_backend.cpp:48:    if (read(d, data, st.st_size) != st.st_size) {
+./libraries/AP_Filesystem/AP_Filesystem_backend.cpp:74:    if (!hal.util->get_soft_armed() || !hal.scheduler->in_main_thread()) {
+./libraries/AP_Filesystem/AP_Filesystem_backend.h:50:    virtual int32_t read(int fd, void *buf, uint32_t count) { return -1; }
+./libraries/AP_Filesystem/AP_Filesystem_posix.cpp:104:int32_t AP_Filesystem_Posix::read(int fd, void *buf, uint32_t count)
+./libraries/AP_Filesystem/AP_Filesystem_posix.cpp:107:    return ::read(fd, buf, count);
+./libraries/AP_Filesystem/AP_Filesystem_posix.h:54:    int32_t read(int fd, void *buf, uint32_t count) override;
+./libraries/AP_Filesystem/examples/File_IO/File_IO.cpp:96:    const ssize_t read_size = AP::FS().read(open_fd, read_buf, sizeof(read_buf));
+./libraries/AP_Filesystem/posix_compat.cpp:112:size_t apfs_fread(void *ptr, size_t size, size_t nmemb, APFS_FILE *stream)
+./libraries/AP_Filesystem/posix_compat.cpp:115:    ssize_t ret = AP::FS().read(stream->fd, ptr, size*nmemb);
+./libraries/AP_Filesystem/posix_compat.cpp:213:    ssize_t ret = AP::FS().read(stream->fd, &c, 1);
+./libraries/AP_Filesystem/posix_compat.h:45:size_t apfs_fread(void *ptr, size_t size, size_t nmemb, APFS_FILE *stream);
+./libraries/AP_Filesystem/posix_compat.h:97:#define fread(ptr,size,nmemb, stream) apfs_fread(ptr, size, nmemb, stream)
+./libraries/AP_FlashIface/AP_FlashIface_Abstract.h:43:    virtual bool read(uint32_t offset, uint8_t* data, uint32_t size) = 0;
+./libraries/AP_FlashIface/AP_FlashIface_JEDEC.cpp:826:        if (read(offset, buf, sizeof(buf))) {
+./libraries/AP_FlashIface/AP_FlashIface_JEDEC.cpp:934:bool AP_FlashIface_JEDEC::read(uint32_t offset, uint8_t* data, uint32_t size)
+./libraries/AP_FlashIface/AP_FlashIface_JEDEC.h:43:    bool read(uint32_t offset, uint8_t *data, uint32_t size) override;
+./libraries/AP_FlashIface/examples/jedec_test/jedec_test.cpp:81:    if (!jedec_dev.read(0, rdata, jedec_dev.get_page_size())) {
+./libraries/AP_FlashIface/examples/jedec_test_bl/jedec_test.cpp:46:    if (!jedec_dev.read(0, rdata, jedec_dev.get_page_size())) {
+./libraries/AP_FlashStorage/AP_FlashStorage.cpp:42:    flash_read(_flash_read),
+./libraries/AP_FlashStorage/AP_FlashStorage.cpp:59:        if (!flash_read(i, 0, (uint8_t *)&header[i], sizeof(header[i]))) {
+./libraries/AP_FlashStorage/AP_FlashStorage.cpp:269:        if (!flash_read(sector, ofs, (uint8_t *)&header, sizeof(header))) {
+./libraries/AP_FlashStorage/AP_FlashStorage.cpp:302:            if (!flash_read(sector, ofs+sizeof(header), &mem_buffer[block_ofs], block_nbytes)) {
+./libraries/AP_FlashStorage/AP_FlashStorage.cpp:410:    if (!flash_read(new_sector, 0, (uint8_t *)&header, sizeof(header))) {
+./libraries/AP_FlashStorage/examples/FlashTest/FlashTest.cpp:29:    bool flash_read(uint8_t sector, uint32_t offset, uint8_t *data, uint16_t length);
+./libraries/AP_FlashStorage/examples/FlashTest/FlashTest.cpp:90:bool FlashTest::flash_read(uint8_t sector, uint32_t offset, uint8_t *data, uint16_t length)
+./libraries/AP_Frsky_Telem/AP_Frsky_MAVliteMsgHandler.cpp:171:void AP_Frsky_MAVliteMsgHandler::handle_param_request_read(const AP_Frsky_MAVlite_Message &rxmsg)
+./libraries/AP_Frsky_Telem/AP_Frsky_MAVliteMsgHandler.cpp:277:            handle_param_request_read(rxmsg);
+./libraries/AP_Frsky_Telem/AP_Frsky_MAVliteMsgHandler.h:23:    void handle_param_request_read(const AP_Frsky_MAVlite_Message &rxmsg);
+./libraries/AP_Frsky_Telem/AP_Frsky_SPort.cpp:47:        if (!_port->read(readbyte)) {
+./libraries/AP_Frsky_Telem/AP_Frsky_SPort_Passthrough.cpp:378:        _passthrough.new_byte = _port->read();
+./libraries/AP_GPS/AP_GPS.cpp:751:        const uint8_t data = port->read();
+./libraries/AP_GPS/AP_GPS.cpp:879:    bool result = drivers[instance]->read();
+./libraries/AP_GPS/AP_GPS.cpp:1642:        if (rtcm.parsers[chan]->read(pkt.data[i])) {
+./libraries/AP_GPS/AP_GPS_Blended.h:42:    bool read() override { return true; }
+./libraries/AP_GPS/AP_GPS_DroneCAN.cpp:550:        rtcm3_parser->read(msg.data.data[i]);
+./libraries/AP_GPS/AP_GPS_DroneCAN.cpp:697:bool AP_GPS_DroneCAN::read(void)
+./libraries/AP_GPS/AP_GPS_DroneCAN.h:37:    bool read() override;
+./libraries/AP_GPS/AP_GPS_ERB.cpp:49:AP_GPS_ERB::read(void)
+./libraries/AP_GPS/AP_GPS_ERB.cpp:59:        data = port->read();
+./libraries/AP_GPS/AP_GPS_ERB.h:33:    bool read() override;
+./libraries/AP_GPS/AP_GPS_ExternalAHRS.cpp:27:bool AP_GPS_ExternalAHRS::read(void)
+./libraries/AP_GPS/AP_GPS_ExternalAHRS.h:35:    bool read() override;
+./libraries/AP_GPS/AP_GPS_GSOF.cpp:124:AP_GPS_GSOF::read(void)
+./libraries/AP_GPS/AP_GPS_GSOF.cpp:130:        const uint8_t temp = port->read();
+./libraries/AP_GPS/AP_GPS_GSOF.h:38:    bool read() override WARN_IF_UNUSED;
+./libraries/AP_GPS/AP_GPS_MAV.cpp:30:bool AP_GPS_MAV::read(void)
+./libraries/AP_GPS/AP_GPS_MAV.h:36:    bool read() override;
+./libraries/AP_GPS/AP_GPS_MSP.cpp:27:bool AP_GPS_MSP::read(void)
+./libraries/AP_GPS/AP_GPS_MSP.h:35:    bool read() override;
+./libraries/AP_GPS/AP_GPS_NMEA.cpp:59:bool AP_GPS_NMEA::read(void)
+./libraries/AP_GPS/AP_GPS_NMEA.cpp:68:        char c = port->read();
+./libraries/AP_GPS/AP_GPS_NMEA.h:63:    bool        read() override;
+./libraries/AP_GPS/AP_GPS_NOVA.cpp:74:AP_GPS_NOVA::read(void)
+./libraries/AP_GPS/AP_GPS_NOVA.cpp:93:        if (!port->read(temp)) {
+./libraries/AP_GPS/AP_GPS_NOVA.h:34:    bool read() override;
+./libraries/AP_GPS/AP_GPS_SBF.cpp:88:AP_GPS_SBF::read(void)
+./libraries/AP_GPS/AP_GPS_SBF.cpp:93:        uint8_t temp = port->read();
+./libraries/AP_GPS/AP_GPS_SBF.h:40:    bool read() override;
+./libraries/AP_GPS/AP_GPS_SBP.cpp:69:AP_GPS_SBP::read(void)
+./libraries/AP_GPS/AP_GPS_SBP.cpp:103:        uint8_t temp = port->read();
+./libraries/AP_GPS/AP_GPS_SBP.h:40:    bool read() override;
+./libraries/AP_GPS/AP_GPS_SBP2.cpp:77:AP_GPS_SBP2::read(void)
+./libraries/AP_GPS/AP_GPS_SBP2.cpp:107:        uint8_t temp = port->read();
+./libraries/AP_GPS/AP_GPS_SBP2.h:36:    bool read() override;
+./libraries/AP_GPS/AP_GPS_SIRF.cpp:57:AP_GPS_SIRF::read(void)
+./libraries/AP_GPS/AP_GPS_SIRF.cpp:67:        data = port->read();
+./libraries/AP_GPS/AP_GPS_SIRF.h:36:    bool read() override;
+./libraries/AP_GPS/AP_GPS_SITL.cpp:61:bool AP_GPS_SITL::read(void)
+./libraries/AP_GPS/AP_GPS_SITL.h:31:    bool        read() override;
+./libraries/AP_GPS/AP_GPS_UBLOX.cpp:539:AP_GPS_UBLOX::read(void)
+./libraries/AP_GPS/AP_GPS_UBLOX.cpp:588:        if (!port->read(data)) {
+./libraries/AP_GPS/AP_GPS_UBLOX.cpp:597:            if (rtcm3_parser->read(data)) {
+./libraries/AP_GPS/AP_GPS_UBLOX.h:144:    bool read() override;
+./libraries/AP_GPS/GPS_Backend.h:58:    // The read() method is the only one needed in each driver. It
+./libraries/AP_GPS/GPS_Backend.h:61:    virtual bool read() = 0;
+./libraries/AP_GPS/RTCM3_Parser.cpp:102:bool RTCM3_Parser::read(uint8_t byte)
+./libraries/AP_GPS/RTCM3_Parser.cpp:159:    while (::read(fd, &b, 1) == 1) {
+./libraries/AP_GPS/RTCM3_Parser.cpp:160:        if (parser.read(b)) {
+./libraries/AP_GPS/RTCM3_Parser.h:29:    bool read(uint8_t b);
+./libraries/AP_GPS/examples/GPS_UBLOX_passthrough/GPS_UBLOX_passthrough.cpp:28:        hal.serial(3)->write(hal.console->read());
+./libraries/AP_GPS/examples/GPS_UBLOX_passthrough/GPS_UBLOX_passthrough.cpp:32:        hal.console->write(hal.serial(3)->read());
+./libraries/AP_Generator/AP_Generator_IE_FuelCell.cpp:50:        if (!_uart->read(c)) {
+./libraries/AP_Generator/AP_Generator_RichenPower.cpp:82:    uint32_t nbytes = uart->read(&u.parse_buffer[body_length],
+./libraries/AP_GyroFFT/AP_GyroFFT.cpp:362:    if (start_update_thread()) {
+./libraries/AP_GyroFFT/AP_GyroFFT.cpp:572:void AP_GyroFFT::update_thread(void)
+./libraries/AP_GyroFFT/AP_GyroFFT.cpp:593:bool AP_GyroFFT::start_update_thread(void)
+./libraries/AP_GyroFFT/AP_GyroFFT.h:62:    void update_thread();
+./libraries/AP_GyroFFT/AP_GyroFFT.h:64:    bool start_update_thread();
+./libraries/AP_HAL/Device.h:248:    bool read(uint8_t *recv, uint32_t recv_len)
+./libraries/AP_HAL/GPIO.h:14:    virtual uint8_t read() = 0;
+./libraries/AP_HAL/GPIO.h:56:    virtual uint8_t read(uint8_t pin) = 0;
+./libraries/AP_HAL/OpticalFlow.h:30:    virtual bool read(Data_Frame& frame) = 0;
+./libraries/AP_HAL/RCInput.h:30:    virtual uint16_t read(uint8_t ch) = 0;
+./libraries/AP_HAL/RCInput.h:33:    virtual uint8_t read(uint16_t* periods, uint8_t len) = 0;
+./libraries/AP_HAL/RCOutput.h:112:    virtual uint16_t read(uint8_t chan) = 0;
+./libraries/AP_HAL/RCOutput.h:113:    virtual void     read(uint16_t* period_us, uint8_t len) = 0;
+./libraries/AP_HAL/RCOutput.h:116:    virtual uint16_t read_last_sent(uint8_t chan) { return read(chan); }
+./libraries/AP_HAL/RCOutput.h:117:    virtual void     read_last_sent(uint16_t* period_us, uint8_t len) { read(period_us, len); };
+./libraries/AP_HAL/Scheduler.h:80:    virtual bool     in_main_thread() const = 0;
+./libraries/AP_HAL/Semaphores.cpp:16:    bool in_main = hal.scheduler->in_main_thread();
+./libraries/AP_HAL/UARTDriver.cpp:68:    ssize_t ret = _read(buf, count);
+./libraries/AP_HAL/UARTDriver.cpp:104:ssize_t AP_HAL::UARTDriver::read(uint8_t *buffer, uint16_t count)
+./libraries/AP_HAL/UARTDriver.cpp:109:bool AP_HAL::UARTDriver::read(uint8_t &b)
+./libraries/AP_HAL/UARTDriver.cpp:111:    ssize_t n = read(&b, 1);
+./libraries/AP_HAL/UARTDriver.cpp:115:int16_t AP_HAL::UARTDriver::read(void)
+./libraries/AP_HAL/UARTDriver.cpp:118:    if (!read(b)) {
+./libraries/AP_HAL/UARTDriver.h:28:      the individual HALs need to implement the protected versions of these calls, _begin(), _write(), _read()
+./libraries/AP_HAL/UARTDriver.h:55:    int16_t read(void) override;
+./libraries/AP_HAL/UARTDriver.h:56:    bool read(uint8_t &b) override WARN_IF_UNUSED;
+./libraries/AP_HAL/UARTDriver.h:57:    ssize_t read(uint8_t *buffer, uint16_t count) override;
+./libraries/AP_HAL/UARTDriver.h:224:    virtual bool is_owned_by_current_thread() const { return true; }
+./libraries/AP_HAL/UARTDriver.h:246:    virtual ssize_t _read(uint8_t *buffer, uint16_t count)  WARN_IF_UNUSED = 0;
+./libraries/AP_HAL/Util.cpp:41:    bool read(uint8_t &b) override { return false; }
+./libraries/AP_HAL/examples/RCInput/RCInput.cpp:53:        uint16_t v = hal.rcin->read(i);
+./libraries/AP_HAL/examples/RCInputToRCOutput/RCInputToRCOutput.cpp:51:        uint16_t v = hal.rcin->read(i);
+./libraries/AP_HAL/examples/RingBuffer/RingBuffer.cpp:28:static void consumer_thread(struct stress_pairs *pair) {
+./libraries/AP_HAL/examples/RingBuffer/RingBuffer.cpp:33:        ret = pair->buf.read(pair->reader_buf, sizeof(pair->reader_buf));
+./libraries/AP_HAL/examples/RingBuffer/RingBuffer.cpp:48:static void producer_thread(struct stress_pairs *pair) {
+./libraries/AP_HAL/examples/RingBuffer/RingBuffer.cpp:84:        list[i].consumer = thread(consumer_thread, list + i);
+./libraries/AP_HAL/examples/RingBuffer/RingBuffer.cpp:85:        list[i].producer = thread(producer_thread, list + i);
+./libraries/AP_HAL/utility/BetterStream.cpp:23:int16_t AP_HAL::BetterStream::read()
+./libraries/AP_HAL/utility/BetterStream.cpp:26:    if (!read(b)) {
+./libraries/AP_HAL/utility/BetterStream.cpp:32:ssize_t AP_HAL::BetterStream::read(uint8_t *buffer, uint16_t count)
+./libraries/AP_HAL/utility/BetterStream.cpp:36:        const int16_t x = read();
+./libraries/AP_HAL/utility/BetterStream.h:43:    virtual int16_t read(void);
+./libraries/AP_HAL/utility/BetterStream.h:44:    virtual bool read(uint8_t &b) WARN_IF_UNUSED = 0;
+./libraries/AP_HAL/utility/BetterStream.h:53:    virtual ssize_t read(uint8_t *buffer, uint16_t count);
+./libraries/AP_HAL/utility/RCOutput_Tap.cpp:475:uint16_t RCOutput_Tap::read(uint8_t ch)
+./libraries/AP_HAL/utility/RCOutput_Tap.cpp:483:void RCOutput_Tap::read(uint16_t *period_us, uint8_t len)
+./libraries/AP_HAL/utility/RCOutput_Tap.cpp:486:        period_us[i] = read(i);
+./libraries/AP_HAL/utility/RCOutput_Tap.h:66:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL/utility/RCOutput_Tap.h:67:    void read(uint16_t *period_us, uint8_t len) override;
+./libraries/AP_HAL/utility/RingBuffer.cpp:240:uint32_t ByteBuffer::read(uint8_t *data, uint32_t len)
+./libraries/AP_HAL/utility/RingBuffer.h:38:    uint32_t read(uint8_t *data, uint32_t len);
+./libraries/AP_HAL/utility/RingBuffer.h:207:        return buffer->read((uint8_t*)&object, sizeof(T)) == sizeof(T);
+./libraries/AP_HAL/utility/RingBuffer.h:387:        return buffer->read((uint8_t*)&object, sizeof(T)) == sizeof(T);
+./libraries/AP_HAL/utility/dsm.cpp:514:        if ((nread = read(fd, b, sizeof(b))) < 1) {
+./libraries/AP_HAL/utility/tests/test_ringbuffer.cpp:48:    EXPECT_EQ(x.read(buf, sizeof(buf)), 2U);
+./libraries/AP_HAL_ChibiOS/Device.cpp:54:void DeviceBus::bus_thread(void *arg)
+./libraries/AP_HAL_ChibiOS/Device.cpp:180:        if (!bouncebuffer_setup_read(bounce_buffer_rx, &buf_rx, rx_len)) {
+./libraries/AP_HAL_ChibiOS/Device.cpp:201:        bouncebuffer_finish_read(bounce_buffer_rx, buf_rx, rx_len);
+./libraries/AP_HAL_ChibiOS/Device.h:50:    static void bus_thread(void *arg);
+./libraries/AP_HAL_ChibiOS/GPIO.cpp:233:uint8_t GPIO::read(uint8_t pin)
+./libraries/AP_HAL_ChibiOS/GPIO.cpp:412:uint8_t DigitalSource::read()
+./libraries/AP_HAL_ChibiOS/GPIO.h:38:    uint8_t read(uint8_t pin) override;
+./libraries/AP_HAL_ChibiOS/GPIO.h:114:    uint8_t read() override;
+./libraries/AP_HAL_ChibiOS/GPIO.h:129:    uint8_t    read() override { return 0; }
+./libraries/AP_HAL_ChibiOS/HAL_ChibiOS_Class.cpp:205:thread_t* get_main_thread()
+./libraries/AP_HAL_ChibiOS/HAL_ChibiOS_Class.h:39:thread_t* get_main_thread(void);
+./libraries/AP_HAL_ChibiOS/RCInput.cpp:90:uint16_t RCInput::read(uint8_t channel)
+./libraries/AP_HAL_ChibiOS/RCInput.cpp:103:uint8_t RCInput::read(uint16_t* periods, uint8_t len)
+./libraries/AP_HAL_ChibiOS/RCInput.cpp:149:        while(sig_reader.read(width_s0, width_s1)) {
+./libraries/AP_HAL_ChibiOS/RCInput.cpp:160:        rcprot.read(_rc_values, _num_channels);
+./libraries/AP_HAL_ChibiOS/RCInput.h:41:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_ChibiOS/RCInput.h:42:    uint8_t read(uint16_t* periods, uint8_t len) override;
+./libraries/AP_HAL_ChibiOS/RCOutput.cpp:176:bool RCOutput::start_led_thread(void)
+./libraries/AP_HAL_ChibiOS/RCOutput.cpp:199:void RCOutput::led_thread()
+./libraries/AP_HAL_ChibiOS/RCOutput.cpp:226:void RCOutput::rcout_thread()
+./libraries/AP_HAL_ChibiOS/RCOutput.cpp:856:uint16_t RCOutput::read(uint8_t chan)
+./libraries/AP_HAL_ChibiOS/RCOutput.cpp:877:void RCOutput::read(uint16_t* period_us, uint8_t len)
+./libraries/AP_HAL_ChibiOS/RCOutput.cpp:1116:        if (!start_led_thread()) {
+./libraries/AP_HAL_ChibiOS/RCOutput.cpp:1438:        (hal.scheduler->in_main_thread() || force_trigger) && rcout_thread_ctx) {
+./libraries/AP_HAL_ChibiOS/RCOutput.cpp:1968:    osalDbgAssert(hal.scheduler->in_main_thread(), "serial_setup_output(): not called from main thread");
+./libraries/AP_HAL_ChibiOS/RCOutput.cpp:2278:        if (!serial_buffer.read((uint8_t*)&byteval, 2)) {
+./libraries/AP_HAL_ChibiOS/RCOutput.cpp:2367:    osalDbgAssert(hal.scheduler->in_main_thread(), "serial_end(): not called from main thread");
+./libraries/AP_HAL_ChibiOS/RCOutput.cpp:2390:    osalDbgAssert(hal.scheduler->in_main_thread(), "serial_reset(): not called from main thread");
+./libraries/AP_HAL_ChibiOS/RCOutput.h:66:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_ChibiOS/RCOutput.h:67:    void     read(uint16_t* period_us, uint8_t len) override;
+./libraries/AP_HAL_ChibiOS/RCOutput.h:293:    void rcout_thread();
+./libraries/AP_HAL_ChibiOS/RCOutput.h:688:    void led_thread();
+./libraries/AP_HAL_ChibiOS/RCOutput.h:689:    bool start_led_thread();
+./libraries/AP_HAL_ChibiOS/RCOutput_iofirmware.cpp:63:    rcout->rcout_thread();
+./libraries/AP_HAL_ChibiOS/RCOutput_iofirmware.cpp:69:void RCOutput::rcout_thread() {
+./libraries/AP_HAL_ChibiOS/SPIDevice.h:167:    static void *spi_thread(void *arg);
+./libraries/AP_HAL_ChibiOS/Scheduler.cpp:189:    if (in_main_thread() && _priority_boosted) {
+./libraries/AP_HAL_ChibiOS/Scheduler.cpp:204:    if (!_priority_boosted && in_main_thread()) {
+./libraries/AP_HAL_ChibiOS/Scheduler.cpp:231:            if (in_main_thread()) {
+./libraries/AP_HAL_ChibiOS/Scheduler.cpp:348:void Scheduler::_timer_thread(void *arg)
+./libraries/AP_HAL_ChibiOS/Scheduler.cpp:368:void Scheduler::_rcout_thread(void *arg)
+./libraries/AP_HAL_ChibiOS/Scheduler.cpp:379:    ((RCOutput*)hal.rcout)->rcout_thread();
+./libraries/AP_HAL_ChibiOS/Scheduler.cpp:411:void Scheduler::_monitor_thread(void *arg)
+./libraries/AP_HAL_ChibiOS/Scheduler.cpp:518:void Scheduler::_rcin_thread(void *arg)
+./libraries/AP_HAL_ChibiOS/Scheduler.cpp:552:void Scheduler::_io_thread(void* arg)
+./libraries/AP_HAL_ChibiOS/Scheduler.cpp:615:void Scheduler::_storage_thread(void* arg)
+./libraries/AP_HAL_ChibiOS/Scheduler.cpp:743:    if (!in_main_thread()) {
+./libraries/AP_HAL_ChibiOS/Scheduler.cpp:822:    for (thread_t *tp = chRegFirstThread(); tp; tp = chRegNextThread(tp)) {
+./libraries/AP_HAL_ChibiOS/Scheduler.cpp:844:    thread_t *main_thread = get_main_thread();
+./libraries/AP_HAL_ChibiOS/Scheduler.h:111:    bool     in_main_thread() const override { return get_main_thread() == chThdGetSelfX(); }
+./libraries/AP_HAL_ChibiOS/Scheduler.h:187:    static void _timer_thread(void *arg);
+./libraries/AP_HAL_ChibiOS/Scheduler.h:188:    static void _rcout_thread(void *arg);
+./libraries/AP_HAL_ChibiOS/Scheduler.h:189:    static void _rcin_thread(void *arg);
+./libraries/AP_HAL_ChibiOS/Scheduler.h:190:    static void _io_thread(void *arg);
+./libraries/AP_HAL_ChibiOS/Scheduler.h:191:    static void _storage_thread(void *arg);
+./libraries/AP_HAL_ChibiOS/Scheduler.h:192:    static void _uart_thread(void *arg);
+./libraries/AP_HAL_ChibiOS/Scheduler.h:193:    static void _monitor_thread(void *arg);
+./libraries/AP_HAL_ChibiOS/SoftSigReaderInt.cpp:121:bool SoftSigReaderInt::read(uint32_t &widths0, uint32_t &widths1)
+./libraries/AP_HAL_ChibiOS/SoftSigReaderInt.h:43:    bool read(uint32_t &widths0, uint32_t &widths1);
+./libraries/AP_HAL_ChibiOS/Storage.cpp:64:    if (fram.init() && fram.read(0, _buffer, CH_STORAGE_SIZE)) {
+./libraries/AP_HAL_ChibiOS/Storage.cpp:96:            int ret = AP::FS().read(log_fd, _buffer, CH_STORAGE_SIZE);
+./libraries/AP_HAL_ChibiOS/Storage.cpp:166:        if (AP::FS().read(fd, buf, sizeof(buf)-1) > 0) {
+./libraries/AP_HAL_ChibiOS/UARTDriver.cpp:120:void UARTDriver::uart_thread()
+./libraries/AP_HAL_ChibiOS/UARTDriver.cpp:160:void UARTDriver::uart_rx_thread(void* arg)
+./libraries/AP_HAL_ChibiOS/UARTDriver.cpp:218:    uart->uart_thread();
+./libraries/AP_HAL_ChibiOS/UARTDriver.cpp:756:ssize_t UARTDriver::_read(uint8_t *buffer, uint16_t count)
+./libraries/AP_HAL_ChibiOS/UARTDriver.cpp:765:    const uint32_t ret = _readbuf.read(buffer, count);
+./libraries/AP_HAL_ChibiOS/UARTDriver.h:144:    bool is_owned_by_current_thread() const override { return _uart_owner_thd == chThdGetSelfX(); }
+./libraries/AP_HAL_ChibiOS/UARTDriver.h:186:    // of ::read() and ::write() in the main loop
+./libraries/AP_HAL_ChibiOS/UARTDriver.h:278:    void uart_thread();
+./libraries/AP_HAL_ChibiOS/UARTDriver.h:279:    static void uart_rx_thread(void* arg);
+./libraries/AP_HAL_ChibiOS/UARTDriver.h:287:    ssize_t _read(uint8_t *buffer, uint16_t count) override;
+./libraries/AP_HAL_ChibiOS/Util.cpp:376:    for (thread_t *tp = chRegFirstThread(); tp; tp = chRegNextThread(tp)) {
+./libraries/AP_HAL_ChibiOS/Util.cpp:402:    for (thread_t *tp = chRegFirstThread(); tp; tp = chRegNextThread(tp)) {
+./libraries/AP_HAL_ChibiOS/Util.cpp:423:                            && tp != get_main_thread() && tp->realprio != 1 ? "*" : "");
+./libraries/AP_HAL_ChibiOS/Util.cpp:767:        tp = chRegFirstThread();
+./libraries/AP_HAL_ChibiOS/Util.cpp:770:        tp = chRegNextThread(last_tp);
+./libraries/AP_HAL_ChibiOS/hwdef/common/bouncebuffer.c:46:  copy to it in bouncebuffer_finish_read(). This avoids DMA failures in dummyrx in the SPI LLD
+./libraries/AP_HAL_ChibiOS/hwdef/common/bouncebuffer.c:48:bool bouncebuffer_setup_read(struct bouncebuffer_t *bouncebuffer, uint8_t **buf, uint32_t size)
+./libraries/AP_HAL_ChibiOS/hwdef/common/bouncebuffer.c:86:void bouncebuffer_finish_read(struct bouncebuffer_t *bouncebuffer, const uint8_t *buf, uint32_t size)
+./libraries/AP_HAL_ChibiOS/hwdef/common/bouncebuffer.h:30:bool bouncebuffer_setup_read(struct bouncebuffer_t *bouncebuffer, uint8_t **buf, uint32_t size);
+./libraries/AP_HAL_ChibiOS/hwdef/common/bouncebuffer.h:35:void bouncebuffer_finish_read(struct bouncebuffer_t *bouncebuffer, const uint8_t *buf, uint32_t size);
+./libraries/AP_HAL_ChibiOS/hwdef/common/crashdump.c:106:    for (thread_t *tp = chRegFirstThread(); tp && (curr_region < (ARRAY_SIZE(regions) - 1)); tp = chRegNextThread(tp)) {
+./libraries/AP_HAL_ChibiOS/hwdef/common/ppm.h:22:uint16_t ppm_read(uint8_t chan);
+./libraries/AP_HAL_ChibiOS/hwdef/common/stm32_util.c:84:  tp = chRegFirstThread();
+./libraries/AP_HAL_ChibiOS/hwdef/common/stm32_util.c:93:      tp = chRegNextThread(tp);
+./libraries/AP_HAL_ChibiOS/hwdef/common/stubs.c:89:int _read(struct _reent *r, int file, char * ptr, int len)
+./libraries/AP_HAL_ChibiOS/hwdef/scripts/chibios_hwdef.py:2981:        content = open(filepath, 'r').read()
+./libraries/AP_HAL_ChibiOS/hwdef/scripts/chibios_hwdef.py:3009:            content = f.read()
+./libraries/AP_HAL_ESP32/AnalogIn.cpp:180:            adc_reading += adc_read();
+./libraries/AP_HAL_ESP32/AnalogIn.cpp:302:float AnalogSource::adc_read()
+./libraries/AP_HAL_ESP32/AnalogIn.cpp:306:    if (ESP_OK != adc_oneshot_read(g_adc1_handle, _adc_channel, &raw)) {
+./libraries/AP_HAL_ESP32/AnalogIn.cpp:334:    float value = adc_read();
+./libraries/AP_HAL_ESP32/AnalogIn.h:74:    float adc_read();
+./libraries/AP_HAL_ESP32/DeviceBus.cpp:44:void IRAM_ATTR DeviceBus::bus_thread(void *arg)
+./libraries/AP_HAL_ESP32/DeviceBus.h:41:    static void bus_thread(void *arg);
+./libraries/AP_HAL_ESP32/GPIO.cpp:60:uint8_t GPIO::read(uint8_t pin)
+./libraries/AP_HAL_ESP32/GPIO.cpp:113:uint8_t DigitalSource::read() {
+./libraries/AP_HAL_ESP32/GPIO.cpp:114:    return hal.gpio->read(_pin);
+./libraries/AP_HAL_ESP32/GPIO.h:26:    uint8_t read(uint8_t pin) override;
+./libraries/AP_HAL_ESP32/GPIO.h:44:    uint8_t read() override;
+./libraries/AP_HAL_ESP32/I2CDevice.cpp:118:            i2c_master_read(cmd, (uint8_t *)recv, recv_len, I2C_MASTER_LAST_NACK);
+./libraries/AP_HAL_ESP32/RCInput.cpp:83:uint16_t RCInput::read(uint8_t channel)
+./libraries/AP_HAL_ESP32/RCInput.cpp:96:uint8_t RCInput::read(uint16_t* periods, uint8_t len)
+./libraries/AP_HAL_ESP32/RCInput.cpp:124:        while (sig_reader.read(width_s0, width_s1)) {
+./libraries/AP_HAL_ESP32/RCInput.cpp:135:        rcprot.read(_rc_values, _num_channels);
+./libraries/AP_HAL_ESP32/RCInput.h:35:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_ESP32/RCInput.h:36:    uint8_t read(uint16_t* periods, uint8_t len) override;
+./libraries/AP_HAL_ESP32/RCOutput.cpp:422:uint16_t RCOutput::read(uint8_t chan)
+./libraries/AP_HAL_ESP32/RCOutput.cpp:432:void RCOutput::read(uint16_t *period_us, uint8_t len)
+./libraries/AP_HAL_ESP32/RCOutput.cpp:435:        period_us[i] = read(i);
+./libraries/AP_HAL_ESP32/RCOutput.h:54:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_ESP32/RCOutput.h:55:    void read(uint16_t* period_us, uint8_t len) override;
+./libraries/AP_HAL_ESP32/RmtSigReader.cpp:49:bool RmtSigReader::read(uint32_t &width_high, uint32_t &width_low)
+./libraries/AP_HAL_ESP32/RmtSigReader.h:29:    bool read(uint32_t &width_high, uint32_t &width_low);
+./libraries/AP_HAL_ESP32/Scheduler.cpp:210:            if (in_main_thread()) {
+./libraries/AP_HAL_ESP32/Scheduler.cpp:219:    if (in_main_thread() && us < 100) {
+./libraries/AP_HAL_ESP32/Scheduler.cpp:282:bool IRAM_ATTR Scheduler::in_main_thread() const
+./libraries/AP_HAL_ESP32/Scheduler.cpp:304:void IRAM_ATTR Scheduler::_timer_thread(void *arg)
+./libraries/AP_HAL_ESP32/Scheduler.cpp:331:void IRAM_ATTR Scheduler::_rcout_thread(void* arg)
+./libraries/AP_HAL_ESP32/Scheduler.cpp:379:void IRAM_ATTR Scheduler::_rcin_thread(void *arg)
+./libraries/AP_HAL_ESP32/Scheduler.cpp:418:void IRAM_ATTR Scheduler::_io_thread(void* arg)
+./libraries/AP_HAL_ESP32/Scheduler.cpp:450:void Scheduler::_storage_thread(void* arg)
+./libraries/AP_HAL_ESP32/Scheduler.cpp:484:void IRAM_ATTR Scheduler::_uart_thread(void *arg)
+./libraries/AP_HAL_ESP32/Scheduler.cpp:543:void IRAM_ATTR Scheduler::_main_thread(void *arg)
+./libraries/AP_HAL_ESP32/Scheduler.h:47:    bool     in_main_thread() const override;
+./libraries/AP_HAL_ESP32/Scheduler.h:120:    static void _main_thread(void *arg);
+./libraries/AP_HAL_ESP32/Scheduler.h:121:    static void _timer_thread(void *arg);
+./libraries/AP_HAL_ESP32/Scheduler.h:122:    static void _rcout_thread(void *arg);
+./libraries/AP_HAL_ESP32/Scheduler.h:123:    static void _rcin_thread(void *arg);
+./libraries/AP_HAL_ESP32/Scheduler.h:124:    static void _uart_thread(void *arg);
+./libraries/AP_HAL_ESP32/Scheduler.h:125:    static void _io_thread(void *arg);
+./libraries/AP_HAL_ESP32/Scheduler.h:126:    static void _storage_thread(void *arg);
+./libraries/AP_HAL_ESP32/SdCard.cpp:66:        nread = fread(buffer, 1, buffer_size, f);
+./libraries/AP_HAL_ESP32/SoftSigReaderInt.cpp:159:bool SoftSigReaderInt::read(uint32_t &widths0, uint32_t &widths1)
+./libraries/AP_HAL_ESP32/SoftSigReaderInt.h:55:    bool read(uint32_t &widths0, uint32_t &widths1);
+./libraries/AP_HAL_ESP32/SoftSigReaderRMT.cpp:69:    // we could start it here, but then we get RMT RX BUFFER FULL message will we start calling read()
+./libraries/AP_HAL_ESP32/SoftSigReaderRMT.cpp:91:bool SoftSigReaderRMT::read(uint32_t &widths0, uint32_t &widths1)
+./libraries/AP_HAL_ESP32/SoftSigReaderRMT.cpp:96:    // delayed start till the threads are initialised and we are ready to read() from it....
+./libraries/AP_HAL_ESP32/SoftSigReaderRMT.cpp:131:    // each time we are externally called as read() we'll give some return data to the caller.
+./libraries/AP_HAL_ESP32/SoftSigReaderRMT.h:37:    bool read(uint32_t &widths0, uint32_t &widths1);
+./libraries/AP_HAL_ESP32/Storage.cpp:179:    esp_partition_read(p, address, data, length);
+./libraries/AP_HAL_ESP32/UARTDriver.cpp:125:ssize_t IRAM_ATTR UARTDriver::_read(uint8_t *buffer, uint16_t count)
+./libraries/AP_HAL_ESP32/UARTDriver.cpp:135:    const uint32_t ret = _readbuf.read(buffer, count);
+./libraries/AP_HAL_ESP32/UARTDriver.h:107:    ssize_t _read(uint8_t *buffer, uint16_t count) override;
+./libraries/AP_HAL_ESP32/WiFiDriver.cpp:108:ssize_t WiFiDriver::_read(uint8_t *buf, uint16_t count)
+./libraries/AP_HAL_ESP32/WiFiDriver.cpp:113:    return _readbuf.read(buf, count);
+./libraries/AP_HAL_ESP32/WiFiDriver.cpp:379:void WiFiDriver::_wifi_thread(void *arg)
+./libraries/AP_HAL_ESP32/WiFiDriver.h:69:    static void _wifi_thread(void* arg);
+./libraries/AP_HAL_ESP32/WiFiDriver.h:75:    ssize_t _read(uint8_t *buffer, uint16_t size) override;
+./libraries/AP_HAL_ESP32/WiFiUdpDriver.cpp:105:ssize_t WiFiUdpDriver::_read(uint8_t *buf, uint16_t count)
+./libraries/AP_HAL_ESP32/WiFiUdpDriver.cpp:111:    auto ret = _readbuf.read(buf, count);
+./libraries/AP_HAL_ESP32/WiFiUdpDriver.h:74:    ssize_t _read(uint8_t *buf, uint16_t count) override;
+./libraries/AP_HAL_ESP32/i2c_sw.c:95:static inline bool _i2c_scl_read(_i2c_bus_t* bus);
+./libraries/AP_HAL_ESP32/i2c_sw.c:96:static inline bool _i2c_sda_read(_i2c_bus_t* bus);
+./libraries/AP_HAL_ESP32/i2c_sw.c:297:static inline bool _i2c_scl_read(_i2c_bus_t* bus)
+./libraries/AP_HAL_ESP32/i2c_sw.c:304:static inline bool _i2c_sda_read(_i2c_bus_t* bus)
+./libraries/AP_HAL_ESP32/i2c_sw.c:357:    while (!_i2c_sda_read(bus) && _i2c_scl_read(bus) && count) {
+./libraries/AP_HAL_ESP32/i2c_sw.c:369:    while (!_i2c_sda_read(bus) && count--) {
+./libraries/AP_HAL_ESP32/i2c_sw.c:433:        while (stretch && !_i2c_scl_read(bus)) {
+./libraries/AP_HAL_ESP32/i2c_sw.c:447:    if (!_i2c_sda_read(bus)) {
+./libraries/AP_HAL_ESP32/i2c_sw.c:490:    while (stretch && !_i2c_scl_read(bus)) {
+./libraries/AP_HAL_ESP32/i2c_sw.c:515:    if (_i2c_sda_read(bus) == 0) {
+./libraries/AP_HAL_ESP32/i2c_sw.c:553:    while (stretch && !_i2c_scl_read(bus)) {
+./libraries/AP_HAL_ESP32/i2c_sw.c:563:    if (bit && !_i2c_sda_read(bus)) {
+./libraries/AP_HAL_ESP32/i2c_sw.c:594:    while (stretch && !_i2c_scl_read(bus)) {
+./libraries/AP_HAL_ESP32/i2c_sw.c:607:    *bit = _i2c_sda_read(bus);
+./libraries/AP_HAL_Empty/GPIO.cpp:15:uint8_t GPIO::read(uint8_t pin) {
+./libraries/AP_HAL_Empty/GPIO.cpp:42:uint8_t DigitalSource::read() {
+./libraries/AP_HAL_Empty/GPIO.h:10:    uint8_t read(uint8_t pin) override;
+./libraries/AP_HAL_Empty/GPIO.h:25:    uint8_t read() override;
+./libraries/AP_HAL_Empty/OpticalFlow.h:20:    bool read(Data_Frame& frame) override { return false; }
+./libraries/AP_HAL_Empty/RCInput.cpp:19:uint16_t RCInput::read(uint8_t chan) {
+./libraries/AP_HAL_Empty/RCInput.cpp:24:uint8_t RCInput::read(uint16_t* periods, uint8_t len) {
+./libraries/AP_HAL_Empty/RCInput.h:11:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_Empty/RCInput.h:12:    uint8_t read(uint16_t* periods, uint8_t len) override;
+./libraries/AP_HAL_Empty/RCOutput.cpp:28:uint16_t RCOutput::read(uint8_t chan)
+./libraries/AP_HAL_Empty/RCOutput.cpp:36:void RCOutput::read(uint16_t* period_us, uint8_t len)
+./libraries/AP_HAL_Empty/RCOutput.h:12:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_Empty/RCOutput.h:13:    void     read(uint16_t* period_us, uint8_t len) override;
+./libraries/AP_HAL_Empty/UARTDriver.cpp:21:ssize_t Empty::UARTDriver::_read(uint8_t *buffer, uint16_t size)
+./libraries/AP_HAL_Empty/UARTDriver.h:24:    ssize_t _read(uint8_t *buffer, uint16_t size) override WARN_IF_UNUSED;
+./libraries/AP_HAL_Linux/AnalogIn_ADS1115.cpp:80:    size_t rc = _adc->read(reports, 6);
+./libraries/AP_HAL_Linux/AnalogIn_IIO.cpp:82:    if (pread(_pin_fd, sbuf, sizeof(sbuf) - 1, 0) < 0) {
+./libraries/AP_HAL_Linux/AnalogIn_Navio2.cpp:71:    if (pread(_fd, buffer, sizeof(buffer) - 1, 0) <= 0) {
+./libraries/AP_HAL_Linux/CANSocketIface.cpp:270:        const int res = _read(rx.frame, rx.timestamp_us, loopback);
+./libraries/AP_HAL_Linux/CANSocketIface.cpp:318:int CANIface::_read(AP_HAL::CANFrame& frame, uint64_t& timestamp_us, bool& loopback) const
+./libraries/AP_HAL_Linux/CANSocketIface.h:117:    int _read(AP_HAL::CANFrame& frame, uint64_t& ts_usec, bool& loopback) const;
+./libraries/AP_HAL_Linux/ConsoleDevice.cpp:61:ssize_t ConsoleDevice::read(uint8_t *buf, uint16_t n)
+./libraries/AP_HAL_Linux/ConsoleDevice.cpp:67:    return ::read(_rd_fd, buf, n);
+./libraries/AP_HAL_Linux/ConsoleDevice.h:14:    virtual ssize_t read(uint8_t *buf, uint16_t n) override;
+./libraries/AP_HAL_Linux/GPIO.cpp:20:uint8_t DigitalSource::read()
+./libraries/AP_HAL_Linux/GPIO.cpp:22:    return hal.gpio->read(_v);
+./libraries/AP_HAL_Linux/GPIO.cpp:32:    write(!read());
+./libraries/AP_HAL_Linux/GPIO.h:11:    uint8_t read() override;
+./libraries/AP_HAL_Linux/GPIO_BBB.cpp:81:uint8_t GPIO_BBB::read(uint8_t pin) {
+./libraries/AP_HAL_Linux/GPIO_BBB.cpp:108:    write(pin, !read(pin));
+./libraries/AP_HAL_Linux/GPIO_BBB.h:121:    uint8_t read(uint8_t pin) override;
+./libraries/AP_HAL_Linux/GPIO_Navigator.cpp:5:uint8_t GPIO_Navigator::read(uint8_t pin)
+./libraries/AP_HAL_Linux/GPIO_Navigator.cpp:8:        return GPIO_RPI::read(pin);
+./libraries/AP_HAL_Linux/GPIO_Navigator.cpp:11:        return (uint8_t)hal.rcout->read(pin - 1);
+./libraries/AP_HAL_Linux/GPIO_Navigator.h:19:    uint8_t read(uint8_t pin) override;
+./libraries/AP_HAL_Linux/GPIO_PB2.cpp:77:uint8_t GPIO_PB2::read(uint8_t pin) {
+./libraries/AP_HAL_Linux/GPIO_PB2.cpp:118:    write(pin, !read(pin));
+./libraries/AP_HAL_Linux/GPIO_PB2.h:109:    uint8_t read(uint8_t pin) override;
+./libraries/AP_HAL_Linux/GPIO_RPI.cpp:50:uint8_t GPIO_RPI::read(uint8_t pin)
+./libraries/AP_HAL_Linux/GPIO_RPI.cpp:52:    return gpioDriver->read(pin);
+./libraries/AP_HAL_Linux/GPIO_RPI.h:32:    uint8_t read(uint8_t pin) override;
+./libraries/AP_HAL_Linux/GPIO_RPI_BCM.cpp:205:uint8_t GPIO_RPI_BCM::read(uint8_t pin)
+./libraries/AP_HAL_Linux/GPIO_RPI_BCM.h:20:    uint8_t read(uint8_t pin) override;
+./libraries/AP_HAL_Linux/GPIO_RPI_HAL.h:10:    virtual uint8_t read(uint8_t pin) = 0;
+./libraries/AP_HAL_Linux/GPIO_RPI_RP1.cpp:162:uint8_t GPIO_RPI_RP1::read(uint8_t pin) {
+./libraries/AP_HAL_Linux/GPIO_RPI_RP1.h:24:    uint8_t read(uint8_t pin) override;
+./libraries/AP_HAL_Linux/GPIO_Sysfs.cpp:51:uint8_t DigitalSource_Sysfs::read()
+./libraries/AP_HAL_Linux/GPIO_Sysfs.cpp:54:    if (::pread(_value_fd, &char_value, 1, 0) < 0) {
+./libraries/AP_HAL_Linux/GPIO_Sysfs.cpp:78:    write(!read());
+./libraries/AP_HAL_Linux/GPIO_Sysfs.cpp:136:uint8_t GPIO_Sysfs::read(uint8_t vpin)
+./libraries/AP_HAL_Linux/GPIO_Sysfs.cpp:148:    if (::pread(fd, &char_value, 1, 0) < 0) {
+./libraries/AP_HAL_Linux/GPIO_Sysfs.cpp:191:    write(vpin, !read(vpin));
+./libraries/AP_HAL_Linux/GPIO_Sysfs.cpp:280:void GPIO_Sysfs::_gpio_script_thread(void)
+./libraries/AP_HAL_Linux/GPIO_Sysfs.h:15:    uint8_t read() override;
+./libraries/AP_HAL_Linux/GPIO_Sysfs.h:43:    uint8_t read(uint8_t vpin) override;
+./libraries/AP_HAL_Linux/GPIO_Sysfs.h:81:    void _gpio_script_thread(void);
+./libraries/AP_HAL_Linux/OpticalFlow_Onboard.cpp:183:bool OpticalFlow_Onboard::read(AP_HAL::OpticalFlow::Data_Frame& frame)
+./libraries/AP_HAL_Linux/OpticalFlow_Onboard.cpp:246:void *OpticalFlow_Onboard::_read_thread(void *arg)
+./libraries/AP_HAL_Linux/OpticalFlow_Onboard.h:40:    bool read(AP_HAL::OpticalFlow::Data_Frame& frame) override;
+./libraries/AP_HAL_Linux/OpticalFlow_Onboard.h:46:    static void *_read_thread(void *arg);
+./libraries/AP_HAL_Linux/Poller.cpp:33:void WakeupPollable::on_can_read()
+./libraries/AP_HAL_Linux/Poller.cpp:39:        r = read(_fd, &val, sizeof(val));
+./libraries/AP_HAL_Linux/Poller.cpp:118:            p->on_can_read();
+./libraries/AP_HAL_Linux/Poller.h:39:    virtual void on_can_read() { }
+./libraries/AP_HAL_Linux/Poller.h:70:    void on_can_read() override;
+./libraries/AP_HAL_Linux/PollerThread.cpp:28:void TimerPollable::on_can_read()
+./libraries/AP_HAL_Linux/PollerThread.cpp:35:    int r = read(_fd, &nevents, sizeof(nevents));
+./libraries/AP_HAL_Linux/PollerThread.h:45:    void on_can_read() override;
+./libraries/AP_HAL_Linux/PollerThread.h:65:    PollerThread() : Thread{FUNCTOR_BIND_MEMBER(&PollerThread::mainloop, void)} { }
+./libraries/AP_HAL_Linux/PollerThread.h:66:    virtual ~PollerThread() { }
+./libraries/AP_HAL_Linux/RCInput.cpp:53:uint16_t RCInput::read(uint8_t ch)
+./libraries/AP_HAL_Linux/RCInput.cpp:61:uint8_t RCInput::read(uint16_t* periods, uint8_t len)
+./libraries/AP_HAL_Linux/RCInput.cpp:65:        periods[i] = read(i);
+./libraries/AP_HAL_Linux/RCInput.h:27:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_Linux/RCInput.h:28:    uint8_t read(uint16_t* periods, uint8_t len) override;
+./libraries/AP_HAL_Linux/RCInput_Multi.cpp:61:            inputs[i]->read(_pwm_values, inputs[i]->num_channels());
+./libraries/AP_HAL_Linux/RCInput_RCProtocol.cpp:145:        ssize_t n = ::read(fd_inverted, &b[0], sizeof(b));
+./libraries/AP_HAL_Linux/RCInput_RCProtocol.cpp:153:        ssize_t n = ::read(fd_115200, &b[0], sizeof(b));
+./libraries/AP_HAL_Linux/RCInput_RCProtocol.cpp:165:            _pwm_values[i] = AP::RC().read(i);
+./libraries/AP_HAL_Linux/RCInput_RPI.cpp:191:        if (::read(file, &pageInfo, 8) < 8) {
+./libraries/AP_HAL_Linux/RCOutput_AeroIO.cpp:207:uint16_t RCOutput_AeroIO::read(uint8_t ch)
+./libraries/AP_HAL_Linux/RCOutput_AeroIO.cpp:215:    return _hw_to_usec(_freq_buffer[ch], _hw_read(2 * ch));
+./libraries/AP_HAL_Linux/RCOutput_AeroIO.cpp:219:void RCOutput_AeroIO::read(uint16_t *period_us, uint8_t len)
+./libraries/AP_HAL_Linux/RCOutput_AeroIO.cpp:222:        period_us[i] = read(i);
+./libraries/AP_HAL_Linux/RCOutput_AeroIO.cpp:243:uint16_t RCOutput_AeroIO::_hw_read(uint16_t address)
+./libraries/AP_HAL_Linux/RCOutput_AeroIO.h:73:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_Linux/RCOutput_AeroIO.h:82:    void read(uint16_t *period_us, uint8_t len) override;
+./libraries/AP_HAL_Linux/RCOutput_AeroIO.h:122:    uint16_t _hw_read(uint16_t address);
+./libraries/AP_HAL_Linux/RCOutput_AioPRU.cpp:116:uint16_t RCOutput_AioPRU::read(uint8_t ch)
+./libraries/AP_HAL_Linux/RCOutput_AioPRU.cpp:127:void RCOutput_AioPRU::read(uint16_t* period_us, uint8_t len)
+./libraries/AP_HAL_Linux/RCOutput_AioPRU.h:34:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_Linux/RCOutput_AioPRU.h:35:    void     read(uint16_t* period_us, uint8_t len) override;
+./libraries/AP_HAL_Linux/RCOutput_AioPRU_PB2.cpp:156:uint16_t RCOutput_AioPRU_PB2::read(uint8_t ch)
+./libraries/AP_HAL_Linux/RCOutput_AioPRU_PB2.cpp:165:void RCOutput_AioPRU_PB2::read(uint16_t* period_us, uint8_t len)
+./libraries/AP_HAL_Linux/RCOutput_AioPRU_PB2.h:22:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_Linux/RCOutput_AioPRU_PB2.h:23:    void     read(uint16_t* period_us, uint8_t len) override;
+./libraries/AP_HAL_Linux/RCOutput_Bebop.cpp:414:uint16_t RCOutput_Bebop::read(uint8_t ch)
+./libraries/AP_HAL_Linux/RCOutput_Bebop.cpp:423:void RCOutput_Bebop::read(uint16_t* period_us, uint8_t len)
+./libraries/AP_HAL_Linux/RCOutput_Bebop.cpp:426:        period_us[i] = read(0 + i);
+./libraries/AP_HAL_Linux/RCOutput_Bebop.cpp:431:void* RCOutput_Bebop::_control_thread(void *arg) {
+./libraries/AP_HAL_Linux/RCOutput_Bebop.h:72:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_Linux/RCOutput_Bebop.h:73:    void     read(uint16_t* period_us, uint8_t len) override;
+./libraries/AP_HAL_Linux/RCOutput_Bebop.h:105:    static void *_control_thread(void *arg);
+./libraries/AP_HAL_Linux/RCOutput_Disco.cpp:83:uint16_t RCOutput_Disco::read(uint8_t ch)
+./libraries/AP_HAL_Linux/RCOutput_Disco.cpp:88:    return output_table[ch].output.read(output_table[ch].channel);
+./libraries/AP_HAL_Linux/RCOutput_Disco.cpp:91:void RCOutput_Disco::read(uint16_t *period_us, uint8_t len)
+./libraries/AP_HAL_Linux/RCOutput_Disco.cpp:94:        period_us[i] = read(i);
+./libraries/AP_HAL_Linux/RCOutput_Disco.h:28:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_Linux/RCOutput_Disco.h:29:    void read(uint16_t *period_us, uint8_t len) override;
+./libraries/AP_HAL_Linux/RCOutput_Multi.cpp:167:uint16_t RCOutput_Multi::read(uint8_t ch)
+./libraries/AP_HAL_Linux/RCOutput_Multi.cpp:172:            return outputs[i].output->read(ch);
+./libraries/AP_HAL_Linux/RCOutput_Multi.cpp:180:void RCOutput_Multi::read(uint16_t* period_us, uint8_t len)
+./libraries/AP_HAL_Linux/RCOutput_Multi.cpp:185:            period_us[c] = outputs[i].output->read(c);
+./libraries/AP_HAL_Linux/RCOutput_Multi.h:44:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_Linux/RCOutput_Multi.h:45:    void     read(uint16_t* period_us, uint8_t len) override;
+./libraries/AP_HAL_Linux/RCOutput_PCA9685.cpp:288:uint16_t RCOutput_PCA9685::read(uint8_t ch)
+./libraries/AP_HAL_Linux/RCOutput_PCA9685.cpp:293:void RCOutput_PCA9685::read(uint16_t* period_us, uint8_t len)
+./libraries/AP_HAL_Linux/RCOutput_PCA9685.cpp:296:        period_us[i] = read(0 + i);
+./libraries/AP_HAL_Linux/RCOutput_PCA9685.h:34:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_Linux/RCOutput_PCA9685.h:35:    void     read(uint16_t* period_us, uint8_t len) override;
+./libraries/AP_HAL_Linux/RCOutput_PRU.cpp:79:uint16_t RCOutput_PRU::read(uint8_t ch)
+./libraries/AP_HAL_Linux/RCOutput_PRU.cpp:84:void RCOutput_PRU::read(uint16_t* period_us, uint8_t len)
+./libraries/AP_HAL_Linux/RCOutput_PRU.h:25:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_Linux/RCOutput_PRU.h:26:    void     read(uint16_t* period_us, uint8_t len) override;
+./libraries/AP_HAL_Linux/RCOutput_Sysfs.cpp:123:uint16_t RCOutput_Sysfs::read(uint8_t ch)
+./libraries/AP_HAL_Linux/RCOutput_Sysfs.cpp:132:void RCOutput_Sysfs::read(uint16_t *period_us, uint8_t len)
+./libraries/AP_HAL_Linux/RCOutput_Sysfs.cpp:135:        period_us[i] = read(i);
+./libraries/AP_HAL_Linux/RCOutput_Sysfs.h:24:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_Linux/RCOutput_Sysfs.h:25:    void read(uint16_t *period_us, uint8_t len) override;
+./libraries/AP_HAL_Linux/RCOutput_ZYNQ.cpp:97:uint16_t RCOutput_ZYNQ::read(uint8_t ch)
+./libraries/AP_HAL_Linux/RCOutput_ZYNQ.cpp:106:void RCOutput_ZYNQ::read(uint16_t* period_us, uint8_t len)
+./libraries/AP_HAL_Linux/RCOutput_ZYNQ.h:27:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_Linux/RCOutput_ZYNQ.h:28:    void     read(uint16_t* period_us, uint8_t len) override;
+./libraries/AP_HAL_Linux/Scheduler.cpp:178:        if (in_main_thread() && _min_delay_cb_ms <= ms) {
+./libraries/AP_HAL_Linux/Scheduler.cpp:299:bool Scheduler::in_main_thread() const
+./libraries/AP_HAL_Linux/Scheduler.h:35:    bool     in_main_thread() const override;
+./libraries/AP_HAL_Linux/Scheduler.h:66:        SchedulerThread(Thread::task_t t, Scheduler &sched)
+./libraries/AP_HAL_Linux/Scheduler.h:67:            : PeriodicThread(t)
+./libraries/AP_HAL_Linux/SerialDevice.h:15:    virtual ssize_t read(uint8_t *buf, uint16_t n) = 0;
+./libraries/AP_HAL_Linux/Storage.cpp:153:    ssize_t ret = read(fd, _buffer, sizeof(_buffer));
+./libraries/AP_HAL_Linux/TCPServerDevice.cpp:39:ssize_t TCPServerDevice::read(uint8_t *buf, uint16_t n)
+./libraries/AP_HAL_Linux/TCPServerDevice.h:20:    virtual ssize_t read(uint8_t *buf, uint16_t n) override;
+./libraries/AP_HAL_Linux/Thread.cpp:209:bool Thread::is_current_thread()
+./libraries/AP_HAL_Linux/Thread.h:34:    Thread(task_t t) : _task(t) { }
+./libraries/AP_HAL_Linux/Thread.h:36:    virtual ~Thread() { }
+./libraries/AP_HAL_Linux/Thread.h:40:    bool is_current_thread();
+./libraries/AP_HAL_Linux/Thread.h:82:    PeriodicThread(Thread::task_t t)
+./libraries/AP_HAL_Linux/Thread.h:83:        : Thread(t)
+./libraries/AP_HAL_Linux/UARTDevice.cpp:51:ssize_t UARTDevice::read(uint8_t *buf, uint16_t n)
+./libraries/AP_HAL_Linux/UARTDevice.cpp:53:    return ::read(_fd, buf, n);
+./libraries/AP_HAL_Linux/UARTDevice.h:14:    virtual ssize_t read(uint8_t *buf, uint16_t n) override;
+./libraries/AP_HAL_Linux/UARTDriver.cpp:265:ssize_t UARTDriver::_read(uint8_t *buffer, uint16_t count)
+./libraries/AP_HAL_Linux/UARTDriver.cpp:271:    return _readbuf.read(buffer, count);
+./libraries/AP_HAL_Linux/UARTDriver.cpp:324:    return _device->read(buf, n);
+./libraries/AP_HAL_Linux/UARTDriver.h:86:    // of ::read() and ::write() in the main loop
+./libraries/AP_HAL_Linux/UARTDriver.h:101:    ssize_t _read(uint8_t *buffer, uint16_t count) override WARN_IF_UNUSED;
+./libraries/AP_HAL_Linux/UDPDevice.cpp:36:ssize_t UDPDevice::read(uint8_t *buf, uint16_t n)
+./libraries/AP_HAL_Linux/UDPDevice.h:16:    virtual ssize_t read(uint8_t *buf, uint16_t n) override;
+./libraries/AP_HAL_Linux/Util.cpp:127:        ssize_t ret = read(fd, buf, len);
+./libraries/AP_HAL_Linux/Util.cpp:256:    ssize_t result = read(dev_random, data, size);
+./libraries/AP_HAL_Linux/Util_RPI.cpp:79:        const uint16_t len = fread(buf, 1, sizeof(buf), fp);
+./libraries/AP_HAL_Linux/examples/GPIOTest/GPIOTest.cpp:46:        hal.console->printf("%u ", use_channel ? ch->read() : hal.gpio->read(pin));
+./libraries/AP_HAL_Linux/tests/test_thread.cpp:32:    TestThread1() : Thread(nullptr) { }
+./libraries/AP_HAL_QURT/DeviceBus.cpp:37:void DeviceBus::bus_thread(void)
+./libraries/AP_HAL_QURT/DeviceBus.h:39:    void bus_thread(void);
+./libraries/AP_HAL_QURT/HAL_QURT_Class.cpp:154:void HAL_QURT::main_thread(void)
+./libraries/AP_HAL_QURT/HAL_QURT_Class.cpp:179:void HAL_QURT::start_main_thread(Callbacks* callbacks)
+./libraries/AP_HAL_QURT/HAL_QURT_Class.cpp:208:    const_cast<HAL_QURT *>(this)->start_main_thread(callbacks);
+./libraries/AP_HAL_QURT/HAL_QURT_Class.h:27:    void start_main_thread(Callbacks* callbacks);
+./libraries/AP_HAL_QURT/HAL_QURT_Class.h:28:    void main_thread(void);
+./libraries/AP_HAL_QURT/RCInput.cpp:25:uint16_t RCInput::read(uint8_t channel)
+./libraries/AP_HAL_QURT/RCInput.cpp:33:uint8_t RCInput::read(uint16_t* periods, uint8_t len)
+./libraries/AP_HAL_QURT/RCInput.cpp:53:        rcprot.read(values, num_chan);
+./libraries/AP_HAL_QURT/RCInput.h:16:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_QURT/RCInput.h:17:    uint8_t read(uint16_t* periods, uint8_t len) override;
+./libraries/AP_HAL_QURT/RCOutput.cpp:72:uint16_t RCOutput::read(uint8_t ch)
+./libraries/AP_HAL_QURT/RCOutput.cpp:80:void RCOutput::read(uint16_t *period_us, uint8_t len)
+./libraries/AP_HAL_QURT/RCOutput.cpp:83:        period_us[i] = read(i);
+./libraries/AP_HAL_QURT/RCOutput.cpp:345:    auto n = sl_client_uart_read(fd, (char *)buf, sizeof(buf));
+./libraries/AP_HAL_QURT/RCOutput.h:19:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_QURT/RCOutput.h:20:    void read(uint16_t *period_us, uint8_t len) override;
+./libraries/AP_HAL_QURT/Scheduler.cpp:151:            if (in_main_thread()) {
+./libraries/AP_HAL_QURT/Scheduler.cpp:256:void *Scheduler::_timer_thread(void *arg)
+./libraries/AP_HAL_QURT/Scheduler.cpp:291:void *Scheduler::_uart_thread(void *arg)
+./libraries/AP_HAL_QURT/Scheduler.cpp:323:void *Scheduler::_io_thread(void *arg)
+./libraries/AP_HAL_QURT/Scheduler.cpp:345:bool Scheduler::in_main_thread() const
+./libraries/AP_HAL_QURT/Scheduler.h:34:    bool     in_main_thread() const override;
+./libraries/AP_HAL_QURT/Scheduler.h:73:    static void *_timer_thread(void *arg);
+./libraries/AP_HAL_QURT/Scheduler.h:74:    static void *_io_thread(void *arg);
+./libraries/AP_HAL_QURT/Scheduler.h:75:    static void *_storage_thread(void *arg);
+./libraries/AP_HAL_QURT/Scheduler.h:76:    static void *_uart_thread(void *arg);
+./libraries/AP_HAL_QURT/Storage.cpp:74:    ssize_t ret = read(fd, _buffer, sizeof(_buffer));
+./libraries/AP_HAL_QURT/Storage.cpp:83:        if (read(fd, _buffer, sizeof(_buffer)) != sizeof(_buffer)) {
+./libraries/AP_HAL_QURT/Thread.cpp:100:bool Thread::is_current_thread()
+./libraries/AP_HAL_QURT/Thread.h:36:    Thread(task_t t) : _task(t) { }
+./libraries/AP_HAL_QURT/Thread.h:38:    virtual ~Thread() { }
+./libraries/AP_HAL_QURT/Thread.h:42:    bool is_current_thread();
+./libraries/AP_HAL_QURT/Thread.h:94:    PeriodicThread(Thread::task_t t)
+./libraries/AP_HAL_QURT/Thread.h:95:        : Thread(t)
+./libraries/AP_HAL_QURT/UARTDriver.cpp:97:ssize_t UARTDriver::_read(uint8_t *buffer, uint16_t size)
+./libraries/AP_HAL_QURT/UARTDriver.cpp:105:    return _readbuf.read(buffer, size);
+./libraries/AP_HAL_QURT/UARTDriver.cpp:198:    msg.data_length = _writebuf.read(msg.data, n);
+./libraries/AP_HAL_QURT/UARTDriver.cpp:268:    auto nread = sl_client_uart_read(fd, buf, sizeof(buf));
+./libraries/AP_HAL_QURT/UARTDriver.cpp:408:ssize_t UARTDriver_RemoteRegistered::_read(uint8_t *buffer, uint16_t count)
+./libraries/AP_HAL_QURT/UARTDriver.cpp:411:    return readbuffer != nullptr ? readbuffer->read(buffer, count) : -1;
+./libraries/AP_HAL_QURT/UARTDriver.h:52:    ssize_t _read(uint8_t *buffer, uint16_t size) override WARN_IF_UNUSED;
+./libraries/AP_HAL_QURT/UARTDriver.h:171:    ssize_t  _read(uint8_t *buffer, uint16_t count) override;
+./libraries/AP_HAL_QURT/ap_host/src/RemoteUARTDriver.cpp:144:    _start_recv_thread();
+./libraries/AP_HAL_QURT/ap_host/src/RemoteUARTDriver.cpp:148:void RemoteUARTDriver::_start_recv_thread()
+./libraries/AP_HAL_QURT/ap_host/src/RemoteUARTDriver.cpp:169:        ssize_t nread = ::read(_fd, msg.data, sizeof(msg.data));
+./libraries/AP_HAL_QURT/ap_host/src/RemoteUARTDriver.h:27:    void _start_recv_thread();
+./libraries/AP_HAL_QURT/ap_host/src/main.cpp:187:void *obd_recv_thread(void *)
+./libraries/AP_HAL_QURT/interface.h:43:    int sl_client_uart_read(int fd, char *buffer, const unsigned buffer_len);
+./libraries/AP_HAL_SITL/CAN_SocketCAN.cpp:81:    const ssize_t ret = ::read(fd, &receive_frame, sizeof(receive_frame));
+./libraries/AP_HAL_SITL/GPIO.cpp:27:uint8_t GPIO::read(uint8_t pin)
+./libraries/AP_HAL_SITL/GPIO.cpp:79:    write(pin, !read(pin));
+./libraries/AP_HAL_SITL/GPIO.cpp:104:uint8_t DigitalSource::read()
+./libraries/AP_HAL_SITL/GPIO.cpp:106:    return hal.gpio->read(_pin);
+./libraries/AP_HAL_SITL/GPIO.cpp:117:    return hal.gpio->write(_pin, !hal.gpio->read(_pin));
+./libraries/AP_HAL_SITL/GPIO.h:11:    uint8_t read(uint8_t pin) override;
+./libraries/AP_HAL_SITL/GPIO.h:33:    uint8_t read() override;
+./libraries/AP_HAL_SITL/HAL_SITL_Class.cpp:159:        ret = (::read(fd, data, nwords*4) == (ssize_t)(nwords*4));
+./libraries/AP_HAL_SITL/RCInput.cpp:23:uint16_t RCInput::read(uint8_t ch)
+./libraries/AP_HAL_SITL/RCInput.cpp:25:    return AP::RC().read(ch);
+./libraries/AP_HAL_SITL/RCInput.cpp:28:uint8_t RCInput::read(uint16_t* periods, uint8_t len)
+./libraries/AP_HAL_SITL/RCInput.cpp:30:    AP::RC().read(periods, len);
+./libraries/AP_HAL_SITL/RCInput.h:16:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_SITL/RCInput.h:17:    uint8_t read(uint16_t* periods, uint8_t len) override;
+./libraries/AP_HAL_SITL/RCOutput.cpp:72:uint16_t RCOutput::read(uint8_t ch)
+./libraries/AP_HAL_SITL/RCOutput.cpp:81:void RCOutput::read(uint16_t* period_us, uint8_t len)
+./libraries/AP_HAL_SITL/RCOutput.h:17:    uint16_t read(uint8_t ch) override;
+./libraries/AP_HAL_SITL/RCOutput.h:18:    void read(uint16_t* period_us, uint8_t len) override;
+./libraries/AP_HAL_SITL/SITL_Periph_State.cpp:132:        if (hal.scheduler->in_main_thread() ||
+./libraries/AP_HAL_SITL/SITL_Periph_State.cpp:185:    hal.rcout->read(out, SITL_NUM_CHANNELS);
+./libraries/AP_HAL_SITL/SITL_Periph_State.cpp:198:void SimMCast::multicast_read(void)
+./libraries/AP_HAL_SITL/SITL_Periph_State.cpp:245:    multicast_read();
+./libraries/AP_HAL_SITL/SITL_Periph_State.h:43:    void multicast_read();
+./libraries/AP_HAL_SITL/SITL_State.cpp:131:        if (hal.scheduler->in_main_thread() ||
+./libraries/AP_HAL_SITL/SITL_State.cpp:162:    if (speedup > 1 && hal.scheduler->in_main_thread()) {
+./libraries/AP_HAL_SITL/Scheduler.cpp:100:bool Scheduler::in_main_thread() const
+./libraries/AP_HAL_SITL/Scheduler.cpp:153:            if (in_main_thread()) {
+./libraries/AP_HAL_SITL/Scheduler.h:30:    bool in_main_thread() const override;
+./libraries/AP_HAL_SITL/Semaphores.cpp:95:        if (hal.scheduler->in_main_thread() ||
+./libraries/AP_HAL_SITL/Storage.cpp:62:        if (fram.init() && fram.read(0, _buffer, HAL_STORAGE_SIZE)) {
+./libraries/AP_HAL_SITL/Storage.cpp:99:        int ret = read(log_fd, _buffer, HAL_STORAGE_SIZE);
+./libraries/AP_HAL_SITL/Storage.cpp:277:    if (pread(flash_fd, old, length, addr) != (ssize_t)length) {
+./libraries/AP_HAL_SITL/Storage.cpp:314:static bool sitl_flash_read(uint32_t addr, uint8_t *data, uint32_t length)
+./libraries/AP_HAL_SITL/Storage.cpp:317:    return pread(flash_fd, data, length, addr) == (ssize_t)length;
+./libraries/AP_HAL_SITL/Storage.cpp:357:    return sitl_flash_read(base_address+offset, data, length);
+./libraries/AP_HAL_SITL/UARTDriver.cpp:261:ssize_t UARTDriver::_read(uint8_t *buffer, uint16_t count)
+./libraries/AP_HAL_SITL/UARTDriver.cpp:263:    const ssize_t ret = _readbuffer.read(buffer, count);
+./libraries/AP_HAL_SITL/UARTDriver.cpp:795:            const ssize_t nread = ::read(_fd, &c, 1);
+./libraries/AP_HAL_SITL/UARTDriver.cpp:1015:        nread = ::read(fd, buf, space);
+./libraries/AP_HAL_SITL/UARTDriver.h:149:    ssize_t _read(uint8_t *buffer, uint16_t count) override;
+./libraries/AP_HAL_SITL/Util.cpp:45:        ssize_t ret = read(fd, buf, len);
+./libraries/AP_HAL_SITL/Util.cpp:128:    ssize_t result = read(dev_random, data, size);
+./libraries/AP_HAL_SITL/system.cpp:138:        const ssize_t ret = read(fd, buf, ARRAY_SIZE(buf));
+./libraries/AP_Hott_Telem/AP_Hott_Telem.cpp:402:        uart->read();
+./libraries/AP_Hott_Telem/AP_Hott_Telem.cpp:427:        const uint8_t prot_type = uart->read();
+./libraries/AP_Hott_Telem/AP_Hott_Telem.cpp:428:        const uint8_t sensor_id = uart->read();
+./libraries/AP_IBus_Telem/AP_IBus_Telem.cpp:376:    if (port->read(u.buffer, sizeof(u.buffer)) != sizeof(u.buffer)) {
+./libraries/AP_IOMCU/AP_IOMCU.cpp:684:    uart.read(b, MIN(n, sizeof(pkt)));
+./libraries/AP_IOMCU/AP_IOMCU.cpp:768:            b[i] = uart.read();
+./libraries/AP_IOMCU/fw_uploader.cpp:171:        int16_t v = uart.read();
+./libraries/AP_IOMCU/iofirmware/iofirmware.cpp:702:        hal.rcin->read(rc_input.pwm, IOMCU_MAX_RC_CHANNELS);
+./libraries/AP_IOMCU/iofirmware/iofirmware.cpp:826:        if (!handle_code_read()) {
+./libraries/AP_IOMCU/iofirmware/iofirmware.cpp:884:bool AP_IOMCU_FW::handle_code_read()
+./libraries/AP_IOMCU/iofirmware/iofirmware.h:41:    bool handle_code_read();
+./libraries/AP_InertialSensor/AP_InertialSensor_ASM330.cpp:80:    const uint8_t whoami = register_read(ASM330_REG_WHO_AM_I);
+./libraries/AP_InertialSensor/AP_InertialSensor_ASM330.cpp:142:uint8_t AP_InertialSensor_ASM330::register_read(uint8_t reg)
+./libraries/AP_InertialSensor/AP_InertialSensor_ASM330.cpp:161:        const uint8_t ctrl3_c = register_read(ASM330_REG_CTRL3_C);
+./libraries/AP_InertialSensor/AP_InertialSensor_ASM330.cpp:174:    const uint8_t fifo_ctrl4 = register_read(ASM330_REG_FIFO_CTRL4);
+./libraries/AP_InertialSensor/AP_InertialSensor_ASM330.cpp:403:        uint8_t v = register_read(reg);
+./libraries/AP_InertialSensor/AP_InertialSensor_ASM330.h:38:    uint8_t register_read(uint8_t reg);
+./libraries/AP_InertialSensor/AP_InertialSensor_BMI160.cpp:374:    if (_int1_pin && _int1_pin->read() == 0) {
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:345:    uint8_t product_id = _register_read(MPUREG_PRODUCT_ID);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:387:        uint8_t v = _register_read(MPUREG_INT_PIN_CFG) | BIT_INT_RD_CLEAR | BIT_LATCH_INT_EN;
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:405:            _register_write(regs[i], _register_read(regs[i]), true);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:418:        _saved_y_ofs_high = _register_read(MPUREG_ACC_OFF_Y_H);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:516:        return _drdy_pin->read() != 0;
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:518:    uint8_t status = _register_read(MPUREG_INT_STATUS);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:556:            reg_value[i] = _register_read(i);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:567:        uint8_t v = _register_read(next_reg);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:726:    if (!_block_read(MPUREG_FIFO_COUNTH, rx, 2)) {
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:763:            if (!_block_read(MPUREG_FIFO_R_W, rx, n * MPU_SAMPLE_SIZE)) {
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:808:        const uint8_t y_ofs = _register_read(MPUREG_ACC_OFF_Y_H);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:846:    if (_block_read(MPUREG_TEMP_OUT_H, trx, 2)) {
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:852:bool AP_InertialSensor_Invensense::_block_read(uint8_t reg, uint8_t *buf,
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:858:uint8_t AP_InertialSensor_Invensense::_register_read(uint8_t reg)
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:962:    uint8_t whoami = _register_read(MPUREG_WHOAMI);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:1015:        _last_stat_user_ctrl = _register_read(MPUREG_USER_CTRL);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:1059:        if (_register_read(MPUREG_PWR_MGMT_1) == BIT_PWR_MGMT_1_CLK_ZGYRO) {
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:1119:int AP_Invensense_AuxiliaryBusSlave::passthrough_read(uint8_t reg, uint8_t *buf,
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:1136:    if (!backend._block_read(MPUREG_EXT_SENS_DATA_00 + _ext_sens_data, buf, size)) {
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:1169:int AP_Invensense_AuxiliaryBusSlave::read(uint8_t *buf)
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:1177:    if (!backend._block_read(MPUREG_EXT_SENS_DATA_00 + _ext_sens_data, buf, _sample_size)) {
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.cpp:1237:int AP_Invensense_AuxiliaryBus::_configure_periodic_read(AuxiliaryBusSlave *slave,
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.h:112:    bool _block_read(uint8_t reg, uint8_t *buf, uint32_t size) __RAMFUNC__;
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.h:113:    uint8_t _register_read(uint8_t reg) __RAMFUNC__;
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.h:199:    int passthrough_read(uint8_t reg, uint8_t *buf, uint8_t size) override;
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.h:202:    int read(uint8_t *buf) override;
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensense.h:229:    int _configure_periodic_read(AuxiliaryBusSlave *slave, uint8_t reg,
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev2.cpp:311:        return _drdy_pin->read() != 0;
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev2.cpp:313:    uint8_t status = _register_read(INV2REG_INT_STATUS_1);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev2.cpp:462:    if (!_block_read(INV2REG_FIFO_COUNTH, rx, 2)) {
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev2.cpp:498:            if (!_block_read(INV2REG_FIFO_R_W, rx, n * INV2_SAMPLE_SIZE)) {
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev2.cpp:564:    if (_block_read(INV2REG_TEMP_OUT_H, trx, 2)) {
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev2.cpp:570:bool AP_InertialSensor_Invensensev2::_block_read(uint16_t reg, uint8_t *buf,
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev2.cpp:576:uint8_t AP_InertialSensor_Invensensev2::_register_read(uint16_t reg)
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev2.cpp:667:    uint8_t whoami = _register_read(INV2REG_WHO_AM_I);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev2.cpp:701:        _last_stat_user_ctrl = _register_read(INV2REG_USER_CTRL);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev2.cpp:731:        if (_register_read(INV2REG_PWR_MGMT_1) == BIT_PWR_MGMT_1_CLK_AUTO) {
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev2.cpp:787:int AP_Invensensev2_AuxiliaryBusSlave::passthrough_read(uint8_t reg, uint8_t *buf,
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev2.cpp:804:    if (!backend._block_read(INV2REG_EXT_SLV_SENS_DATA_00 + _ext_sens_data, buf, size)) {
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev2.cpp:837:int AP_Invensensev2_AuxiliaryBusSlave::read(uint8_t *buf)
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev2.cpp:845:    if (!backend._block_read(INV2REG_EXT_SLV_SENS_DATA_00 + _ext_sens_data, buf, _sample_size)) {
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev2.cpp:901:int AP_Invensensev2_AuxiliaryBus::_configure_periodic_read(AuxiliaryBusSlave *slave,
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev2.h:99:    bool _block_read(uint16_t reg, uint8_t *buf, uint32_t size);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev2.h:100:    uint8_t _register_read(uint16_t reg);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev2.h:169:    int passthrough_read(uint8_t reg, uint8_t *buf, uint8_t size) override;
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev2.h:172:    int read(uint8_t *buf) override;
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev2.h:199:    int _configure_periodic_read(AuxiliaryBusSlave *slave, uint8_t reg,
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.cpp:620:    if (!block_read(reg_counth, (uint8_t*)&n_samples, 2)) {
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.cpp:681:bool AP_InertialSensor_Invensensev3::block_read(uint8_t reg, uint8_t *buf, uint32_t size)
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.cpp:686:uint8_t AP_InertialSensor_Invensensev3::register_read(uint8_t reg)
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.cpp:708:        const uint8_t val = register_read(INV3REG_M_R);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.cpp:714:    const uint8_t val = register_read(reg);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.cpp:914:        const uint8_t v = register_read(INV3REG_42XXX_INTF_CONFIG1);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.cpp:964:    const uint8_t v = register_read(INV3REG_42XXX_INTF_CONFIG1);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.cpp:1042:    uint8_t whoami = register_read(INV3REG_WHOAMI);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.cpp:1069:    whoami = register_read(INV3REG_456_WHOAMI);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.cpp:1091:        if (register_read(INV3REG_456_REG_MISC2) & 0x01) {
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.cpp:1099:    return register_read(INV3REG_456_IREG_DATA);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.cpp:1113:    if (register_read(INV3REG_456_REG_MISC2) & 0x01) {
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.cpp:1158:            if (register_read(INV3REG_70_MCLK_RDY) != 0) {
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.cpp:1163:        if (register_read(INV3REG_70_MCLK_RDY) == 0) {
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.cpp:1191:        if (!(register_read(INV3REG_456_INT1_STATUS0) & 0x80)) {
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.h:69:    bool block_read(uint8_t reg, uint8_t *buf, uint32_t size);
+./libraries/AP_InertialSensor/AP_InertialSensor_Invensensev3.h:70:    uint8_t register_read(uint8_t reg);
+./libraries/AP_InertialSensor/AP_InertialSensor_LSM9DS0.cpp:712:        return _drdy_pin_a->read() != 0;
+./libraries/AP_InertialSensor/AP_InertialSensor_LSM9DS0.cpp:722:        return _drdy_pin_g->read() != 0;
+./libraries/AP_InertialSensor/AP_InertialSensor_LSM9DS1.cpp:256:    whoami = _register_read(LSM9DS1XG_WHO_AM_I);
+./libraries/AP_InertialSensor/AP_InertialSensor_LSM9DS1.cpp:275:        int samples = _register_read(LSM9DS1XG_FIFO_SRC);
+./libraries/AP_InertialSensor/AP_InertialSensor_LSM9DS1.cpp:305:    int reg_9 = _register_read(LSM9DS1XG_CTRL_REG9);
+./libraries/AP_InertialSensor/AP_InertialSensor_LSM9DS1.cpp:345:uint8_t AP_InertialSensor_LSM9DS1::_register_read(uint8_t reg)
+./libraries/AP_InertialSensor/AP_InertialSensor_LSM9DS1.cpp:415:    uint16_t samples = _register_read(LSM9DS1XG_FIFO_SRC);
+./libraries/AP_InertialSensor/AP_InertialSensor_LSM9DS1.cpp:525:        uint8_t v = _register_read(reg);
+./libraries/AP_InertialSensor/AP_InertialSensor_LSM9DS1.h:55:    uint8_t _register_read(uint8_t reg);
+./libraries/AP_InertialSensor/AP_InertialSensor_SITL.cpp:466:    ssize_t ret = ::read(gyro_fd, buf, nsamples * 3 * sizeof(float));
+./libraries/AP_InertialSensor/AP_InertialSensor_SITL.cpp:534:    ssize_t ret = ::read(accel_fd, buf, nsamples * 3 * sizeof(float));
+./libraries/AP_InertialSensor/AP_InertialSensor_ZeroOne_FPGA_SCH16T.cpp:290:void AP_InertialSensor_ZeroOne_FPGA_SCH16T::_register_read(uint16_t addr, uint8_t* buff)
+./libraries/AP_InertialSensor/AP_InertialSensor_ZeroOne_FPGA_SCH16T.cpp:353:    _register_read(addr, buff + 2);
+./libraries/AP_InertialSensor/AP_InertialSensor_ZeroOne_FPGA_SCH16T.cpp:513:    UNUSED_RESULT(register_read(COMP_ID, 0));
+./libraries/AP_InertialSensor/AP_InertialSensor_ZeroOne_FPGA_SCH16T.cpp:514:    if (!register_read(ASIC_ID, &comp_id) ||
+./libraries/AP_InertialSensor/AP_InertialSensor_ZeroOne_FPGA_SCH16T.cpp:515:        !register_read(ASIC_ID, &asic_id)) {
+./libraries/AP_InertialSensor/AP_InertialSensor_ZeroOne_FPGA_SCH16T.cpp:529:    UNUSED_RESULT(register_read(CTRL_USER_IF, 0));
+./libraries/AP_InertialSensor/AP_InertialSensor_ZeroOne_FPGA_SCH16T.cpp:532:    if (register_read(CTRL_USER_IF, &reg_value)) {
+./libraries/AP_InertialSensor/AP_InertialSensor_ZeroOne_FPGA_SCH16T.cpp:558:        UNUSED_RESULT(register_read(r.addr, 0));
+./libraries/AP_InertialSensor/AP_InertialSensor_ZeroOne_FPGA_SCH16T.cpp:559:        if (!register_read(r.addr, &value)) {
+./libraries/AP_InertialSensor/AP_InertialSensor_ZeroOne_FPGA_SCH16T.cpp:589:    if (register_read(addr, &value) == 0) {
+./libraries/AP_InertialSensor/AP_InertialSensor_ZeroOne_FPGA_SCH16T.cpp:611:bool AP_InertialSensor_ZeroOne_FPGA_SCH16T::register_read(uint16_t addr, uint32_t* value)
+./libraries/AP_InertialSensor/AP_InertialSensor_ZeroOne_FPGA_SCH16T.cpp:619:    _register_read(addr, tbuf);
+./libraries/AP_InertialSensor/AP_InertialSensor_ZeroOne_FPGA_SCH16T.h:133:    void _register_read(uint16_t addr, uint8_t* buff);
+./libraries/AP_InertialSensor/AP_InertialSensor_ZeroOne_FPGA_SCH16T.h:145:    bool register_read(uint16_t addr, uint32_t* value) WARN_IF_UNUSED;
+./libraries/AP_InertialSensor/AuxiliaryBus.cpp:72: *      slave->passthrough_read(WHO_AM_I, buf, 1);
+./libraries/AP_InertialSensor/AuxiliaryBus.cpp:76: *      bus->register_periodic_read(slave, SAMPLE_START_REG, SAMPLE_SIZE);
+./libraries/AP_InertialSensor/AuxiliaryBus.cpp:85:int AuxiliaryBus::register_periodic_read(AuxiliaryBusSlave *slave, uint8_t reg,
+./libraries/AP_InertialSensor/AuxiliaryBus.cpp:88:    int r = _configure_periodic_read(slave, reg, size);
+./libraries/AP_InertialSensor/AuxiliaryBus.h:51:    virtual int passthrough_read(uint8_t reg, uint8_t *buf, uint8_t size) = 0;
+./libraries/AP_InertialSensor/AuxiliaryBus.h:79:    virtual int read(uint8_t *buf) = 0;
+./libraries/AP_InertialSensor/AuxiliaryBus.h:103:    int register_periodic_read(AuxiliaryBusSlave *slave, uint8_t reg, uint8_t size);
+./libraries/AP_InertialSensor/AuxiliaryBus.h:140:    virtual int _configure_periodic_read(AuxiliaryBusSlave *slave, uint8_t reg,
+./libraries/AP_InertialSensor/examples/INS_generic/INS_generic.cpp:86:        user_input = hal.console->read();
+./libraries/AP_InertialSensor/examples/INS_generic/INS_generic.cpp:135:        hal.console->read();
+./libraries/AP_InertialSensor/examples/INS_generic/INS_generic.cpp:199:        hal.console->read();
+./libraries/AP_JSON/AP_JSON.cpp:65:    if (AP::FS().read(fd, buf, st.st_size) != st.st_size) {
+./libraries/AP_LandingGear/AP_LandingGear.cpp:206:        return hal.gpio->read(_pin_deployed) == _pin_deployed_polarity;
+./libraries/AP_LandingGear/AP_LandingGear.cpp:244:        LG_WOW_State wow_state_new = hal.gpio->read(_pin_weight_on_wheels) == _pin_weight_on_wheels_polarity ? LG_WOW : LG_NO_WOW;
+./libraries/AP_LeakDetector/AP_LeakDetector.cpp:102:            _drivers[i]->read();
+./libraries/AP_LeakDetector/AP_LeakDetector_Analog.cpp:12:void AP_LeakDetector_Analog::read()
+./libraries/AP_LeakDetector/AP_LeakDetector_Analog.h:9:    void read(void) override;
+./libraries/AP_LeakDetector/AP_LeakDetector_Backend.h:10:    virtual void read(void) = 0;
+./libraries/AP_LeakDetector/AP_LeakDetector_Digital.cpp:10:void AP_LeakDetector_Digital::read()
+./libraries/AP_LeakDetector/AP_LeakDetector_Digital.cpp:14:        state.status = hal.gpio->read(leak_detector._pin[state.instance]) != leak_detector._default_reading[state.instance];
+./libraries/AP_LeakDetector/AP_LeakDetector_Digital.h:8:    void read(void) override;
+./libraries/AP_Logger/AP_Logger.cpp:289:    start_io_thread();
+./libraries/AP_Logger/AP_Logger.cpp:1443:    while ((n = AP::FS().read(fd, buf, sizeof(buf))) > 0) {
+./libraries/AP_Logger/AP_Logger.cpp:1455:void AP_Logger::io_thread(void)
+./libraries/AP_Logger/AP_Logger.cpp:1493:void AP_Logger::start_io_thread(void)
+./libraries/AP_Logger/AP_Logger.cpp:1750:    const auto length = AP::FS().read(file_content.fd, pkt.data, sizeof(pkt.data));
+./libraries/AP_Logger/AP_Logger.h:521:    void start_io_thread(void);
+./libraries/AP_Logger/AP_Logger.h:522:    void io_thread();
+./libraries/AP_Logger/AP_Logger_Backend.cpp:341:    if (!hal.scheduler->in_main_thread()) {
+./libraries/AP_Logger/AP_Logger_Backend.cpp:481:        !hal.scheduler->in_main_thread()) {
+./libraries/AP_Logger/AP_Logger_Block.cpp:919:    uint32_t nbytes = writebuf.read(&buffer[sizeof(ph)], pagesize);
+./libraries/AP_Logger/AP_Logger_File.cpp:435:    if (hal.scheduler->in_main_thread()) {
+./libraries/AP_Logger/AP_Logger_File.cpp:641:    int16_t ret = (int16_t)AP::FS().read(_read_fd, data, len);
+./libraries/AP_Logger/LogFile.cpp:198:        hal.rcout->read(channels, ARRAY_SIZE(channels));
+./libraries/AP_Logger/LogFile.cpp:225:            chan15         : hal.rcout->read(14),
+./libraries/AP_Logger/LogFile.cpp:226:            chan16         : hal.rcout->read(15),
+./libraries/AP_Logger/LogFile.cpp:227:            chan17         : hal.rcout->read(16),
+./libraries/AP_Logger/LogFile.cpp:228:            chan18         : hal.rcout->read(17),
+./libraries/AP_Logger/LogFile.cpp:239:            chan1         : hal.rcout->read(18),
+./libraries/AP_Logger/LogFile.cpp:240:            chan2         : hal.rcout->read(19),
+./libraries/AP_Logger/LogFile.cpp:241:            chan3         : hal.rcout->read(20),
+./libraries/AP_Logger/LogFile.cpp:242:            chan4         : hal.rcout->read(21),
+./libraries/AP_Logger/LogFile.cpp:243:            chan5         : hal.rcout->read(22),
+./libraries/AP_Logger/LogFile.cpp:244:            chan6         : hal.rcout->read(23),
+./libraries/AP_Logger/LogFile.cpp:245:            chan7         : hal.rcout->read(24),
+./libraries/AP_Logger/LogFile.cpp:246:            chan8         : hal.rcout->read(25),
+./libraries/AP_Logger/LogFile.cpp:247:            chan9         : hal.rcout->read(26),
+./libraries/AP_Logger/LogFile.cpp:248:            chan10        : hal.rcout->read(27),
+./libraries/AP_Logger/LogFile.cpp:249:            chan11        : hal.rcout->read(28),
+./libraries/AP_Logger/LogFile.cpp:250:            chan12        : hal.rcout->read(29),
+./libraries/AP_Logger/LogFile.cpp:251:            chan13        : hal.rcout->read(30),
+./libraries/AP_Logger/LogFile.cpp:252:            chan14        : hal.rcout->read(31)
+./libraries/AP_MSP/AP_MSP.cpp:106:                if (_backends[_msp_status.backend_count]->use_msp_thread()) {
+./libraries/AP_MSP/AP_MSP.cpp:169:        if (_backends[i] != nullptr && _backends[i]->use_msp_thread())  {
+./libraries/AP_MSP/AP_MSP.cpp:210:            if (_backends[i] != nullptr && _backends[i]->use_msp_thread()) {
+./libraries/AP_MSP/AP_MSP_Telem_Backend.cpp:362:            const uint8_t c = _msp_port.uart->read();
+./libraries/AP_MSP/AP_MSP_Telem_Backend.h:195:    virtual bool use_msp_thread() const {return true;};                       // is this backend hanlded by the MSP thread?
+./libraries/AP_MSP/AP_MSP_Telem_DisplayPort.h:28:    bool use_msp_thread() const override { return false; }
+./libraries/AP_Menu/AP_Menu.cpp:47:    int c = _port->read();
+./libraries/AP_Motors/examples/AP_Motors_test/AP_Motors_test.cpp:332:    value = hal.console->read();
+./libraries/AP_Motors/examples/AP_Motors_test/AP_Motors_test.cpp:556:                        hal.console->printf("%d,",(int)hal.rcout->read(i));
+./libraries/AP_Mount/AP_Mount_Alexmos.cpp:253:        data = _port->read();
+./libraries/AP_Mount/AP_Mount_SToRM32_serial.cpp:142:        data = _uart->read();
+./libraries/AP_Mount/AP_Mount_Siyi.cpp:154:        if (!_uart->read(b)) {
+./libraries/AP_Mount/AP_Mount_Topotek.cpp:513:        if (!_uart->read(b)) {
+./libraries/AP_Mount/AP_Mount_Viewpro.cpp:124:        if (!_uart->read(b)) {
+./libraries/AP_Mount/AP_Mount_XFRobot.cpp:244:        if (!_uart->read(b)) {
+./libraries/AP_NMEA_Output/examples/NMEA_Output/nmea_output.cpp:74:    if(!AP::compass().read()) {
+./libraries/AP_NMEA_Output/examples/NMEA_Output/nmea_output.cpp:88:        AP::compass().read()) {
+./libraries/AP_Networking/AP_Networking.cpp:342:    if (hal.scheduler->in_main_thread()) {
+./libraries/AP_Networking/AP_Networking.cpp:422:            const auto nread = AP::FS().read(s.fd, sendfile_buf, sendfile_bufsize);
+./libraries/AP_Networking/AP_Networking.h:280:        ssize_t _read(uint8_t *buffer, uint16_t count) override;
+./libraries/AP_Networking/AP_Networking_ChibiOS.cpp:360:void AP_Networking_ChibiOS::thread()
+./libraries/AP_Networking/AP_Networking_ChibiOS.h:22:    void thread(void);
+./libraries/AP_Networking/AP_Networking_PPP.cpp:545:    auto n = inst.uart->read(buf, sizeof(buf));
+./libraries/AP_Networking/AP_Networking_SITL_TUN.cpp:175:void AP_Networking_SITL_TUN::thread(void)
+./libraries/AP_Networking/AP_Networking_SITL_TUN.cpp:188:        const ssize_t n = read(tap_fd, buf, sizeof(buf));
+./libraries/AP_Networking/AP_Networking_SITL_TUN.h:35:    void thread(void);
+./libraries/AP_Networking/AP_Networking_port.cpp:459:ssize_t AP_Networking::Port::_read(uint8_t *buffer, uint16_t count)
+./libraries/AP_Networking/AP_Networking_port.cpp:462:    return readbuffer->read(buffer, count);
+./libraries/AP_Networking/lwip_hal/arch/sys_arch.cpp:105:void sys_mark_tcpip_thread(void)
+./libraries/AP_Networking/lwip_hal/include/arch/sys_arch.h:32:void sys_mark_tcpip_thread(void);
+./libraries/AP_Networking/lwip_hal/include/arch/sys_arch.h:33:#define LWIP_MARK_TCPIP_THREAD()   sys_mark_tcpip_thread()
+./libraries/AP_Notify/Display_SITL.cpp:45:void Display_SITL::update_thread(void)
+./libraries/AP_Notify/Display_SITL.cpp:111:    ((Display_SITL *)obj)->update_thread();
+./libraries/AP_Notify/Display_SITL.h:45:    void update_thread(void);
+./libraries/AP_Notify/SITL_SFML_LED.cpp:169:void SITL_SFML_LED::update_thread(void)
+./libraries/AP_Notify/SITL_SFML_LED.cpp:183:    ((SITL_SFML_LED *)obj)->update_thread();
+./libraries/AP_Notify/SITL_SFML_LED.h:50:    void update_thread(void);
+./libraries/AP_OSD/AP_OSD.cpp:392:void AP_OSD::osd_thread()
+./libraries/AP_OSD/AP_OSD.h:697:    void osd_thread();
+./libraries/AP_OSD/AP_OSD_SITL.cpp:123:void AP_OSD_SITL::update_thread(void)
+./libraries/AP_OSD/AP_OSD_SITL.cpp:184:    ((AP_OSD_SITL *)obj)->update_thread();
+./libraries/AP_OSD/AP_OSD_SITL.h:89:    void update_thread();
+./libraries/AP_OpticalFlow/AP_OpticalFlow_CXOF.cpp:120:        if (!uart->read(c)) {
+./libraries/AP_OpticalFlow/AP_OpticalFlow_Onboard.cpp:47:    if (!hal.opticalflow->read(data_frame)) {
+./libraries/AP_OpticalFlow/AP_OpticalFlow_Pixart.cpp:121:    uint8_t id1 = reg_read(PIXART_REG_PRODUCT_ID);
+./libraries/AP_OpticalFlow/AP_OpticalFlow_Pixart.cpp:124:        id2 = reg_read(PIXART_REG_INV_PROD_ID);
+./libraries/AP_OpticalFlow/AP_OpticalFlow_Pixart.cpp:126:        id2 = reg_read(PIXART_REG_INV_PROD_ID2);
+./libraries/AP_OpticalFlow/AP_OpticalFlow_Pixart.cpp:141:        const uint8_t id = reg_read(PIXART_REG_SROM_ID);
+./libraries/AP_OpticalFlow/AP_OpticalFlow_Pixart.cpp:188:uint8_t AP_OpticalFlow_Pixart::reg_read(uint8_t reg)
+./libraries/AP_OpticalFlow/AP_OpticalFlow_Pixart.cpp:203:    uint16_t low = reg_read(reg);
+./libraries/AP_OpticalFlow/AP_OpticalFlow_Pixart.cpp:204:    uint16_t high = reg_read(reg+1);
+./libraries/AP_OpticalFlow/AP_OpticalFlow_Pixart.cpp:247:            uint8_t v = reg_read(init_data[i].reg);
+./libraries/AP_OpticalFlow/AP_OpticalFlow_Pixart.h:70:    uint8_t reg_read(uint8_t reg);
+./libraries/AP_OpticalFlow/AP_OpticalFlow_UPFLOW.cpp:116:        int16_t r = uart->read();
+./libraries/AP_Param/AP_Param.cpp:1264:        if (hal.util->get_soft_armed() && hal.scheduler->in_main_thread()) {
+./libraries/AP_Param/tools/eedump_apparam.c:104:    if (1 != fread(eeprom, sizeof(eeprom), 1, fp)) {
+./libraries/AP_Proximity/AP_Proximity_Cygbot_D1.cpp:48:        int16_t byte = _uart->read();
+./libraries/AP_Proximity/AP_Proximity_LD06.cpp:97:        if (!_uart->read(c)) {
+./libraries/AP_Proximity/AP_Proximity_LightWareSF40C.cpp:196:        const int16_t r = _uart->read();
+./libraries/AP_Proximity/AP_Proximity_LightWareSF45B.cpp:103:        if (!_uart->read(c)) {
+./libraries/AP_Proximity/AP_Proximity_RPLidarA2.cpp:269:    const uint32_t bytes_read = _uart->read(&_payload[_byte_count], bytes_to_read);
+./libraries/AP_Proximity/AP_Proximity_RPLidarA2.cpp:706:        const uint16_t n = _uart->read(_express_stream + _express_stream_len, to_read);
+./libraries/AP_Proximity/AP_Proximity_RPLidarA2.h:198:        uint8_t forced_buffer_size[256]; // just so we read(...) efficiently
+./libraries/AP_Proximity/AP_Proximity_TeraRangerTower.cpp:69:        if (!_uart->read(c)) {
+./libraries/AP_Proximity/AP_Proximity_TeraRangerTowerEvo.cpp:122:        int16_t c = _uart->read();
+./libraries/AP_RAMTRON/AP_RAMTRON.cpp:133:bool AP_RAMTRON::read(uint32_t offset, uint8_t *buf, uint32_t size)
+./libraries/AP_RAMTRON/AP_RAMTRON.cpp:145:        if (!read(offset, buf, maxread)) {
+./libraries/AP_RAMTRON/AP_RAMTRON.h:20:    bool read(uint32_t offset, uint8_t * const buf, uint32_t size);
+./libraries/AP_RAMTRON/AP_RAMTRON.h:47:    bool _read(uint32_t offset, uint8_t * const buf, uint32_t size);
+./libraries/AP_RCProtocol/AP_RCProtocol.cpp:384:        int16_t b = added.uart->read();
+./libraries/AP_RCProtocol/AP_RCProtocol.cpp:569:uint16_t AP_RCProtocol::read(uint8_t chan)
+./libraries/AP_RCProtocol/AP_RCProtocol.cpp:572:        return backend[_detected_protocol]->read(chan);
+./libraries/AP_RCProtocol/AP_RCProtocol.cpp:577:void AP_RCProtocol::read(uint16_t *pwm, uint8_t n)
+./libraries/AP_RCProtocol/AP_RCProtocol.cpp:580:        backend[_detected_protocol]->read(pwm, n);
+./libraries/AP_RCProtocol/AP_RCProtocol.h:225:    uint16_t read(uint8_t chan);
+./libraries/AP_RCProtocol/AP_RCProtocol.h:226:    void read(uint16_t *pwm, uint8_t n);
+./libraries/AP_RCProtocol/AP_RCProtocol_Backend.cpp:55:uint16_t AP_RCProtocol_Backend::read(uint8_t chan)
+./libraries/AP_RCProtocol/AP_RCProtocol_Backend.cpp:60:void AP_RCProtocol_Backend::read(uint16_t *pwm, uint8_t n)
+./libraries/AP_RCProtocol/AP_RCProtocol_Backend.h:36:    uint16_t read(uint8_t chan);
+./libraries/AP_RCProtocol/AP_RCProtocol_Backend.h:37:    void read(uint16_t *pwm, uint8_t n);
+./libraries/AP_RCProtocol/AP_RCProtocol_CRSF.cpp:310:            int16_t b = _uart->read();
+./libraries/AP_RCProtocol/AP_RCProtocol_Emlid_RCIO.cpp:41:        if (::pread(channels[i], buffer, sizeof(buffer) - 1, 0) <= 0) {
+./libraries/AP_RCProtocol/AP_RCProtocol_Radio.cpp:32:        rcin_values[i] = radio->read(i);
+./libraries/AP_RCProtocol/examples/RCProtocolDecoder/RCProtocolDecoder.cpp:139:    ssize_t ret = read(fd, buf, sizeof(buf));
+./libraries/AP_RCProtocol/examples/RCProtocolDecoder/RCProtocolDecoder.cpp:145:            rcprot->read(chan, nchan);
+./libraries/AP_RCProtocol/examples/RCProtocolTest/RCProtocolTest.cpp:126:        uint16_t v = rcprot->read(i);
+./libraries/AP_RCProtocol/examples/RCProtocolTest/RCProtocolTest.cpp:314:        if (::read(fd, buf, test_bytes) != test_bytes) {
+./libraries/AP_RCTelemetry/AP_CRSF_Telem.cpp:849:    if (process_scripted_param_read(read_frame)) {
+./libraries/AP_RCTelemetry/AP_CRSF_Telem.cpp:2057:bool AP_CRSF_Telem::process_scripted_param_read(ParameterSettingsReadFrame* read_frame)
+./libraries/AP_RCTelemetry/AP_CRSF_Telem.h:252:    bool process_scripted_param_read(ParameterSettingsReadFrame* read);
+./libraries/AP_Radio/AP_Radio.cpp:232:uint16_t AP_Radio::read(uint8_t chan)
+./libraries/AP_Radio/AP_Radio.cpp:237:    return driver->read(chan);
+./libraries/AP_Radio/AP_Radio.h:57:    uint16_t read(uint8_t chan);
+./libraries/AP_Radio/AP_Radio_backend.h:55:    virtual uint16_t read(uint8_t chan) = 0;
+./libraries/AP_Radio/AP_Radio_bk2425.cpp:181:uint16_t AP_Radio_beken::read(uint8_t chan)
+./libraries/AP_Radio/AP_Radio_bk2425.h:172:    uint16_t read(uint8_t chan) override; // return current "PWM" (value) of a channel
+./libraries/AP_Radio/AP_Radio_cc2500.cpp:128:uint16_t AP_Radio_cc2500::read(uint8_t chan)
+./libraries/AP_Radio/AP_Radio_cc2500.h:59:    uint16_t read(uint8_t chan) override;
+./libraries/AP_Radio/AP_Radio_cypress.cpp:321:uint16_t AP_Radio_cypress::read(uint8_t chan)
+./libraries/AP_Radio/AP_Radio_cypress.cpp:543:        dev->read(&v2, 1);
+./libraries/AP_Radio/AP_Radio_cypress.h:58:    uint16_t read(uint8_t chan) override;
+./libraries/AP_RangeFinder/AP_RangeFinder_Ainstein_LR_D1.cpp:84:    const uint8_t num_read = uart->read(&u.buffer[buffer_used], ARRAY_SIZE(u.buffer)-buffer_used);
+./libraries/AP_RangeFinder/AP_RangeFinder_BBB_PRU.cpp:62:    if (fread(ram, PRU0_IRAM_SIZE, 1, file) != 1) {
+./libraries/AP_RangeFinder/AP_RangeFinder_BBB_PRU.cpp:78:    if (fread(ram, PRU0_DRAM_SIZE, 1, file) != 1) {
+./libraries/AP_RangeFinder/AP_RangeFinder_BLPing.cpp:66:        if (!uart->read(b)) {
+./libraries/AP_RangeFinder/AP_RangeFinder_Bebop.cpp:67:    _thread(NEW_NOTHROW Linux::Thread(FUNCTOR_BIND_MEMBER(&AP_RangeFinder_Bebop::_loop, void)))
+./libraries/AP_RangeFinder/AP_RangeFinder_Benewake.cpp:79:        if (!uart->read(c)) {
+./libraries/AP_RangeFinder/AP_RangeFinder_DTS6012M.cpp:103:    const auto num_read = uart->read(&buf[linebuf_len], sizeof(frame) - linebuf_len);
+./libraries/AP_RangeFinder/AP_RangeFinder_GYUS42v2.cpp:41:    const uint8_t num_read = uart->read(&buffer[buffer_used], ARRAY_SIZE(buffer)-buffer_used);
+./libraries/AP_RangeFinder/AP_RangeFinder_JRE_Serial.cpp:67:        const auto num_bytes_read = uart->read(&data_buff[data_buff_ofs], num_bytes_to_read);
+./libraries/AP_RangeFinder/AP_RangeFinder_Lanbao.cpp:51:        if (!uart->read(b)) {
+./libraries/AP_RangeFinder/AP_RangeFinder_LeddarOne.cpp:146:            read_buffer[index] = uart->read();
+./libraries/AP_RangeFinder/AP_RangeFinder_LeddarVu8.cpp:56:        if (!uart->read(b)) {
+./libraries/AP_RangeFinder/AP_RangeFinder_LightWareI2C.cpp:110:        if (dev.read(rx_bytes, expected_reply_len)) {
+./libraries/AP_RangeFinder/AP_RangeFinder_LightWareI2C.cpp:144:        if (dev.read(rx_bytes, expected_reply_len)) {
+./libraries/AP_RangeFinder/AP_RangeFinder_LightWareI2C.cpp:343:    if (!dev.read(stream, sizeof(stream))) {
+./libraries/AP_RangeFinder/AP_RangeFinder_LightWareI2C.cpp:466:        if (!dev.read(rx_two_byte, 2)) {
+./libraries/AP_RangeFinder/AP_RangeFinder_LightWareSerial.cpp:45:        if (!uart->read(c)) {
+./libraries/AP_RangeFinder/AP_RangeFinder_LightWare_GRF.cpp:157:        if (!uart->read(c)) {
+./libraries/AP_RangeFinder/AP_RangeFinder_MaxsonarSerialLV.cpp:49:        if (!uart->read(c)) {
+./libraries/AP_RangeFinder/AP_RangeFinder_NMEA.cpp:37:        if (!uart->read(c)) {
+./libraries/AP_RangeFinder/AP_RangeFinder_NoopLoop.cpp:58:        if (!uart->read(c)) {
+./libraries/AP_RangeFinder/AP_RangeFinder_RDS02UF.cpp:45:    const uint32_t nbytes = uart->read(&u.parse_buffer[body_length],
+./libraries/AP_RangeFinder/AP_RangeFinder_TeraRanger_Serial.cpp:56:        if (!uart->read(c)) {
+./libraries/AP_RangeFinder/AP_RangeFinder_USD1_Serial.cpp:44:        if (!uart->read(c)) {
+./libraries/AP_RangeFinder/AP_RangeFinder_USD1_Serial.cpp:126:        if (!uart->read(c)) {
+./libraries/AP_RangeFinder/AP_RangeFinder_Wasp.cpp:91:        if (!uart->read(c)) {
+./libraries/AP_Relay/AP_Relay.cpp:521:    return (bool)hal.gpio->read(pin);
+./libraries/AP_RobotisServo/AP_RobotisServo.cpp:294:        pktbuf[pktbuf_ofs++] = port->read();
+./libraries/AP_Scripting/AP_Scripting.cpp:297:void AP_Scripting::thread(void) {
+./libraries/AP_Scripting/AP_Scripting.h:168:    void thread(void); // main script execution thread
+./libraries/AP_Scripting/AP_Scripting_SerialAccess.cpp:65:int16_t AP_Scripting_SerialAccess::read(void)
+./libraries/AP_Scripting/AP_Scripting_SerialAccess.cpp:68:    if (read(&c, 1) != 1) {
+./libraries/AP_Scripting/AP_Scripting_SerialAccess.cpp:74:ssize_t AP_Scripting_SerialAccess::read(uint8_t* buffer, uint16_t count)
+./libraries/AP_Scripting/AP_Scripting_SerialAccess.cpp:77:        return stream->read(buffer, count);
+./libraries/AP_Scripting/AP_Scripting_SerialAccess.h:25:    int16_t read(void);
+./libraries/AP_Scripting/AP_Scripting_SerialAccess.h:26:    ssize_t read(uint8_t *buffer, uint16_t count);
+./libraries/AP_Scripting/AP_Scripting_SerialDevice.cpp:74:ssize_t AP_Scripting_SerialDevice::Port::device_read(uint8_t *buffer, uint16_t count)
+./libraries/AP_Scripting/AP_Scripting_SerialDevice.cpp:78:        return writebuffer->read(buffer, count);
+./libraries/AP_Scripting/AP_Scripting_SerialDevice.cpp:114:ssize_t AP_Scripting_SerialDevice::Port::_read(uint8_t *buffer, uint16_t count)
+./libraries/AP_Scripting/AP_Scripting_SerialDevice.cpp:117:    return readbuffer != nullptr ? readbuffer->read(buffer, count) : -1;
+./libraries/AP_Scripting/AP_Scripting_SerialDevice.h:36:        ssize_t device_read(uint8_t *buffer, uint16_t count);
+./libraries/AP_Scripting/AP_Scripting_SerialDevice.h:52:        ssize_t _read(uint8_t *buffer, uint16_t count) override;
+./libraries/AP_Scripting/applets/Aerobatics/FixedWing/plane_aerobatics.lua:2944:      line = file:read()
+./libraries/AP_Scripting/applets/Aerobatics/FixedWing/plane_aerobatics.lua:2996:      local line = file:read()
+./libraries/AP_Scripting/applets/CAN_playback.lua:53:      frame_buf = logf:read(CANF_len*buf_count)
+./libraries/AP_Scripting/applets/CAN_playback.lua:58:      frame_buf = logf:read(CANF_len*buf_count)
+./libraries/AP_Scripting/applets/MissionSelector.lua:20:  local header = file:read('l')
+./libraries/AP_Scripting/applets/MissionSelector.lua:34:      data[i] = file:read('n')
+./libraries/AP_Scripting/applets/Param_Controller.lua:48:      local line = file_handle:read()
+./libraries/AP_Scripting/applets/RockBlock-9704.lua:653:            if gpio:read(math.floor(pin)) then
+./libraries/AP_Scripting/applets/RockBlock.lua:735:        read = port:read()
+./libraries/AP_Scripting/applets/Script_Controller.lua:38:      local block = file1:read(block_size)
+./libraries/AP_Scripting/applets/Script_Controller.lua:69:      local block1 = file1:read(block_size)
+./libraries/AP_Scripting/applets/Script_Controller.lua:70:      local block2 = file2:read(block_size)
+./libraries/AP_Scripting/applets/Script_Controller.lua:178:  assert(string.find(file:read('l'),'QGC WPL 110') == 1, file_name .. ': incorrect format')
+./libraries/AP_Scripting/applets/Script_Controller.lua:186:     local line = file:read()
+./libraries/AP_Scripting/applets/net_webserver.lua:614:      local b = file:read(chunk)
+./libraries/AP_Scripting/applets/net_webserver.lua:644:         local b = file:read(chunk)
+./libraries/AP_Scripting/applets/repl.lua:209:    local c = port:read()
+./libraries/AP_Scripting/docs/docs.lua:1331:function AP_Scripting_SerialAccess_ud:read() end
+./libraries/AP_Scripting/docs/docs.lua:2067:function gpio:read(pin_number) end
+./libraries/AP_Scripting/drivers/EFI_DLA.lua:71:      uart:read()
+./libraries/AP_Scripting/drivers/EFI_DLA.lua:78:      ret = ret .. string.char(uart:read())
+./libraries/AP_Scripting/drivers/EFI_DLA64.lua:58:      uart:read()
+./libraries/AP_Scripting/drivers/Generator_SVFFI.lua:72:      ret = ret .. string.char(uart:read())
+./libraries/AP_Scripting/drivers/Hobbywing_DataLink.lua:70:      ret = ret .. string.char(uart:read())
+./libraries/AP_Scripting/drivers/Hobbywing_DataLink.lua:81:      uart:read()
+./libraries/AP_Scripting/drivers/INF_Inject.lua:142:      local b = uart:read()
+./libraries/AP_Scripting/drivers/LTE_modem.lua:392:local function uart_read()
+./libraries/AP_Scripting/drivers/LTE_modem.lua:755:    local s = uart_read()
+./libraries/AP_Scripting/drivers/LTE_modem.lua:858:    local s = uart_read()
+./libraries/AP_Scripting/drivers/LTE_modem.lua:869:    local s = uart_read()
+./libraries/AP_Scripting/drivers/LTE_modem.lua:924:    local s = uart_read()
+./libraries/AP_Scripting/drivers/LTE_modem.lua:948:    local raw = uart_read()
+./libraries/AP_Scripting/drivers/LTE_modem.lua:998:    local s = uart_read()
+./libraries/AP_Scripting/drivers/LTE_modem.lua:1024:    local s = uart_read()
+./libraries/AP_Scripting/drivers/LTE_modem.lua:1044:    local s = uart_read()
+./libraries/AP_Scripting/drivers/LTE_modem.lua:1073:    local s = uart_read()
+./libraries/AP_Scripting/drivers/TOFSense-M/TOFSense-M_Serial.lua:146:    local r = port:read()
+./libraries/AP_Scripting/drivers/VSPeak_flow_meter.lua:125:        local val = uart:read()
+./libraries/AP_Scripting/examples/MAVLinkHL.lua:474:        read = port:read()
+./libraries/AP_Scripting/examples/NMEA-decode.lua:101:        local byte = port:read()
+./libraries/AP_Scripting/examples/SN-GCJA5-particle-sensor.lua:23:  local first_line = file:read(1) -- try and read the first character
+./libraries/AP_Scripting/examples/Serial_Dump.lua:34:      table.insert(buffer,port:read())
+./libraries/AP_Scripting/examples/UART_log.lua:94:        local byte = port:read()
+./libraries/AP_Scripting/examples/analog_input_and_GPIO.lua:33:  gcs:send_text(0, string.format("voltage: %0.2f, PWM: %i, input: ", analog_in:voltage_average(), pwm_in:get_pwm_us()) .. tostring(gpio:read(51)))
+./libraries/AP_Scripting/examples/analog_input_and_GPIO.lua:42:  -- gpio:read(pin)
+./libraries/AP_Scripting/examples/mission-edit-demo.lua:67:    content = io.read("*all")
+./libraries/AP_Scripting/examples/mission-load.lua:15:  assert(string.find(file:read('l'),'QGC WPL 110') == 1, file_name .. ': incorrect format')
+./libraries/AP_Scripting/examples/mission-load.lua:25:     local line = file:read()
+./libraries/AP_Scripting/examples/mission-save.lua:22:    local first_line = file:read(1) -- try and read the first character
+./libraries/AP_Scripting/examples/readstring_test.lua:19:      local b = port:read()
+./libraries/AP_Scripting/examples/serial_test.lua:14:    read = port:read()
+./libraries/AP_Scripting/examples/trisonica-mini.lua:107:        local byte = port:read()
+./libraries/AP_Scripting/examples/wrap32_test.lua:64:      local v = gpio:read(pin)
+./libraries/AP_Scripting/lua/doc/manual.html:9651:Equivalent to <code>io.input():read(&middot;&middot;&middot;)</code>.
+./libraries/AP_Scripting/lua/src/lapi.c:425:  return (!ttisthread(o)) ? NULL : thvalue(o);
+./libraries/AP_Scripting/lua/src/lauxlib.c:657:    *size = fread(lf->buff, 1, sizeof(lf->buff), lf->f);  /* read block */
+./libraries/AP_Scripting/lua/src/lcorolib.c:22:  lua_State *co = lua_tothread(L, 1);
+./libraries/AP_Scripting/lua/src/lcorolib.c:75:  lua_State *co = lua_tothread(L, lua_upvalueindex(1));
+./libraries/AP_Scripting/lua/src/lcorolib.c:92:  NL = lua_newthread(L);
+./libraries/AP_Scripting/lua/src/lcorolib.c:145:  int ismain = lua_pushthread(L);
+./libraries/AP_Scripting/lua/src/ldblib.c:91:  if (lua_isthread(L, 1)) {
+./libraries/AP_Scripting/lua/src/ldblib.c:93:    return lua_tothread(L, 1);
+./libraries/AP_Scripting/lua/src/ldblib.c:148:  lua_State *L1 = getthread(L, &arg);
+./libraries/AP_Scripting/lua/src/ldblib.c:195:  lua_State *L1 = getthread(L, &arg);
+./libraries/AP_Scripting/lua/src/ldblib.c:227:  lua_State *L1 = getthread(L, &arg);
+./libraries/AP_Scripting/lua/src/ldblib.c:309:  lua_pushthread(L);
+./libraries/AP_Scripting/lua/src/ldblib.c:350:  lua_State *L1 = getthread(L, &arg);
+./libraries/AP_Scripting/lua/src/ldblib.c:371:  lua_pushthread(L1); lua_xmove(L1, L, 1);  /* key (thread) */
+./libraries/AP_Scripting/lua/src/ldblib.c:381:  lua_State *L1 = getthread(L, &arg);
+./libraries/AP_Scripting/lua/src/ldblib.c:392:    lua_pushthread(L1); lua_xmove(L1, L, 1);
+./libraries/AP_Scripting/lua/src/ldblib.c:419:  lua_State *L1 = getthread(L, &arg);
+./libraries/AP_Scripting/lua/src/lgc.c:588:      size = traversethread(g, th);
+./libraries/AP_Scripting/lua/src/lgc.c:709:    case LUA_TTHREAD: luaE_freethread(L, gco2th(o)); break;
+./libraries/AP_Scripting/lua/src/liolib.c:513:    nr = fread(p, sizeof(char), LUAL_BUFFERSIZE, f);
+./libraries/AP_Scripting/lua/src/liolib.c:526:  nr = fread(p, sizeof(char), n, f);  /* try to read 'n' chars */
+./libraries/AP_Scripting/lua/src/liolib.c:584:  return g_read(L, getiofile(L, IO_INPUT), 1);
+./libraries/AP_Scripting/lua/src/liolib.c:589:  return g_read(L, tofile(L), 2);
+./libraries/AP_Scripting/lua/src/liolib.c:603:  n = g_read(L, p->f, 2);  /* 'n' is number of results */
+./libraries/AP_Scripting/lua/src/llimits.h:241:#define luai_userstatethread(L,L1)	((void)L)
+./libraries/AP_Scripting/lua/src/lobject.h:158:#define ttisthread(o)		checktag((o), ctb(LUA_TTHREAD))
+./libraries/AP_Scripting/lua/src/lobject.h:177:#define thvalue(o)	check_exp(ttisthread(o), gco2th(val_(o).gc))
+./libraries/AP_Scripting/lua/src/lstate.c:278:  preinit_thread(L1, g);
+./libraries/AP_Scripting/lua/src/lstate.c:286:  luai_userstatethread(L, L1);
+./libraries/AP_Scripting/lua/src/lstate.c:315:  preinit_thread(L, g);
+./libraries/AP_Scripting/lua/src/lua.h:356:#define lua_isthread(L,n)	(lua_type(L, (n)) == LUA_TTHREAD)
+./libraries/AP_Scripting/lua/src/lundump.c:59:  if (luaZ_read(S->Z, b, size) != 0)
+./libraries/AP_Scripting/lua_bindings.cpp:756:    const ssize_t read_bytes = port->read(data, req_bytes);
+./libraries/AP_Scripting/modules/mavport.lua:86:function mavport:read()
+./libraries/AP_Terrain/AP_Terrain.h:355:    void check_disk_read(void);
+./libraries/AP_Terrain/TerrainIO.cpp:35:void AP_Terrain::check_disk_read(void)
+./libraries/AP_Terrain/TerrainIO.cpp:77:        check_disk_read();
+./libraries/AP_Terrain/TerrainIO.cpp:303:    ssize_t ret = AP::FS().read(fd, &disk_block, sizeof(disk_block));
+./libraries/AP_Terrain/tools/create_terrain.py:258:        buf = self.fh.read(IO_BLOCK_SIZE)
+./libraries/AP_Terrain/tools/create_terrain.py:291:        buf = self.fh.read(IO_BLOCK_SIZE)
+./libraries/AP_Terrain/tools/create_terrain.py:348:        buf = fh.read(IO_BLOCK_SIZE)
+./libraries/AP_Torqeedo/AP_Torqeedo_TQBus.cpp:136:            int16_t b = _uart->read();
+./libraries/AP_VideoTX/AP_SmartAudio.cpp:300:        uint8_t b = _port->read();
+./libraries/AP_VideoTX/AP_SmartAudio.cpp:307:        b = _port->read();
+./libraries/AP_VideoTX/AP_SmartAudio.cpp:318:            b = _port->read();
+./libraries/AP_VideoTX/AP_SmartAudio.cpp:334:        uint8_t response_in_bytes = _port->read();
+./libraries/AP_VideoTX/AP_Tramp.cpp:213:        const int16_t b = port->read();
+./libraries/AP_Volz_Protocol/AP_Volz_Protocol.cpp:298:            ssize_t nread = port->read(&telem.cmd_buffer.data[telem.buffer_offset], MIN(n, unsigned(sizeof(telem.cmd_buffer)-telem.buffer_offset)));
+./libraries/AP_WheelEncoder/WheelEncoder_Quadrature.cpp:56:        pin_value = hal.gpio->read(pin);
+./libraries/AP_Winch/AP_Winch_Daiwa.cpp:119:        int16_t b = uart->read();
+./libraries/AP_WindVane/AP_WindVane_NMEA.cpp:61:        char c = uart->read();
+./libraries/GCS_MAVLink/GCS.h:609:    void handle_param_request_read(const mavlink_message_t &msg);
+./libraries/GCS_MAVLink/GCS.h:667:    void handle_device_op_read(const mavlink_message_t &msg);
+./libraries/GCS_MAVLink/GCS_Common.cpp:1943:        const uint8_t c = (uint8_t)_port->read();
+./libraries/GCS_MAVLink/GCS_Common.cpp:3415:    hal.rcout->read(values, max_channels);
+./libraries/GCS_MAVLink/GCS_Common.cpp:4401:        handle_device_op_read(msg);
+./libraries/GCS_MAVLink/GCS_DeviceOp.cpp:34:void GCS_MAVLINK::handle_device_op_read(const mavlink_message_t &msg)
+./libraries/GCS_MAVLink/GCS_FTP.cpp:412:        const ssize_t read_bytes = AP::FS().read(fd, reply.data, MIN(sizeof(reply.data),request.size));
+./libraries/GCS_MAVLink/GCS_FTP.cpp:598:            const ssize_t read_bytes = AP::FS().read(fd, reply.data, MIN(sizeof(reply.data), max_read));
+./libraries/GCS_MAVLink/GCS_Param.cpp:225:void GCS_MAVLINK::handle_param_request_read(const mavlink_message_t &msg)
+./libraries/GCS_MAVLink/GCS_Param.cpp:534:        handle_param_request_read(msg);
+./libraries/GCS_MAVLink/GCS_serial_control.cpp:187:        packet.data[packet.count++] = (uint8_t)stream->read();
+./libraries/RC_Channel/RC_Channel.cpp:306:    raw_radio_in = hal.rcin->read(ch_in);
+./libraries/RC_Channel/RC_Channel.cpp:1022:        if (init_position_on_first_radio_read((AUX_FUNC)option.get())) {
+./libraries/RC_Channel/RC_Channel.cpp:1051:bool RC_Channel::init_position_on_first_radio_read(AUX_FUNC func) const
+./libraries/RC_Channel/RC_Channel.h:580:    bool init_position_on_first_radio_read(AUX_FUNC func) const;
+./libraries/RC_Channel/examples/RC_UART/RC_UART.cpp:39:        int16_t c = hal.UART->read();
+./libraries/RC_Channel/examples/RC_UART/RC_UART.cpp:114:        if (hal.rcin->new_input() && hal.rcin->read(rcval, 8) == 8) {
+./libraries/SITL/SIM_ELRS.cpp:74:        const uint32_t len = mavlinkInputBuffer.read(buf, send_bytes);
+./libraries/SITL/SIM_GPS.cpp:490:        backend->update_read();
+./libraries/SITL/SIM_GPS.cpp:578:void GPS_Backend::update_read()
+./libraries/SITL/SIM_GPS.h:77:    virtual void update_read();
+./libraries/SITL/SIM_GPS_FILE.cpp:44:        if (::read(fd[instance], (void *)&header, sizeof(header)) != sizeof(header) ||
+./libraries/SITL/SIM_GPS_FILE.cpp:54:        if (buf != nullptr && ::read(fd[instance], buf, header.n) == ssize_t(header.n)) {
+./libraries/SITL/SIM_GPS_Trimble.cpp:554:void GPS_Trimble::update_read() {
+./libraries/SITL/SIM_GPS_Trimble.h:136:    void update_read() override;
+./libraries/SITL/SIM_I2CDevice.h:103:  for devices that take a command then will provide data to a read();
+./libraries/SITL/SIM_JEDEC.cpp:171:            const size_t read_ret = read(storage_fd, rx_buf, tfr.len);
+./libraries/SITL/SIM_JEDEC.cpp:173:                AP_HAL::panic("read(): %s (%d/%u)", strerror(errno), (signed)read_ret, (unsigned)tfr.len);
+./libraries/SITL/SIM_JSBSim.cpp:240:    if (read(jsbsim_stdout, &c, 1) != 1) {
+./libraries/SITL/SIM_JSBSim.cpp:265:    ssize_t ret = ::read(jsbsim_stdout, line, sizeof(line));
+./libraries/SITL/SIM_JSBSim.cpp:281:        if (read(jsbsim_stdout, &c, 1) != 1) {
+./libraries/SITL/SIM_LED_n.cpp:18:void SIM_LED_n<NUM_LEDS>::update_thread(void)
+./libraries/SITL/SIM_LED_n.cpp:83:    ((SIM_LED_n *)obj)->update_thread();
+./libraries/SITL/SIM_LED_n.h:51:    void update_thread(void);
+./libraries/SITL/SIM_RAMTRON.cpp:90:            const size_t read_ret = read(storage_fd, rx_buf, tfr.len);
+./libraries/SITL/SIM_RAMTRON.cpp:92:                AP_HAL::panic("read(): %s (%d/%u)", strerror(errno), (signed)read_ret, (unsigned)tfr.len);
+./libraries/SITL/SIM_RGBLED.cpp:15:void SIM_RGBLED::update_thread(void)
+./libraries/SITL/SIM_RGBLED.cpp:54:    ((SIM_RGBLED *)obj)->update_thread();
+./libraries/SITL/SIM_RGBLED.h:40:    void update_thread(void);
+./libraries/SITL/SIM_SerialDevice.cpp:81:    ssize_t ret = from_autopilot->read((uint8_t*)buffer, size);
+./libraries/SITL/SIM_SerialDevice.cpp:117:    ssize_t ret = to_autopilot->read((uint8_t*)buffer, size);
+./libraries/SITL/SIM_Temperature_TSYS03.cpp:13:int SITL::TSYS03::rdwr_handle_read(I2C::i2c_rdwr_ioctl_data *&data)
+./libraries/SITL/SIM_Temperature_TSYS03.cpp:103:        return rdwr_handle_read(data);
+./libraries/SITL/SIM_Temperature_TSYS03.h:38:    int rdwr_handle_read(I2C::i2c_rdwr_ioctl_data *&data);
+./libraries/SITL/examples/JSON/MATLAB/tcp_udp_ip_2.0.6/pnet.c:1271:        len=fread(&con[con_index].write.ptr[con[con_index].write.pos],1,len,f);
+./libraries/SITL/examples/Webots_Python/controllers/ardupilot_vehicle_controller/webots_vehicle.py:130:                self._camera_thread = Thread(daemon=True,
+./libraries/SITL/examples/Webots_Python/controllers/ardupilot_vehicle_controller/webots_vehicle.py:142:                self._rangefinder_thread = Thread(daemon=True,
+./libraries/SITL/examples/Webots_Python/controllers/ardupilot_vehicle_controller/webots_vehicle.py:154:        self._sitl_thread = Thread(daemon=True, target=self._handle_sitl, args=[sitl_address, 9002+10*instance])
+./libraries/StorageManager/StorageManager.cpp:366:    nread = AP::FS().read(newfile->fd, newfile->buffer, size);
+./libraries/AP_MXECAN/AP_MXECAN.cpp:100:        uint16_t ch1_pwm = hal.rcin->read(1);  UNUSED(ch1_pwm);
+./libraries/AP_MXECAN/AP_MXECAN.cpp:101:        uint16_t ch2_pwm = hal.rcin->read(2); 
+./libraries/AP_MXECAN/AP_MXECAN.cpp:102:        uint16_t ch3_pwm = hal.rcin->read(3); 
+./libraries/AP_MXECAN/AP_MXECAN.cpp:103:        uint16_t ch6_pwm = hal.rcin->read(6); 
