@@ -114,7 +114,7 @@ private:
     uint32_t _last_telemetry_ms = 0;
     bool _telemetry_active = false;
 
-    // ==== Config from Lua ====
+    // ==== Config from Lua ====2
     static constexpr float _MAX_RPM = 1000.0f;
     static constexpr float _ACCEL_LIMIT_RPM_SEC = 1500.0f;
     static constexpr float _LOOP_RATE_HZ = 20.0f;

@@ -75,18 +75,17 @@ AP_MXECAN_Driver::AP_MXECAN_Driver() : CANSensor("MXECAN")
 void AP_MXECAN_Driver::handle_frame(AP_HAL::CANFrame &frame)
 {
     if (!frame.isExtended()) {
-        GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"MXECAN:handle: frame not extended");
+        //GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"MXECAN:handle: frame not extended");
         return;
     }
 
     uint32_t can_id = frame.id & AP_HAL::CANFrame::MaskExtID;
 
 #if AP_MXECAN_DEBUG
-    GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"MXECAN:handle: can_id=%lu len=%u", can_id, frame.dlc);
+    //GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"MXECAN:handle: can_id=%lu len=%u", can_id, frame.dlc);
 #endif
 
     if (can_id != AUTOPILOT_NODE_ID) {
-        GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"MXECAN: %08lX", can_id);
         // not for us or invalid id
         return;
     }
@@ -94,7 +93,7 @@ void AP_MXECAN_Driver::handle_frame(AP_HAL::CANFrame &frame)
 #if AP_MXECAN_DEBUG
     // all MX_CAN-SV3.03 frames should have dlc of 8
     if (frame.dlc != MXECAN_DLC_SIZE) {
-        GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"MXECAN:handle: invalid dlc=%u", frame.dlc);
+        //GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"MXECAN:handle: invalid dlc=%u", frame.dlc);
         return;
     }
 #endif
@@ -103,15 +102,6 @@ void AP_MXECAN_Driver::handle_frame(AP_HAL::CANFrame &frame)
     memcpy(&mxecan_data, frame.data, 8);
 
     // TODO: update_rpm / update_telem_data
-
-#if AP_MXECAN_DEBUG
-    // all MX_CAN-SV3.03 frames should have dlc of 8
-    GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"MXECAN:data: %08llX", (uint64_t)frame.data[0]);
-
-    GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"fault_code=%u driver_temp=%u axis2_speed=%d axis1_speed=%d power_voltage=%u",
-        mxecan_data.fault_code, mxecan_data.driver_temperature,
-        mxecan_data.axis2_speed, mxecan_data.axis1_speed, mxecan_data.power_voltage);
-#endif
 }
 
 void AP_MXECAN_Driver::update(const uint8_t num_poles)
@@ -140,10 +130,10 @@ void AP_MXECAN_Driver::update(const uint8_t num_poles)
     const uint32_t now_ms = AP_HAL::millis();
     if (now_ms - last_send_ms > 1000 && 0) {
         last_send_ms = now_ms;
-        GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"%u: %u, %u, %u, %u, %u, %u, %u, %u",
-        0,
-        (unsigned)_output.pwm[0], (unsigned)_output.pwm[1], (unsigned)_output.pwm[2], (unsigned)_output.pwm[3],
-        (unsigned)_output.pwm[4], (unsigned)_output.pwm[5], (unsigned)_output.pwm[6], (unsigned)_output.pwm[7]);
+        //GCS_SEND_TEXT(MAV_SEVERITY_WARNING,"%u: %u, %u, %u, %u, %u, %u, %u, %u",
+        //0,
+        //(unsigned)_output.pwm[0], (unsigned)_output.pwm[1], (unsigned)_output.pwm[2], (unsigned)_output.pwm[3],
+        //(unsigned)_output.pwm[4], (unsigned)_output.pwm[5], (unsigned)_output.pwm[6], (unsigned)_output.pwm[7]);
     }
 #endif
 }
@@ -177,15 +167,15 @@ void AP_MXECAN_Driver::loop()
 
         const bool armed = AP::arming().is_armed();
 
-        int16_t ch1_pwm = 0;
-        int16_t ch2_pwm = 0;
-        int16_t ch3_pwm = 0;
-        int16_t ch6_pwm = 0;
+        uint16_t ch1_pwm = 0;
+        uint16_t ch2_pwm = 0;
+        uint16_t ch3_pwm = 0;
+        uint16_t ch6_pwm = 0;
 
-        ch1_pwm = hal.rcin->read(0); 
-        ch2_pwm = hal.rcin->read(1); 
-        ch3_pwm = hal.rcin->read(2); 
-        ch6_pwm = hal.rcin->read(5); 
+        ch1_pwm = hal.rcin->read(1); 
+        ch2_pwm = hal.rcin->read(2); 
+        ch3_pwm = hal.rcin->read(3); 
+        ch6_pwm = hal.rcin->read(6); 
 
         const AP_Vehicle *vehicle = AP::vehicle();
         const uint8_t mode = vehicle->get_mode();
@@ -194,68 +184,63 @@ void AP_MXECAN_Driver::loop()
         if (!armed) brake_active = true;
         else if (ch6_pwm > 1500) brake_active = true;
         else if (_driver_has_fault) brake_active = true;
+        brake_active = false;
 
         float target_rpm1 = 0.0f;
         float target_rpm2 = 0.0f;
-        uint8_t control_byte = 0x00;
+        uint8_t control_byte = 0xC3;
 
-        if (!brake_active) {
-            control_byte = 0xC3;
+        float steer = 0.0f;
+        float throttle = 0.0f;
 
-            float steer = 0.0f;
-            float throttle = 0.0f;
+        float diff2;
+        if (1) {
+            float diff1 = (float)ch1_pwm - 1500.0f;
+            if (fabsf(diff1) > 30.0f) steer = diff1 / 500.0f;
 
-            if (mode == 0 || mode == 1 || mode == 3) {
-                float diff1 = (float)ch1_pwm - 1500.0f;
-                if (fabsf(diff1) > 30.0f) steer = diff1 / 500.0f;
+            diff2 = ch2_pwm;
+            if (fabsf(diff2) > 30.0f) throttle = diff2 / 500.0f;
 
-                float diff2 = (float)ch2_pwm - 1500.0f;
-                if (fabsf(diff2) > 30.0f) throttle = diff2 / 500.0f;
-
-                steer = apply_expo(steer, _EXPO_STEER);
-                throttle = apply_expo(throttle, _EXPO_THROTTLE);
-            }
-            else {
-                const float steering_raw = SRV_Channels::get_output_scaled(SRV_Channel::k_steering);
-                const float throttle_raw = SRV_Channels::get_output_scaled(SRV_Channel::k_throttle);
-
-
-                steer = steering_raw / 4500.0f;
-                throttle = throttle_raw / 100.0f;
-            }
-
-            steer = constrain_float(steer, -1.0f, 1.0f);
-            throttle = constrain_float(throttle, -1.0f, 1.0f);
-
-            float speed_multiplier = 1.0f;
-            if (ch3_pwm) {
-                speed_multiplier = (float)(ch3_pwm - 1000) / 1000.0f;
-                speed_multiplier = constrain_float(speed_multiplier, 0.0f, 1.0f);
-            }
-            const float current_max_rpm = _MAX_RPM * speed_multiplier;
-
-            float left_out  = throttle - steer;
-            float right_out = -(throttle + steer);
-
-            left_out = constrain_float(left_out, -1.0f, 1.0f);
-            right_out = constrain_float(right_out, -1.0f, 1.0f);
-
-            target_rpm1 = floorf(left_out * current_max_rpm);
-            target_rpm2 = floorf(right_out * current_max_rpm);
-
-            float d1 = target_rpm1 - _current_rpm1;
-            if (d1 > _MAX_RPM_STEP) _current_rpm1 += _MAX_RPM_STEP;
-            else if (d1 < -_MAX_RPM_STEP) _current_rpm1 -= _MAX_RPM_STEP;
-            else _current_rpm1 = target_rpm1;
-
-            float d2 = target_rpm2 - _current_rpm2;
-            if (d2 > _MAX_RPM_STEP) _current_rpm2 += _MAX_RPM_STEP;
-            else if (d2 < -_MAX_RPM_STEP) _current_rpm2 -= _MAX_RPM_STEP;
-            else _current_rpm2 = target_rpm2;
-        } else {
-            _current_rpm1 = 0;
-            _current_rpm2 = 0;
+            steer = apply_expo(steer, _EXPO_STEER);
+            //throttle = apply_expo(throttle, _EXPO_THROTTLE);
         }
+        else {
+            const float steering_raw = SRV_Channels::get_output_scaled(SRV_Channel::k_steering);
+            const float throttle_raw = SRV_Channels::get_output_scaled(SRV_Channel::k_throttle);
+
+
+            steer = steering_raw / 4500.0f;
+            throttle = throttle_raw / 100.0f;
+        }
+
+        steer = constrain_float(steer, -1.0f, 1.0f);
+        throttle = constrain_float(throttle, -1.0f, 1.0f);
+
+        float speed_multiplier = 1.0f;
+        if (ch3_pwm) {
+            speed_multiplier = (float)(ch3_pwm - 1000) / 1000.0f;
+            speed_multiplier = constrain_float(speed_multiplier, 0.0f, 1.0f);
+        }
+        const float current_max_rpm = _MAX_RPM * speed_multiplier;
+
+        float left_out  = throttle - steer;
+        float right_out = -(throttle + steer);
+
+        left_out = constrain_float(left_out, -1.0f, 1.0f);
+        right_out = constrain_float(right_out, -1.0f, 1.0f);
+
+        target_rpm1 = floorf(left_out * current_max_rpm);
+        target_rpm2 = floorf(right_out * current_max_rpm);
+
+        float d1 = target_rpm1 - _current_rpm1;
+        if (d1 > _MAX_RPM_STEP) _current_rpm1 += _MAX_RPM_STEP;
+        else if (d1 < -_MAX_RPM_STEP) _current_rpm1 -= _MAX_RPM_STEP;
+        else _current_rpm1 = target_rpm1;
+
+        float d2 = target_rpm2 - _current_rpm2;
+        if (d2 > _MAX_RPM_STEP) _current_rpm2 += _MAX_RPM_STEP;
+        else if (d2 < -_MAX_RPM_STEP) _current_rpm2 -= _MAX_RPM_STEP;
+        else _current_rpm2 = target_rpm2;
 
         int32_t u_rpm1 = (int32_t)floorf(_current_rpm1);
         int32_t u_rpm2 = (int32_t)floorf(_current_rpm2);
@@ -283,23 +268,15 @@ void AP_MXECAN_Driver::loop()
         bool result = write_frame(frame, 1000);
 
 #if AP_MXECAN_DEBUG
-        if (now_ms - last_print_ms > 1000) {
-            if (_telemetry_active) {
-                GCS_SEND_TEXT(MAV_SEVERITY_INFO,
-                    "UUMOTOR: V=%.1fV T=%u Err=%u RPM1=%d RPM2=%d result=%d",
-                    (double)_driver_voltage, (unsigned)_driver_temp,
-                    (unsigned)_last_fault_code,
-                    (int)0, (int)0,
-                    result);
-            } else {
-                GCS_SEND_TEXT(MAV_SEVERITY_INFO,
-                    "UUMTR: Out1=%d Out2=%d Brk=%d Arm=%d Mode=%d ch3=%d res=%d",
-                    (int)_current_rpm1, (int)_current_rpm2,
+        if (now_ms - last_print_ms > 1500) {
+            GCS_SEND_TEXT(MAV_SEVERITY_INFO,
+                    "UMTR: Out1=%d lout=%f thr=%f dif=%f Out2=%d Brk=%d Arm=%d Mode=%d ch3=%d res=%d ch1=%d ch2=%d ch6=%d",
+                    (int)_current_rpm1, left_out, throttle, diff2, (int)_current_rpm2,
                     brake_active,
                     armed,
                     (int)mode, (int)ch3_pwm,
-                    result);
-            }
+                    result,
+                    ch1_pwm, ch2_pwm, ch6_pwm);
             last_print_ms = now_ms;
         }
 #endif
